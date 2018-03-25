@@ -1,6 +1,6 @@
 {
   "name": "Merchify",
-  "app_id": "",
+  "app_id": "b4f65367",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
