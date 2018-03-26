@@ -29,7 +29,7 @@ export class MyApp {
 
     this.adminPages = [
       { title: 'View Dashboard', component: 'AdminDashboardPage', icon: 'pie' },
-      { title: 'Edit Users', component: HomePage, icon: 'people' },
+      { title: 'Manage Users', component: 'UserListPage', icon: 'people' },
       { title: 'Edit Brands', component: HomePage, icon: 'brush' },
       { title: 'Edit Retailers', component: HomePage, icon: 'basket' },
       { title: 'Edit Locations', component: HomePage, icon: 'map' },
