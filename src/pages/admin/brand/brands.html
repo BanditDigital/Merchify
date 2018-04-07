@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Brands</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+
+  <!--ACTION FAB BUTTON-->
+  <ion-fab bottom right>
+    <button ion-fab color="secondary" (click)="create()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
+  <ion-list>
+    <ion-item-sliding *ngFor="let brand of brands">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{ brand?.logo }}">
+        </ion-avatar>
+        <h2>{{ brand?.name }}</h2>
+        <p>Products <ion-badge item-end>{{ brand?.products.length }}</ion-badge></p>
+        <button ion-button color="secondary" item-end (click)="openProducts(brand)">Products</button>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="edit(brand)"><ion-icon name="create"></ion-icon>Update</button>
+        <button ion-button color="danger" (click)="delete(brand)"><ion-icon name="trash"></ion-icon>Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

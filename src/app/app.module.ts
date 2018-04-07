@@ -6,6 +6,9 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {UserModule} from "../pages/users/user.module";
+import {ScheduleModule} from "../pages/schedule/schedule.module.";
+import {AdminModule} from "../pages/admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    UserModule,
+    ScheduleModule,
+    AdminModule
   ],
   bootstrap: [IonicApp],
   providers: [

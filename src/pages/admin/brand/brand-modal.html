@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      {{ brand ? 'Edit ' + brand.name : 'Create New Brand' }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="brandForm" novalidate>
+      <ion-item no-lines *ngIf="brand">
+        <ion-avatar item-start>
+          <img src="{{ brand?.logo }}">
+        </ion-avatar>
+        <h2>{{ brand?.name }}</h2>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Brand Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-buttons end>
+    <button ion-button color="light" (click)="dismiss()">Cancel</button>
+    <button ion-button color="primary" (click)="save(brandForm)">Save</button>
+  </ion-buttons>
+</ion-footer>

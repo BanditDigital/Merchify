@@ -1,0 +1,90 @@
+{
+  "tenants": [],
+  "users": [
+    {
+      "id": "387262",
+      "firstName": "Dominique",
+      "lastName": "Paton",
+      "address1": "Grove Lodge",
+      "address2": "2 Brockley Square",
+      "town": "Wilmslow",
+      "city": "",
+      "postcode": "SK9 5BF",
+      "email": "keccles@praibeuty.com",
+      "telephone": "075582415541",
+      "analysis1": "Sales",
+      "analysis2": "",
+      "analysis3": "",
+      "startDate": "2017-08-23",
+      "hourlyRate": 12.5,
+      "country": "IRE",
+      "jobTitle": "Neck Xpert",
+      "accountStatus": "Live",
+      "profileImage": "https://cdn.elawoman.com/profilepic/women-avatar1.jpg",
+      "brandId": [
+        464763
+      ],
+      "tenantId": 633456
+    }
+  ],
+  "brands": [
+    {
+      "id": 3464763,
+      "name": "PRAI Beauty",
+      "logo": "https://cdn.shopify.com/s/files/1/1042/3260/t/13/assets/logo.png?6859495802668385586",
+      "products": [
+        4564832
+      ]
+    },
+    {
+      "id": 3464764,
+      "name": "Loreal",
+      "logo": "http://www.ccorpusa.com/wp-content/uploads/2017/07/logo.png",
+      "products": []
+    },
+    {
+      "id": 3464765,
+      "name": "Nivea Beauty",
+      "logo": "http://www.ccorpusa.com/wp-content/uploads/2017/07/logo.png",
+      "products": []
+    },
+    {
+      "id": 3464766,
+      "name": "MaxFactor Makeup",
+      "logo": "http://www.ccorpusa.com/wp-content/uploads/2017/07/logo.png",
+      "products": []
+    }
+  ],
+  "products": [
+    {
+      "id": 4564832,
+      "sku": "X731",
+      "description": "Ageless Throat Serum",
+      "size": "120ml",
+      "promoCode": "PRAI20",
+      "barcode": "2011229732",
+      "brandId": 3464763
+    }
+  ],
+  "retailers": [],
+  "locations": [
+    {
+      "Id": 3474378,
+      "name": "Covant Garden",
+      "storeType": "A1",
+      "retailerId": 8567833
+    },
+    {
+      "id": 4464378,
+      "name": "Birmingham Central",
+      "storeType": "A1",
+      "retailerId": 8567863
+    },
+    {
+      "id": 4474379,
+      "name": "MK City Centre",
+      "storeType": "A1",
+      "retailerId": 8567863
+    }
+  ]
+}

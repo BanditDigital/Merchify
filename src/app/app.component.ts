@@ -1,9 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import {Component, ViewChild} from '@angular/core';
+import {Nav, Platform} from 'ionic-angular';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import {UserListPage} from "../pages/users/user-list/user-list";
+import {SchedulePage} from "../pages/schedule/schedule";
+import {BrandsPage} from "../pages/admin/brand/brands";
 
 @Component({
   templateUrl: 'app.html'
@@ -11,29 +13,26 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'HomePage';
+  rootPage: any = BrandsPage;
 
-  pages: Array<{title: string, component: any, icon: string}>;
-  adminPages: Array<{title: string, component: any, icon: string}>;
+  pages: Array<{ title: string, component: any, icon: string }>;
+  adminPages: Array<{ title: string, component: any, icon: string }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Schedule', component: 'ScheduleVisitPage', icon: 'calendar' },
-      { title: 'Check-in', component: 'VisitPage', icon: 'clock' },
-      { title: 'Visit Archive', component: 'VisitArchivePage', icon: 'filing' },
-      { title: 'Update My Details', component: 'UserProfilePage', icon: 'contact' },
-      { title: 'Sign Out', component: HomePage, icon: 'exit' }
+      {title: 'Schedule', component: SchedulePage, icon: 'calendar'},
+      {title: 'Profile', component: SchedulePage, icon: 'contact'},
+      {title: 'Sign Out', component: SchedulePage, icon: 'exit'}
     ];
 
     this.adminPages = [
-      { title: 'View Dashboard', component: 'AdminDashboardPage', icon: 'pie' },
-      { title: 'Manage Users', component: 'UserListPage', icon: 'people' },
-      { title: 'Edit Brands', component: HomePage, icon: 'brush' },
-      { title: 'Edit Retailers', component: HomePage, icon: 'basket' },
-      { title: 'Edit Locations', component: HomePage, icon: 'map' },
-      { title: 'Edit Products', component: HomePage, icon: 'cube' }
+      {title: 'Admin Dashboard', component: UserListPage, icon: 'pie'},
+      {title: 'User Management', component: UserListPage, icon: 'people'},
+      {title: 'Brands & Products', component: BrandsPage, icon: 'brush'},
+      {title: 'Retailers & Locations', component: UserListPage, icon: 'basket'},
+
     ];
   }
 

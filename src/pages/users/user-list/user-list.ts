@@ -1,43 +1,35 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {UserService} from '../user.service';
+import {User} from "../../../models/User";
+import {UserEditPage} from "../user-edit/user-edit";
 
-@IonicPage()
 @Component({
   selector: 'page-user-list',
   templateUrl: 'user-list.html',
 })
 export class UserListPage {
 
-  demoUser:any = [{
-    firstName: 'Dominique',
-    lastName: 'Paton',
-    address1: ' Grove Lodge',
-    address2: '2 Brockley Square',
-    town: 'Wilmslow',
-    city: '',
-    postcode: 'SK9 5BF',
-    email: 'keccles@praibeuty.com',
-    telephone: '075582415541',
-    analysis1: 'Sales',
-    hourlyRate: 12.50,
-    startDate: new Date(),
-    country: 'Ireland',
-    jobTitle: 'Neck Xpert',
-    roles: ['Merchandiser'],
-    brands: ['PRAI Beauty'],
-    profileImage: 'https://cdn.elawoman.com/profilepic/women-avatar1.jpg',
-    accountStatus: 'Live'
-  }];
+  users: User[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private userService: UserService) {
+    this.userService.getUsers()
+      .subscribe(users => {
+        this.users = users;
+      }, error => {
+        //TODO - Error handling
+        console.log(error);
+      });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AdminUsersPage');
+    console.log('ionViewDidLoad UserListPage');
   }
 
   edit(user) {
-    this.navCtrl.push('UserEditPage', { user: user })
+    this.navCtrl.push(UserEditPage, {user: user})
   }
 
 }
