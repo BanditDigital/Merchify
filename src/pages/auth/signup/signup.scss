@@ -1,0 +1,27 @@
+page-signup {
+  .error {
+    color: #f53d3d;
+    font-size: 0.8em;
+    margin-left: 20px;
+  }
+
+  .orgid {
+    margin-left: 0px;
+    border: 1px solid #f4f4f4;
+    padding: 1.5em;
+    border-radius: 8px;
+    background: #d6e3fa;
+  }
+
+  .header {
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #d2e0fd;
+    color: #323e68;
+  }
+
+  .light {
+    color: #f0f0f0;
+    font-size: 1.2em;
+  }
+}

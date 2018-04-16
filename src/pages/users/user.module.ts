@@ -27,5 +27,4 @@ import {UserService} from "./user.service";
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class UserModule {
-}
+export class UserModule {}

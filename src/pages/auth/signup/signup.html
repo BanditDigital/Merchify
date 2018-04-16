@@ -1,0 +1,171 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Create New Account</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="userForm">
+    <ion-list>
+      <ion-list-header class="header">
+        <ion-icon name="people" item-start></ion-icon>
+        Account Details
+      </ion-list-header>
+
+      <ion-item>
+        <ion-input type="text" placeholder="First Name" formControlName="firstName"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.firstName.hasError('maxlength')">
+        Must be less than 40 characters.
+      </span>
+      <span class="error" *ngIf="userForm.controls.firstName.hasError('required') && userForm.controls.firstName.touched">
+        First name is required.
+      </span>
+
+
+      <ion-item>
+        <ion-input type="text" placeholder="Last Name" formControlName="lastName"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.lastName.hasError('maxlength')">
+        Must be less than 40 characters.
+      </span>
+      <span class="error" *ngIf="userForm.controls.lastName.hasError('required') && userForm.controls.lastName.touched">
+        Last name is required.
+      </span>
+
+
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.email.hasError('required') && userForm.controls.email.touched">
+        Email address is required.
+      </span>
+
+
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.password.hasError('required') && userForm.controls.password.touched">
+        Password is required.
+      </span>
+      <span class="error" *ngIf="userForm.controls.password.hasError('maxlength') && userForm.controls.password.touched">
+        Maximum length 15 characters.
+      </span>
+      <span class="error" *ngIf="userForm.controls.password.hasError('min length') && userForm.controls.password.touched">
+        Minimum length 8 characters.
+      </span>
+
+      <ion-item>
+        <ion-input type="password" placeholder="Confirm Password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.confirmPassword.hasError('MatchPassword') && userForm.controls.password.touched">
+        Passwords do not match.
+      </span>
+
+
+      <ion-item no-lines>
+        <ion-input type="text" placeholder="Organisation Reference" formControlName="tenant"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.tenant.hasError('required') && userForm.controls.tenant.touched">
+        <ul>
+          <li>Organisation ID is required.</li>
+          <li>This is provided by your account administrator.</li>
+        </ul>
+      </span>
+      <ion-item no-lines>
+          <ion-grid class="orgid">
+            <ion-row>
+              <ion-col col-1> <ion-icon name="information-circle"></ion-icon></ion-col>
+              <ion-col col-11 text-wrap> Your organisation reference is a 6 digit code that identifies your organisation.
+                Obtain this from your account administrator.</ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+
+      <ion-list-header class="header">
+        <ion-icon name="home" item-start></ion-icon>
+        Contact Information
+      </ion-list-header>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Address Line 1" formControlName="address1"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.address1.hasError('maxlength')">
+        Must be less than 80 characters.
+      </span>
+      <span class="error" *ngIf="userForm.controls.address1.hasError('required') && userForm.controls.address1.touched">
+        Address line 1 is required
+      </span>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Address Line 2" formControlName="address2"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.address2.hasError('maxlength')">
+        Must be less than 80 characters.
+      </span>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Town/City" formControlName="town"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.town.hasError('maxlength')">
+        Must be less than 80 characters.
+      </span>
+      <span class="error" *ngIf="userForm.controls.town.hasError('required') && userForm.controls.town.touched">
+        Town is required.
+      </span>
+
+      <ion-item>
+        <ion-input type="text" placeholder="County/Region" formControlName="county"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.county.hasError('maxlength')">
+        Must be less than 40 characters.
+      </span>
+      <span class="error" *ngIf="userForm.controls.county.hasError('required') && userForm.controls.county.touched">
+        County/Region is required.
+      </span>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Postal Code" formControlName="postcode"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.postcode.hasError('required') && userForm.controls.postcode.touched">
+        Postcode is required.
+      </span>
+
+      <ion-item>
+        <ion-label>Country</ion-label>
+        <ion-select formControlName="country">
+          <ion-option value="GB">United Kingdom</ion-option>
+          <ion-option value="IRE">Ireland</ion-option>
+          <ion-option value="ES">Spain</ion-option>
+          <ion-option value="DE">Germany</ion-option>
+          <ion-option value="FR">France</ion-option>
+        </ion-select>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.country.hasError('required') && userForm.controls.country.touched">
+        Country is required.
+      </span>
+
+      <ion-item no-lines>
+        <ion-input type="tel" placeholder="Phone number" formControlName="telephone"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="userForm.controls.telephone.hasError('required') && userForm.controls.telephone.touched">
+        Telephone is required.
+      </span>
+    </ion-list>
+  </form>
+</ion-content>
+
+<ion-footer class="light">
+  <ion-toolbar padding end>
+    <div *ngIf="userForm.valid">
+      <ion-badge color="secondary">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-badge>
+      Great work! Now hit sign up...
+    </div>
+    <ion-buttons end right>
+      <button ion-button (click)="register(userForm.value)" [disabled]="!userForm.valid">Sign up</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
