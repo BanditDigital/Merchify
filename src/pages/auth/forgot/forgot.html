@@ -14,5 +14,29 @@
 
 
 <ion-content padding>
+  <ion-list-header class="header">
+    <ion-icon name="mail" item-start></ion-icon>
+    Email Details
+  </ion-list-header>
 
+  <form [formGroup]="forgotForm">
+    <ion-list>
+      <!-- EMAIL INPUT -->
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="forgotForm.controls.email.hasError('required') && forgotForm.controls.email.touched">
+          Email is required.
+      </span>
+    </ion-list>
+  </form>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar padding end>
+    <ion-buttons end right>
+      <button ion-button (click)="submit(forgotForm.value)"
+              [disabled]="!forgotForm.valid">Sign In</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

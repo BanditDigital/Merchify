@@ -6,8 +6,9 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {UserListPage} from "../pages/users/user-list/user-list";
 import {SchedulePage} from "../pages/schedule/schedule";
 import {BrandsPage} from "../pages/admin/brand/brands";
-import {SignupPage} from "../pages/auth/signup/signup";
 import {SigninPage} from "../pages/auth/signin/signin";
+import {AuthService} from "../pages/auth/auth.service";
+import {HomePage} from "../pages/home/home";
 
 @Component({
   templateUrl: 'app.html'
@@ -15,41 +16,58 @@ import {SigninPage} from "../pages/auth/signin/signin";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SignupPage;
+  public rootPage: any;
 
-  pages: Array<{ title: string, component: any, icon: string }>;
-  adminPages: Array<{ title: string, component: any, icon: string }>;
+  private pages: Array<{ title: string, component: any, icon: string }>;
+  private adminPages: Array<{ title: string, component: any, icon: string }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform
+              , public statusBar: StatusBar
+              , public splashScreen: SplashScreen
+              , private authService: AuthService) {
+    this.checkAuthenticated();
     this.initializeApp();
 
     this.pages = [
       {title: 'Schedule', component: SchedulePage, icon: 'calendar'},
-      {title: 'Profile', component: SchedulePage, icon: 'contact'},
-      {title: 'Sign Out', component: SchedulePage, icon: 'exit'}
+      {title: 'Profile', component: SchedulePage, icon: 'contact'}
     ];
-
     this.adminPages = [
       {title: 'Admin Dashboard', component: UserListPage, icon: 'pie'},
       {title: 'User Management', component: UserListPage, icon: 'people'},
       {title: 'Brands & Products', component: BrandsPage, icon: 'brush'},
       {title: 'Retailers & Locations', component: UserListPage, icon: 'basket'},
-
     ];
+
   }
 
-  initializeApp() {
+  private initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+  // Checks if the user is authenticated i.e. Already logged in
+  private checkAuthenticated() {
+    this.authService.isAuthenticated().then(authenticated => {
+      if (authenticated) {
+        this.rootPage = HomePage;
+      } else {
+        this.rootPage = SigninPage;
+      }
+    });
+  }
+
+  // Opens pages selected via the menu
+  public openPage(page) {
     this.nav.setRoot(page.component);
+  }
+
+  // Calls the storageService via the authService to clear local storage
+  public signOut() {
+    this.authService.signOut().then(() => {
+      this.nav.setRoot(SigninPage);
+    })
   }
 }

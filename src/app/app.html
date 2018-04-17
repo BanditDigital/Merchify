@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" id="app-menu">
   <ion-header>
     <ion-toolbar>
       <ion-title>What next?</ion-title>
@@ -10,6 +10,10 @@
       <button menuClose icon-left ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name="{{ p.icon }}"></ion-icon>
         {{p.title}}
+      </button>
+      <button menuClose icon-left ion-item (click)="signOut()">
+        <ion-icon name="exit"></ion-icon>
+        Sign Out
       </button>
     </ion-list>
 

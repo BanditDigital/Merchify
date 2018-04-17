@@ -4,9 +4,8 @@ import {AuthService} from "../auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../models/User";
 import {PasswordValidator} from "../../../shared/validators/password.validator";
-import {EmailPage} from "./email";
 import {SignupErrorPage} from "./error.modal";
-
+import {AlertService} from "../../../shared/alert/alert.service";
 
 @Component({
   selector: 'page-signup',
@@ -20,7 +19,8 @@ export class SignupPage {
               public navParams: NavParams,
               private authService: AuthService,
               private fb: FormBuilder,
-              private modal: ModalController) {
+              private modal: ModalController,
+              private alertService: AlertService) {
     this.initialiseForm();
   }
 
@@ -31,7 +31,8 @@ export class SignupPage {
   public register(user: User) {
     this.authService.register(user)
       .subscribe(success => {
-        this.navCtrl.push(EmailPage, success);
+        this.alertService.showAlert('Verify Email', 'An email has been sent to the entered address for verification');
+        this.navCtrl.pop();
       }, errors => {
         console.log(JSON.stringify(errors));
         this.errorModal(errors.error);

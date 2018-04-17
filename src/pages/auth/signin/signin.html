@@ -1,11 +1,47 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Sign In</ion-title>
+    <ion-title text-center>Sign In</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
+  <ion-list-header class="header">
+    <ion-icon name="people" item-start></ion-icon>
+    Account Details
+  </ion-list-header>
+
+  <form [formGroup]="signinForm">
+    <ion-list>
+      <!-- USER NAME INPUT -->
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="signinForm.controls.email.hasError('required') && signinForm.controls.email.touched">
+          Email is required.
+      </span>
+      <!-- PASSWORD INPUT -->
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+      <span class="error" *ngIf="signinForm.controls.password.hasError('required') && signinForm.controls.password.touched">
+          Password is required.
+      </span>
+    </ion-list>
+  </form>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar padding end>
+      <ion-buttons>
+        <button ion-button (click)="forgot()">Forgot?</button>
+        <button ion-button (click)="signUp()">Sign Up</button>
+      </ion-buttons>
+      <ion-buttons end right>
+            <button ion-button (click)="signIn(signinForm.value)"
+                    [disabled]="!signinForm.valid">Sign In</button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
