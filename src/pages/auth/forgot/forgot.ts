@@ -44,7 +44,6 @@ export class ForgotPage {
       this.alertService.showAlert('Reset Request Sent',
         'You will soon receive an email with instructions on how to reset your password');
       loading.dismiss();
-      }
   }
 
 }
