@@ -31,7 +31,7 @@ export class BrandModal {
 
   save(form: FormGroup) {
     if(!this.brand) {
-      this.brand = new Brand('', form.value.name, 'http://www.ccorpusa.com/wp-content/uploads/2017/07/logo.png', []);
+      this.brand = { name: form.value.name };
     } else {
       this.brand.name = form.value.name;
     }

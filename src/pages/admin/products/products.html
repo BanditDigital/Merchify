@@ -19,10 +19,10 @@
 
   <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
   <ion-list>
-    <ion-item-sliding *ngFor="let product of products">
+    <ion-item-sliding *ngFor="let product of brand?.products">
       <ion-item>
-        <h2>{{ product?.description }}</h2>
-        <p>{{ product.sku }} <ion-badge item-end>{{ product?.size }}</ion-badge></p>
+        <h2>{{ product.description }}</h2>
+        <p>{{ product.sku }} <ion-badge item-end>{{ product.size }}</ion-badge></p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="secondary" (click)="edit(product)"><ion-icon name="create"></ion-icon>Update</button>

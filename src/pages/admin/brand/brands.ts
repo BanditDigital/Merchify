@@ -1,10 +1,11 @@
 import {Component} from "@angular/core";
 import {Brand} from "../../../models/Brand";
 import {BrandsService} from "./brands.service";
-import {AlertController, ModalController, NavController} from "ionic-angular";
+import {AlertController, LoadingController, ModalController, NavController} from "ionic-angular";
 import * as _ from 'lodash';
 import {BrandModal} from "./brand-modal";
 import {ProductsPage} from "../products/products";
+import {AlertService} from "../../../shared/alert/alert.service";
 
 @Component({
   selector: 'page-brands',
@@ -17,30 +18,35 @@ export class BrandsPage {
   constructor(private brandService: BrandsService,
               private modalCtrl: ModalController,
               private alertCtrl: AlertController,
-              private navCtrl: NavController) {
+              private navCtrl: NavController,
+              private errorAlert: AlertService,
+              private loadingCtrl: LoadingController) {
     this.getAll();
   }
 
   public create() {
     let createModal = this.modalCtrl.create(BrandModal, {});
+    let loading = this.loadingCtrl.create({content: 'Creating brand...'});
 
     createModal.onDidDismiss(data => {
-      if(data) {
+      if (data) {
+        loading.present();
         this.brandService.addBrand(data)
           .subscribe(success => {
             this.brands.push(success);
+            loading.dismiss();
           }, error => {
-            //TODO - Error handling
-            console.log(error);
+            this.errorAlert.showAlert('Could not add brand', error.message);
+            loading.dismiss();
           })
       }
-      console.log(data);
     });
 
     createModal.present();
   }
 
   public delete(brand: Brand) {
+    let loading = this.loadingCtrl.create({content: 'Deleting brand...'});
     let confirm = this.alertCtrl.create({
       title: `Confirm delete`,
       message: `Are you sure you want to delete ${brand.name}, you will not be able to undo this action?`,
@@ -51,14 +57,14 @@ export class BrandsPage {
         {
           text: 'Yes, delete it!',
           handler: () => {
-            console.log('dele');
+            loading.present();
             this.brandService.deleteBrand(brand)
               .subscribe(success => {
-                console.log(success);
-                _.pull(this.brands, success);
+                _.pull(this.brands, brand);
+                loading.dismiss();
               }, error => {
-                //TODO - Error handling
-                console.log(error);
+                this.errorAlert.showAlert('Could not delete brand', error.message);
+                loading.dismiss();
               });
           }
         }
@@ -68,17 +74,20 @@ export class BrandsPage {
   }
 
   public edit(brand: Brand) {
-    let createModal = this.modalCtrl.create(BrandModal, { brand: brand});
+    let createModal = this.modalCtrl.create(BrandModal, {brand: brand});
+    let loading = this.loadingCtrl.create({content: 'Updating brand...'});
 
     createModal.onDidDismiss(data => {
-      if(data) {
+      if (data) {
+        loading.present();
         this.brandService.editBrand(data)
           .subscribe(success => {
             _.pull(this.brands, data);
             this.brands.push(success);
+            loading.dismiss();
           }, error => {
-            //TODO - Error handling
-            console.log(error);
+            this.errorAlert.showAlert('Could not edit brand', error.message);
+            loading.dismiss();
           })
       }
     });
@@ -87,14 +96,21 @@ export class BrandsPage {
   }
 
   public getAll() {
-    //TODO - Error handling
+    let loading = this.loadingCtrl.create({content: 'Getting brands...'});
+
+    loading.present();
     this.brandService.getBrands()
-      .subscribe(brands => this.brands = brands,
-        error => console.log(error));
+      .subscribe(brands => {
+        this.brands = brands;
+        loading.dismiss();
+      }, error => {
+        this.errorAlert.showAlert('Could not edit brand', error.message);
+        loading.dismiss();
+      });
   }
 
   openProducts(brand: Brand) {
-    this.navCtrl.push(ProductsPage, { brand: brand });
+    this.navCtrl.push(ProductsPage, {brand: brand});
   }
 
 }

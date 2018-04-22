@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Brands</ion-title>
+    <ion-title>Brands & Products</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -21,9 +21,6 @@
   <ion-list>
     <ion-item-sliding *ngFor="let brand of brands">
       <ion-item>
-        <ion-avatar item-start>
-          <img src="{{ brand?.logo }}">
-        </ion-avatar>
         <h2>{{ brand?.name }}</h2>
         <p>Products <ion-badge item-end>{{ brand?.products.length }}</ion-badge></p>
         <button ion-button color="secondary" item-end (click)="openProducts(brand)">Products</button>

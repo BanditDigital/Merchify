@@ -10,12 +10,6 @@
 </ion-header>
 <ion-content>
   <form [formGroup]="brandForm" novalidate>
-      <ion-item no-lines *ngIf="brand">
-        <ion-avatar item-start>
-          <img src="{{ brand?.logo }}">
-        </ion-avatar>
-        <h2>{{ brand?.name }}</h2>
-      </ion-item>
 
       <ion-item>
         <ion-label>Brand Name</ion-label>

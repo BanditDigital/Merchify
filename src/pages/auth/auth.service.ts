@@ -9,9 +9,10 @@ import {StorageService} from "../../shared/storage/storage.service";
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient, private storageService: StorageService) {}
+  constructor(private http: HttpClient, private storageService: StorageService) {
+  }
 
-  public register(user: User) : Observable<User[]> {
+  public register(user: User): Observable<User[]> {
     console.log(console.log(JSON.stringify(user)));
     return this.http.post<User[]>(`${environment.API}users`, user);
   }
@@ -21,18 +22,20 @@ export class AuthService {
   }
 
   public signOut() {
-    return this.storageService.removeToken();
+    this.storageService.removeToken();
   }
 
   public forgot(emailAddress) {
     // return this.http.post(`${environment.API}users/forgot`, emailAddress);
   }
 
-  public isAuthenticated() {
-    return this.storageService.getToken().then(token => {
-      let jwt = jsonwebtoken.decode(token);
-      return (new Date().getTime()/1000 < jwt.exp);
-    }).catch(err => false);
+  public getToken() {
+    return this.storageService.getToken();
   }
 
+  public isAuthenticated() {
+    const token = this.storageService.getToken();
+    let jwt = jsonwebtoken.decode(token);
+    return (new Date().getTime() / 1000 < jwt.exp);
+  }
 }

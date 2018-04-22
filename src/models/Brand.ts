@@ -1,6 +1,9 @@
-export class Brand {
-  constructor(public id: string,
-              public name: string,
-              public logo: string,
-              public products: any[]) {}
+import {Product} from "./Product";
+
+export interface Brand {
+  _id?: string,
+  name: string,
+  logo?: string,
+  products?: Product[],
+  tenant?: string
 }

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      {{ brand ? 'Edit ' + product.description : 'Create New Product' }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="productForm" novalidate>
+
+    <ion-item>
+      <ion-label>SKU</ion-label>
+      <ion-input type="text" formControlName="sku"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-input type="text" formControlName="description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Size</ion-label>
+      <ion-input type="text" formControlName="size"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Barcode</ion-label>
+      <ion-input type="text" formControlName="barcode"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Promo Code</ion-label>
+      <ion-input type="text" formControlName="promoCode"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-buttons end>
+    <button ion-button color="light" (click)="dismiss()">Cancel</button>
+    <button ion-button color="primary" (click)="save(productForm)">Save</button>
+  </ion-buttons>
+</ion-footer>

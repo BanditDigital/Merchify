@@ -9,20 +9,16 @@ import {Brand} from "../../../models/Brand";
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  public getProducts(brand: Brand) : Observable<Product[]> {
-    return this.http.get<Product[]>(`${environment.API}brands/${brand.id}/products`);
+  public addProduct(brand: Brand, product: Product) : Observable<Product[]> {
+    return this.http.post<Product[]>(`${environment.API}merchandise/brand/${brand._id}/product`, product, {});
   }
 
-  public addProduct(product: Product) : Observable<Product> {
-    return this.http.post<Product>(`${environment.API}brands`, product, {});
+  public deleteProduct(brand: Brand, product: Product) : Observable<Product[]> {
+    return this.http.delete<Product[]>(`${environment.API}merchandise/brand/${brand._id}/product/${product._id}`)
   }
 
-  public deleteProducts(product: Product) : Observable<Product> {
-    return this.http.delete<Product>(`${environment.API}brands/${product.id}`)
-  }
-
-  public editProducts(product: Product) : Observable<Product> {
-    return this.http.patch<Product>(`${environment.API}brands/${product.id}`, product, {});
+  public updateProduct(brand: Brand, product: Product) : Observable<Product[]> {
+    return this.http.patch<Product[]>(`${environment.API}merchandise/brand/${brand._id}/product`, product, {});
   }
 
 }

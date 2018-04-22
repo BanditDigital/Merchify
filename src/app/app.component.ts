@@ -22,9 +22,9 @@ export class MyApp {
   private adminPages: Array<{ title: string, component: any, icon: string }>;
 
   constructor(public platform: Platform
-              , public statusBar: StatusBar
-              , public splashScreen: SplashScreen
-              , private authService: AuthService) {
+    , public statusBar: StatusBar
+    , public splashScreen: SplashScreen
+    , private authService: AuthService) {
     this.checkAuthenticated();
     this.initializeApp();
 
@@ -50,13 +50,11 @@ export class MyApp {
 
   // Checks if the user is authenticated i.e. Already logged in
   private checkAuthenticated() {
-    this.authService.isAuthenticated().then(authenticated => {
-      if (authenticated) {
-        this.rootPage = HomePage;
-      } else {
-        this.rootPage = SigninPage;
-      }
-    });
+    if (this.authService.isAuthenticated()) {
+      this.rootPage = BrandsPage;
+    } else {
+      this.rootPage = SigninPage;
+    }
   }
 
   // Opens pages selected via the menu
@@ -66,8 +64,7 @@ export class MyApp {
 
   // Calls the storageService via the authService to clear local storage
   public signOut() {
-    this.authService.signOut().then(() => {
-      this.nav.setRoot(SigninPage);
-    })
+    this.authService.signOut();
+    this.nav.setRoot(SigninPage);
   }
 }
