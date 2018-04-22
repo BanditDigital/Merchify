@@ -8,7 +8,6 @@ import {SchedulePage} from "../pages/schedule/schedule";
 import {BrandsPage} from "../pages/admin/brand/brands";
 import {SigninPage} from "../pages/auth/signin/signin";
 import {AuthService} from "../pages/auth/auth.service";
-import {HomePage} from "../pages/home/home";
 
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +24,7 @@ export class MyApp {
     , public statusBar: StatusBar
     , public splashScreen: SplashScreen
     , private authService: AuthService) {
-    this.checkAuthenticated();
+
     this.initializeApp();
 
     this.pages = [
@@ -45,6 +44,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.checkAuthenticated();
     });
   }
 

@@ -29,13 +29,17 @@ export class AuthService {
     // return this.http.post(`${environment.API}users/forgot`, emailAddress);
   }
 
-  public getToken() {
+  public getToken() : Observable<any> {
     return this.storageService.getToken();
   }
 
-  public isAuthenticated() {
-    const token = this.storageService.getToken();
-    let jwt = jsonwebtoken.decode(token);
-    return (new Date().getTime() / 1000 < jwt.exp);
+  public async isAuthenticated() {
+    let auth: boolean = false;
+    let token = await this.storageService.getTokenPromise();
+    if (token) {
+      let jwt = jsonwebtoken.decode(token);
+      auth = (new Date().getTime() / 1000 < jwt.exp);
+    }
+    return auth;
   }
 }
