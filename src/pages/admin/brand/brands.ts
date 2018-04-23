@@ -36,7 +36,7 @@ export class BrandsPage {
             this.brands.push(success);
             loading.dismiss();
           }, error => {
-            this.errorAlert.showAlert('Could not add brand', error.message);
+            this.errorAlert.showAlert('Could not add brand', error.error.message);
             loading.dismiss();
           })
       }
@@ -63,7 +63,7 @@ export class BrandsPage {
                 _.pull(this.brands, brand);
                 loading.dismiss();
               }, error => {
-                this.errorAlert.showAlert('Could not delete brand', error.message);
+                this.errorAlert.showAlert('Could not delete brand', error.error.message);
                 loading.dismiss();
               });
           }
@@ -86,7 +86,7 @@ export class BrandsPage {
             this.brands.push(success);
             loading.dismiss();
           }, error => {
-            this.errorAlert.showAlert('Could not edit brand', error.message);
+            this.errorAlert.showAlert('Could not edit brand', error.error.message);
             loading.dismiss();
           })
       }
@@ -104,7 +104,7 @@ export class BrandsPage {
         this.brands = brands;
         loading.dismiss();
       }, error => {
-        this.errorAlert.showAlert('Could not edit brand', error.message);
+        this.errorAlert.showAlert('Could not edit brand', error.error.message);
         loading.dismiss();
       });
   }

@@ -9,13 +9,18 @@ import {ProductsService} from "./products/products.service";
 import {ProductsPage} from "./products/products";
 import {TokenInterceptor} from "../auth/token.interceptor";
 import {ProductModal} from "./products/product-modal";
+import {UserEditPage} from "./users/user-edit/user-edit";
+import {UserListPage} from "./users/user-list/user-list";
+import {UserService} from "./users/user.service";
 
 @NgModule({
   declarations: [
     BrandsPage,
     BrandModal,
     ProductsPage,
-    ProductModal
+    ProductModal,
+    UserEditPage,
+    UserListPage
   ],
   imports: [
     BrowserModule,
@@ -26,11 +31,14 @@ import {ProductModal} from "./products/product-modal";
     BrandsPage,
     BrandModal,
     ProductsPage,
-    ProductModal
+    ProductModal,
+    UserListPage,
+    UserEditPage
   ],
   providers: [
     BrandsService,
     ProductsService,
+    UserService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

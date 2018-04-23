@@ -61,7 +61,8 @@ export class SignupPage {
       confirmPassword: [''],
       tenant: ['', Validators.compose([
         Validators.required,
-        Validators.maxLength(8)
+        Validators.minLength(6),
+        Validators.maxLength(6)
       ])],
       address1: ['', Validators.compose([
         Validators.required,

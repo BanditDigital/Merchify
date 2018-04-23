@@ -37,7 +37,7 @@ export class ProductsPage {
             this.brand.products = success;
             loading.dismiss();
           }, error => {
-            this.errorAlert.showAlert('Could not add product', error.message);
+            this.errorAlert.showAlert('Could not add product', error.error.message);
             loading.dismiss();
           })
       }
@@ -65,7 +65,7 @@ export class ProductsPage {
                 this.brand.products = success;
                 loading.dismiss();
               }, error => {
-                this.errorAlert.showAlert('Could not delete product', error.message);
+                this.errorAlert.showAlert('Could not delete product', error.error.message);
                 loading.dismiss();
               });
           }
@@ -88,7 +88,7 @@ export class ProductsPage {
             this.brand.products = success;
             loading.dismiss();
           }, error => {
-            this.errorAlert.showAlert('Could not delete product', error.message);
+            this.errorAlert.showAlert('Could not delete product', error.error.message);
             loading.dismiss();
           })
       }

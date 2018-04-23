@@ -13,7 +13,6 @@ export class AuthService {
   }
 
   public register(user: User): Observable<User[]> {
-    console.log(console.log(JSON.stringify(user)));
     return this.http.post<User[]>(`${environment.API}users`, user);
   }
 

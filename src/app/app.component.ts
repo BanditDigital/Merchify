@@ -2,12 +2,11 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-
-import {UserListPage} from "../pages/users/user-list/user-list";
-import {SchedulePage} from "../pages/schedule/schedule";
 import {BrandsPage} from "../pages/admin/brand/brands";
 import {SigninPage} from "../pages/auth/signin/signin";
 import {AuthService} from "../pages/auth/auth.service";
+import {UserListPage} from "../pages/admin/users/user-list/user-list";
+import {HomePage} from "../pages/home/home";
 
 @Component({
   templateUrl: 'app.html'
@@ -28,14 +27,14 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      {title: 'Schedule', component: SchedulePage, icon: 'calendar'},
-      {title: 'Profile', component: SchedulePage, icon: 'contact'}
+      {title: 'Schedule', component: HomePage, icon: 'calendar'},
+      {title: 'Profile', component: HomePage, icon: 'contact'}
     ];
     this.adminPages = [
-      {title: 'Admin Dashboard', component: UserListPage, icon: 'pie'},
+      {title: 'Admin Dashboard', component: HomePage, icon: 'pie'},
       {title: 'User Management', component: UserListPage, icon: 'people'},
       {title: 'Brands & Products', component: BrandsPage, icon: 'brush'},
-      {title: 'Retailers & Locations', component: UserListPage, icon: 'basket'},
+      {title: 'Retailers & Locations', component: HomePage, icon: 'basket'},
     ];
 
   }
@@ -49,20 +48,18 @@ export class MyApp {
   }
 
   // Checks if the user is authenticated i.e. Already logged in
-  private checkAuthenticated() {
-    if (this.authService.isAuthenticated()) {
-      this.rootPage = BrandsPage;
+  private async checkAuthenticated() {
+    if (await this.authService.isAuthenticated()) {
+      this.rootPage = UserListPage;
     } else {
       this.rootPage = SigninPage;
     }
   }
 
-  // Opens pages selected via the menu
   public openPage(page) {
     this.nav.setRoot(page.component);
   }
 
-  // Calls the storageService via the authService to clear local storage
   public signOut() {
     this.authService.signOut();
     this.nav.setRoot(SigninPage);

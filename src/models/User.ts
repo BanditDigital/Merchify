@@ -5,7 +5,7 @@ export interface User {
   address1: string,
   address2: string,
   town: string,
-  city: string,
+  county: string,
   postcode: string,
   email: string,
   telephone: string,
@@ -17,14 +17,8 @@ export interface User {
   hourlyRate: number,
   jobTitle: string,
   profileImage: string,
-  accountStatus: string,
-  //TODO - Strong typing
-  roles: Array<any>,
-  //TODO - Strong typing
-  brands: Array<any>,
-  //ToDO - Strong typing
-  tenant: any;
-
-
-
+  emailVerified: boolean,
+  organisationApproved: boolean,
+  tenant: string,
+  roles: string[]
 }
