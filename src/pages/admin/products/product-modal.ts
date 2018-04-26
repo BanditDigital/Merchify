@@ -16,7 +16,7 @@ export class ProductModal {
               private fb: FormBuilder,
               private viewCtrl: ViewController) {
 
-    //Grab the brand object passed in from the caller
+    //Grab the account object passed in from the caller
     this.product = this.navParams.get('product');
 
     //Initialise form
@@ -30,12 +30,19 @@ export class ProductModal {
       size: [product ? product.size : ''],
       promoCode: [product ? product.promoCode : ''],
       barcode: [product ? product.barcode : ''],
-      _id: [product ? product._id : null]
     });
   }
 
   save(form: FormGroup) {
-    this.product = form.value;
+    let id = '';
+    if(this.product) {
+      id = this.product._id;
+      this.product = form.value;
+      this.product._id = id;
+    } else {
+      this.product = form.value;
+    }
+
     this.viewCtrl.dismiss(this.product);
   }
 

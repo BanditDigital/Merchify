@@ -12,6 +12,12 @@ import {ProductModal} from "./products/product-modal";
 import {UserEditPage} from "./users/user-edit/user-edit";
 import {UserListPage} from "./users/user-list/user-list";
 import {UserService} from "./users/user.service";
+import {AccountsPage} from "./accounts/accounts";
+import {AccountModal} from "./accounts/account-modal";
+import {AccountService} from "./accounts/account.service";
+import {LocationModal} from "./locations/location-modal";
+import {LocationsPage} from "./locations/locations";
+import {LocationService} from "./locations/location.service";
 
 @NgModule({
   declarations: [
@@ -20,7 +26,11 @@ import {UserService} from "./users/user.service";
     ProductsPage,
     ProductModal,
     UserEditPage,
-    UserListPage
+    UserListPage,
+    AccountsPage,
+    AccountModal,
+    LocationsPage,
+    LocationModal
   ],
   imports: [
     BrowserModule,
@@ -33,12 +43,18 @@ import {UserService} from "./users/user.service";
     ProductsPage,
     ProductModal,
     UserListPage,
-    UserEditPage
+    UserEditPage,
+    AccountsPage,
+    AccountModal,
+    LocationsPage,
+    LocationModal
   ],
   providers: [
     BrandsService,
     ProductsService,
     UserService,
+    AccountService,
+    LocationService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

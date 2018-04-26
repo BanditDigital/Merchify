@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      {{ location ? 'Edit ' + location.name : 'Create New Location' }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="locationForm" novalidate>
+
+    <ion-item>
+      <ion-label>Locatio Name</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Location Type</ion-label>
+      <ion-input type="text" formControlName="storeType"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+<ion-footer>
+  <ion-buttons end>
+    <button ion-button color="light" (click)="dismiss()">Cancel</button>
+    <button ion-button color="primary" (click)="save(locationForm)">Save</button>
+  </ion-buttons>
+</ion-footer>

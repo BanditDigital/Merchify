@@ -7,6 +7,7 @@ import {SigninPage} from "../pages/auth/signin/signin";
 import {AuthService} from "../pages/auth/auth.service";
 import {UserListPage} from "../pages/admin/users/user-list/user-list";
 import {HomePage} from "../pages/home/home";
+import {AccountsPage} from "../pages/admin/accounts/accounts";
 
 @Component({
   templateUrl: 'app.html'
@@ -31,10 +32,9 @@ export class MyApp {
       {title: 'Profile', component: HomePage, icon: 'contact'}
     ];
     this.adminPages = [
-      {title: 'Admin Dashboard', component: HomePage, icon: 'pie'},
       {title: 'User Management', component: UserListPage, icon: 'people'},
       {title: 'Brands & Products', component: BrandsPage, icon: 'brush'},
-      {title: 'Retailers & Locations', component: HomePage, icon: 'basket'},
+      {title: 'Retailers & Locations', component: AccountsPage, icon: 'basket'},
     ];
 
   }

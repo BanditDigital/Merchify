@@ -1,21 +1,22 @@
 import {Component} from "@angular/core";
-import {Brand} from "../../../models/Brand";
-import {BrandsService} from "./brands.service";
 import {AlertController, LoadingController, ModalController, NavController} from "ionic-angular";
-import * as _ from 'lodash';
-import {BrandModal} from "./brand-modal";
-import {ProductsPage} from "../products/products";
 import {AlertService} from "../../../shared/alert/alert.service";
+import {AccountService} from "./account.service";
+import {AccountModal} from "./account-modal";
+import {Account} from "../../../models/Account";
+
+import * as _ from 'lodash';
+import {LocationsPage} from "../locations/locations";
 
 @Component({
-  selector: 'page-brands',
-  templateUrl: 'brands.html'
+  selector: 'page-accounts',
+  templateUrl: 'accounts.html'
 })
-export class BrandsPage {
+export class AccountsPage {
 
-  brands: Brand[] = [];
+  accounts: Account[] = [];
 
-  constructor(private brandService: BrandsService,
+  constructor(private accountService: AccountService,
               private modalCtrl: ModalController,
               private alertCtrl: AlertController,
               private navCtrl: NavController,
@@ -25,15 +26,15 @@ export class BrandsPage {
   }
 
   public create() {
-    let createModal = this.modalCtrl.create(BrandModal, {});
+    let createModal = this.modalCtrl.create(AccountModal, {});
     let loading = this.loadingCtrl.create({content: 'Creating account...'});
 
     createModal.onDidDismiss(data => {
       if (data) {
         loading.present();
-        this.brandService.addBrand(data)
+        this.accountService.addAccount(data)
           .subscribe(success => {
-            this.brands.push(success);
+            this.accounts.push(success);
             loading.dismiss();
           }, error => {
             this.errorAlert.showAlert('Could not add account', error.error.message);
@@ -45,11 +46,11 @@ export class BrandsPage {
     createModal.present();
   }
 
-  public delete(brand: Brand) {
+        public delete(account: Account) {
     let loading = this.loadingCtrl.create({content: 'Deleting account...'});
     let confirm = this.alertCtrl.create({
       title: `Confirm delete`,
-      message: `Are you sure you want to delete ${brand.name}, you will not be able to undo this action?`,
+      message: `Are you sure you want to delete ${account.name}, you will not be able to undo this action?`,
       buttons: [
         {
           text: 'Cancel',
@@ -58,9 +59,9 @@ export class BrandsPage {
           text: 'Yes, delete it!',
           handler: () => {
             loading.present();
-            this.brandService.deleteBrand(brand)
+            this.accountService.deleteAccount(account)
               .subscribe(success => {
-                _.pull(this.brands, brand);
+                _.pull(this.accounts, account);
                 loading.dismiss();
               }, error => {
                 this.errorAlert.showAlert('Could not delete account', error.error.message);
@@ -73,17 +74,17 @@ export class BrandsPage {
     confirm.present();
   }
 
-  public edit(brand: Brand) {
-    let createModal = this.modalCtrl.create(BrandModal, {brand: brand});
+  public edit(account: Account) {
+    let createModal = this.modalCtrl.create(AccountModal, {account: account});
     let loading = this.loadingCtrl.create({content: 'Updating account...'});
 
     createModal.onDidDismiss(data => {
       if (data) {
         loading.present();
-        this.brandService.editBrand(data)
+        this.accountService.editAccount(data)
           .subscribe(success => {
-            _.pull(this.brands, data);
-            this.brands.push(success);
+            _.pull(this.accounts, data);
+            this.accounts.push(success);
             loading.dismiss();
           }, error => {
             this.errorAlert.showAlert('Could not edit account', error.error.message);
@@ -96,21 +97,21 @@ export class BrandsPage {
   }
 
   public getAll() {
-    let loading = this.loadingCtrl.create({content: 'Getting brands...'});
+    let loading = this.loadingCtrl.create({content: 'Getting accounts...'});
 
     loading.present();
-    this.brandService.getBrands()
-      .subscribe(brands => {
-        this.brands = brands;
+    this.accountService.getAccounts()
+      .subscribe(accounts => {
+        this.accounts = accounts;
         loading.dismiss();
       }, error => {
-        this.errorAlert.showAlert('Could not edit account', error.error.message);
+        this.errorAlert.showAlert('Could not get accounts', error.error.message);
         loading.dismiss();
       });
   }
 
-  openProducts(brand: Brand) {
-    this.navCtrl.push(ProductsPage, {brand: brand});
+  openLocations(account: Account) {
+    this.navCtrl.push(LocationsPage, {account: account});
   }
 
 }

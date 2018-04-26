@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Accounts & Locations</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+
+  <!--ACTION FAB BUTTON-->
+  <ion-fab bottom right>
+    <button ion-fab color="secondary" (click)="create()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
+  <ion-list>
+    <ion-item-sliding *ngFor="let account of accounts">
+      <ion-item>
+        <h2>{{ account?.name }}</h2>
+        <p>Locations <ion-badge item-end>{{ account?.locations.length }}</ion-badge></p>
+        <button ion-button color="secondary" item-end (click)="openLocations(account)">Locations</button>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="edit(account)"><ion-icon name="create"></ion-icon>Update</button>
+        <button ion-button color="danger" (click)="delete(account)"><ion-icon name="trash"></ion-icon>Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

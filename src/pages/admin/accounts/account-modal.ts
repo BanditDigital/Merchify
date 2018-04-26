@@ -2,40 +2,41 @@ import {Component} from "@angular/core";
 import {NavParams, ViewController} from "ionic-angular";
 import {Brand} from "../../../models/Brand";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {Account} from "../../../models/Account";
 
 @Component({
   selector: 'modal-brand',
-  templateUrl: 'brand-modal.html'
+  templateUrl: 'account-modal.html'
 })
-export class BrandModal {
+export class AccountModal {
 
-  brand: Brand = null;
-  brandForm: FormGroup;
+  account: Account = null;
+  accountForm: FormGroup;
 
   constructor(private navParams: NavParams,
               private fb: FormBuilder,
               private viewCtrl: ViewController) {
 
     //Grab the account object passed in from the caller
-    this.brand = this.navParams.get('brand');
+    this.account = this.navParams.get('account');
 
     //Initialise form
-    this.initialiseForm(this.brand);
+    this.initialiseForm(this.account);
   }
 
-  initialiseForm(brand?: Brand) {
-    this.brandForm = this.fb.group({
-      name: [brand ? brand.name : '']
+  initialiseForm(account?: Account) {
+    this.accountForm = this.fb.group({
+      name: [account ? account.name : ''],
     });
   }
 
   save(form: FormGroup) {
-    if(!this.brand) {
-      this.brand = { name: form.value.name };
+    if(!this.account) {
+      this.account = form.value;
     } else {
-      this.brand.name = form.value.name;
+      this.account.name = form.value.name;
     }
-    this.viewCtrl.dismiss(this.brand);
+    this.viewCtrl.dismiss(this.account);
   }
 
   dismiss() {
