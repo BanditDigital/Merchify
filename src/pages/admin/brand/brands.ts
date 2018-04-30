@@ -101,7 +101,9 @@ export class BrandsPage {
     loading.present();
     this.brandService.getBrands()
       .subscribe(brands => {
-        this.brands = brands;
+        if(brands) {
+          this.brands = brands;
+        }
         loading.dismiss();
       }, error => {
         this.errorAlert.showAlert('Could not edit account', error.error.message);

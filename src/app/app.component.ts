@@ -50,7 +50,7 @@ export class MyApp {
   // Checks if the user is authenticated i.e. Already logged in
   private async checkAuthenticated() {
     if (await this.authService.isAuthenticated()) {
-      this.rootPage = UserListPage;
+      this.rootPage = AccountsPage;
     } else {
       this.rootPage = SigninPage;
     }

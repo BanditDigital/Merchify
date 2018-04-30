@@ -1,10 +1,12 @@
 import {Brand} from "./Brand";
 import {Location} from "./Location";
+import {Product} from "./Product";
 
 export interface Account {
   _id?: string,
   name: string,
   locations?: Location[],
   brands?: Brand[],
-  tenant: string
+  suppliedProducts?: Product[],
+  tenant?: string
 }

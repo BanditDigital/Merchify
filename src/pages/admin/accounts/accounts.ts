@@ -7,6 +7,7 @@ import {Account} from "../../../models/Account";
 
 import * as _ from 'lodash';
 import {LocationsPage} from "../locations/locations";
+import {BrandAssignmentPage} from "./brand-assignment";
 
 @Component({
   selector: 'page-accounts',
@@ -112,6 +113,28 @@ export class AccountsPage {
 
   openLocations(account: Account) {
     this.navCtrl.push(LocationsPage, {account: account});
+  }
+
+  openBrands(account: Account) {
+    let brandsModal = this.modalCtrl.create(BrandAssignmentPage, { account: account });
+
+    brandsModal.onDidDismiss(updatedAccount => {
+      let loading = this.loadingCtrl.create({ content: 'Saving brands to account...'});
+      if(updatedAccount) {
+        loading.present();
+        console.log(updatedAccount)
+        this.accountService.editAccount(updatedAccount)
+          .subscribe(success => {
+            _.remove(this.accounts, {_id: updatedAccount._id});
+            this.accounts.push(updatedAccount);
+            loading.dismiss();
+          }, error => {
+            this.errorAlert.showAlert('Could not save brands to account', error.error.message);
+            loading.dismiss();
+          });
+      }
+    });
+    brandsModal.present();
   }
 
 }

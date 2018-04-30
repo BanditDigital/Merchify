@@ -17,8 +17,8 @@ export class ProductsService {
     return this.http.delete<Product[]>(`${environment.API}merchandise/brand/${brand._id}/product/${product._id}`)
   }
 
-  public updateProduct(brand: Brand, product: Product) : Observable<Product[]> {
-    return this.http.patch<Product[]>(`${environment.API}merchandise/brand/${brand._id}/product`, product, {});
+  public updateProduct(brand: Brand, product: Product) : Observable<Product> {
+    return this.http.patch<Product>(`${environment.API}merchandise/brand/${brand._id}/product`, product, {});
   }
 
 }

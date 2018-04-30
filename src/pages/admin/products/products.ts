@@ -85,7 +85,8 @@ export class ProductsPage {
         loading.present();
         this.productService.updateProduct(this.brand, data)
           .subscribe(success => {
-            this.brand.products = success;
+            _.pull(this.brand.products, product);
+            this.brand.products.push(success);
             loading.dismiss();
           }, error => {
             this.errorAlert.showAlert('Could not delete product', error.error.message);

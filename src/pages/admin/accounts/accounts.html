@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Accounts & Locations</ion-title>
+    <ion-title>Retailers & Locations</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -22,8 +22,13 @@
     <ion-item-sliding *ngFor="let account of accounts">
       <ion-item>
         <h2>{{ account?.name }}</h2>
-        <p>Locations <ion-badge item-end>{{ account?.locations.length }}</ion-badge></p>
-        <button ion-button color="secondary" item-end (click)="openLocations(account)">Locations</button>
+        <p>{{ account._id }}</p>
+        <button ion-button color="secondary" item-end (click)="openBrands(account)">Brands
+          {{ account.brands.length > 0 ? '('+ account.brands.length + ')' : '' }}
+        </button>
+        <button ion-button color="secondary" item-end (click)="openLocations(account)">Locations
+        {{ account.locations.length > 0 ? '('+ account.locations.length + ')' : '' }}
+        </button>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="secondary" (click)="edit(account)"><ion-icon name="create"></ion-icon>Update</button>

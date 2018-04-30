@@ -18,6 +18,7 @@ import {AccountService} from "./accounts/account.service";
 import {LocationModal} from "./locations/location-modal";
 import {LocationsPage} from "./locations/locations";
 import {LocationService} from "./locations/location.service";
+import {BrandAssignmentPage} from "./accounts/brand-assignment";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {LocationService} from "./locations/location.service";
     AccountsPage,
     AccountModal,
     LocationsPage,
-    LocationModal
+    LocationModal,
+    BrandAssignmentPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import {LocationService} from "./locations/location.service";
     AccountsPage,
     AccountModal,
     LocationsPage,
-    LocationModal
+    LocationModal,
+    BrandAssignmentPage
   ],
   providers: [
     BrandsService,

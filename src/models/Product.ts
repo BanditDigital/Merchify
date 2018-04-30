@@ -5,4 +5,6 @@ export interface Product {
   description: string,
   promoCode: string,
   barcode: string,
+  brand: string,
+  tenant?: string;
 }
