@@ -1,13 +1,13 @@
+import {Address} from "./Address";
+import {Tenant} from "./Tenant";
+
 export interface User {
   id?: any,
   firstName: string,
   lastName: string,
-  address1: string,
-  address2: string,
-  town: string,
-  county: string,
-  postcode: string,
+  address: Address;
   email: string,
+  password?: string,
   telephone: string,
   analysis1: string,
   analysis2: string,
@@ -16,9 +16,10 @@ export interface User {
   country: string,
   hourlyRate: number,
   jobTitle: string,
+  employeeId: string,
   profileImage: string,
   emailVerified: boolean,
   organisationApproved: boolean,
-  tenant: string,
-  roles: string[]
+  tenantId?: number,
+  tenant?: Tenant
 }

@@ -3,11 +3,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Brands & Products</ion-title>
+    <ion-title>Brands</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content no-padding>
+  <ion-refresher (ionRefresh)="getAll($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
 
   <!--ACTION FAB BUTTON-->
   <ion-fab bottom right>
@@ -19,17 +23,12 @@
 
   <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
   <ion-list>
-    <ion-item-sliding *ngFor="let brand of brands">
-      <ion-item>
-        <h2>{{ brand?.name }}</h2>
-        <p>Products <ion-badge item-end>{{ brand?.products.length }}</ion-badge></p>
-        <button ion-button color="secondary" item-end (click)="openProducts(brand)">Products</button>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="secondary" (click)="edit(brand)"><ion-icon name="create"></ion-icon>Update</button>
-        <button ion-button color="danger" (click)="delete(brand)"><ion-icon name="trash"></ion-icon>Delete</button>
-      </ion-item-options>
-    </ion-item-sliding>
+    <button ion-item *ngFor="let brand of brands" (click)="openBrand(brand)">
+      {{ brand?.name }}
+      <ion-badge color="primary" item-right>
+        <ion-icon name="cube"></ion-icon>
+        {{ brand.products ? brand.products.length : 0 }}</ion-badge>
+    </button>
   </ion-list>
 
 </ion-content>

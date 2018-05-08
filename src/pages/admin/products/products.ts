@@ -3,7 +3,6 @@ import {AlertController, LoadingController, ModalController, NavParams} from "io
 import * as _ from 'lodash';
 import {Product} from "../../../models/Product";
 import {ProductsService} from "./products.service";
-import {Brand} from "../../../models/Brand";
 import {ProductModal} from "./product-modal";
 import {AlertService} from "../../../shared/alert/alert.service";
 
@@ -13,89 +12,61 @@ import {AlertService} from "../../../shared/alert/alert.service";
 })
 export class ProductsPage {
 
-  brand: Brand = null;
+  products: Product[] = [];
 
   constructor(private productService: ProductsService,
               private modalCtrl: ModalController,
               private alertCtrl: AlertController,
               private errorAlert: AlertService,
-              private navParams: NavParams,
               private loadingCtrl: LoadingController) {
-    this.brand = this.navParams.get('brand');
+    this.getAll();
   }
 
   public create() {
-    let createModal = this.modalCtrl.create(ProductModal, {});
-    let loading = this.loadingCtrl.create({content: 'Adding product...'});
+    let createModal = this.modalCtrl.create(ProductModal, { edit: false });
 
-    createModal.onDidDismiss(data => {
-
-      if (data) {
-        loading.present();
-        this.productService.addProduct(this.brand, data)
-          .subscribe(success => {
-            this.brand.products = success;
-            loading.dismiss();
-          }, error => {
-            this.errorAlert.showAlert('Could not add product', error.error.message);
-            loading.dismiss();
-          })
+    createModal.onDidDismiss(results => {
+      if (results) {
+        this.products.push(results.product);
       }
     });
 
     createModal.present();
   }
 
-  public delete(product: Product) {
-    let loading = this.loadingCtrl.create({content: 'Deleting product...'});
+  public openProduct(product: Product) {
+    let createModal = this.modalCtrl.create(ProductModal, {product: product, edit: true});
 
-    let confirm = this.alertCtrl.create({
-      title: `Confirm delete`,
-      message: `Are you sure you want to delete ${product.description}, you will not be able to undo this action?`,
-      buttons: [
-        {
-          text: 'Cancel',
-        },
-        {
-          text: 'Yes, delete it!',
-          handler: () => {
-            loading.present();
-            this.productService.deleteProduct(this.brand, product)
-              .subscribe(success => {
-                this.brand.products = success;
-                loading.dismiss();
-              }, error => {
-                this.errorAlert.showAlert('Could not delete product', error.error.message);
-                loading.dismiss();
-              });
-          }
+    createModal.onDidDismiss(results => {
+      if(results && results.edited) {
+        _.pull(this.products, product);
+        this.products.push(results.product);
+      }
+
+      if(results && results.deleted) {
+        _.pull(this.products, product);
+      }
+    });
+
+    createModal.present();
+  }
+
+  public getAll(refresher?) {
+    let loading = this.loadingCtrl.create({content: 'Getting products...'});
+
+    loading.present();
+    this.productService.getProducts()
+      .subscribe(products => {
+        if(products) {
+          this.products = products;
+          if(refresher) { refresher.complete() }
         }
-      ]
-    });
-    confirm.present();
-  }
-
-  public edit(product: Product) {
-    let loading = this.loadingCtrl.create({content: 'Updating product...'});
-    let createModal = this.modalCtrl.create(ProductModal, { product: product});
-
-    createModal.onDidDismiss(data => {
-
-      if(data) {
-        loading.present();
-        this.productService.updateProduct(this.brand, data)
-          .subscribe(success => {
-            _.pull(this.brand.products, product);
-            this.brand.products.push(success);
-            loading.dismiss();
-          }, error => {
-            this.errorAlert.showAlert('Could not delete product', error.error.message);
-            loading.dismiss();
-          })
-      }
-    });
-
-    createModal.present();
+        loading.dismiss();
+      }, error => {
+        this.errorAlert.showAlert('Could not edit product', error.error.message);
+        if(refresher) { refresher.complete() }
+        loading.dismiss();
+      });
   }
 
 

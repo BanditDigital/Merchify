@@ -59,45 +59,47 @@ export class SignupPage {
         Validators.maxLength(15)
       ])],
       confirmPassword: [''],
-      tenant: ['', Validators.compose([
+      accessCode: ['', Validators.compose([
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(6)
       ])],
-      address1: ['', Validators.compose([
-        Validators.required,
-        Validators.maxLength(80)
-      ])],
-      address2: ['', Validators.compose([
-        Validators.maxLength(80)
-      ])],
-      town: ['', Validators.compose([
-        Validators.required,
-        Validators.maxLength(80)
-      ])],
-      county: ['', Validators.compose([
-        Validators.required,
-        Validators.maxLength(80)
-      ])],
-      postcode: ['', Validators.compose([
-        Validators.required,
-        Validators.maxLength(8)
-      ])],
-      country: ['', Validators.compose([
-        Validators.required,
-        Validators.maxLength(20)
-      ])],
       telephone: ['', Validators.compose([
         Validators.required,
         Validators.maxLength(20)
-      ])]
+      ])],
+      address: this.fb.group({
+        line1: ['', Validators.compose([
+          Validators.required,
+          Validators.maxLength(80)
+        ])],
+        line2: ['', Validators.compose([
+          Validators.maxLength(80)
+        ])],
+        town: ['', Validators.compose([
+          Validators.required,
+          Validators.maxLength(80)
+        ])],
+        county: ['', Validators.compose([
+          Validators.required,
+          Validators.maxLength(80)
+        ])],
+        postcode: ['', Validators.compose([
+          Validators.required,
+          Validators.maxLength(8)
+        ])],
+        country: ['', Validators.compose([
+          Validators.required,
+          Validators.maxLength(20)
+        ])]
+      })
     }, {
       validator: PasswordValidator.MatchPassword
     });
   }
 
   public errorModal(errors) {
-    let modal = this.modal.create(SignupErrorPage, { errors: errors });
+    let modal = this.modal.create(SignupErrorPage, {errors: errors});
     modal.present();
   }
 

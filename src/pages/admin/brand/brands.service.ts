@@ -9,19 +9,19 @@ export class BrandsService {
   constructor(private http: HttpClient) {}
 
   public getBrands() : Observable<Brand[]> {
-    return this.http.get<Brand[]>(`${environment.API}merchandise/brand`);
+    return this.http.get<Brand[]>(`${environment.API}brand`);
   }
 
   public addBrand(brand: Brand) : Observable<Brand> {
-    return this.http.post<Brand>(`${environment.API}merchandise/brand`, brand, {});
+    return this.http.post<Brand>(`${environment.API}brand`, brand, {});
   }
 
   public deleteBrand(brand: Brand) : Observable<Brand> {
-    return this.http.delete<Brand>(`${environment.API}merchandise/brand/${brand._id}`)
+    return this.http.delete<Brand>(`${environment.API}brand/${brand.id}`)
   }
 
   public editBrand(brand: Brand) : Observable<Brand> {
-    return this.http.patch<Brand>(`${environment.API}merchandise/brand`, brand, {});
+    return this.http.patch<Brand>(`${environment.API}brand`, brand, {});
   }
 
 }

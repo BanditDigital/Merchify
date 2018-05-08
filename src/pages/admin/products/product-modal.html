@@ -15,27 +15,99 @@
       <ion-label>SKU</ion-label>
       <ion-input type="text" formControlName="sku"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="productForm.get('sku').hasError('maxlength')">
+        Must be less than 20 characters.
+      </span>
+    <span class="error" *ngIf="productForm.get('sku').hasError('minlength')">
+        Must be more than 2 characters.
+      </span>
+    <span class="error" *ngIf="productForm.get('sku').hasError('required')
+      && productForm.get('sku').touched">
+        Product SKU is required.
+      </span>
+
+
     <ion-item>
       <ion-label>Description</ion-label>
       <ion-input type="text" formControlName="description"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="productForm.get('description').hasError('maxlength')">
+        Must be less than 30 characters.
+      </span>
+    <span class="error" *ngIf="productForm.get('description').hasError('minlength')">
+        Must be more than 2 characters.
+      </span>
+    <span class="error" *ngIf="productForm.get('description').hasError('required')
+      && productForm.get('description').touched">
+        Product description is required.
+      </span>
+
     <ion-item>
       <ion-label>Size</ion-label>
       <ion-input type="text" formControlName="size"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="productForm.get('size').hasError('maxlength')">
+        Must be less than 10 characters.
+      </span>
+    <span class="error" *ngIf="productForm.get('size').hasError('minlength')">
+        Must be more than 1 characters.
+      </span>
+    <span class="error" *ngIf="productForm.get('size').hasError('required')
+      && productForm.get('size').touched">
+        Product size is required.
+      </span>
+
+
+
+    <ion-item>
+      <ion-label>Brand</ion-label>
+      <ion-select formControlName="brand">
+        <ion-option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <span class="error" *ngIf="productForm.get('brand').hasError('required')
+      && productForm.get('brand').touched">
+        Product brand is required.
+      </span>
+
+
     <ion-item>
       <ion-label>Barcode</ion-label>
       <ion-input type="text" formControlName="barcode"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="productForm.get('barcode').hasError('maxlength')">
+        Must be less than 15 characters.
+      </span>
+
+
     <ion-item>
       <ion-label>Promo Code</ion-label>
       <ion-input type="text" formControlName="promoCode"></ion-input>
     </ion-item>
+    <span class="error" *ngIf="productForm.get('promoCode').hasError('maxlength')">
+        Must be less than 10 characters.
+      </span>
+
+
   </form>
 </ion-content>
 <ion-footer>
-  <ion-buttons end>
-    <button ion-button color="light" (click)="dismiss()">Cancel</button>
-    <button ion-button color="primary" (click)="save(productForm)">Save</button>
+  <ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button *ngIf="product" ion-button icon-left color="danger" (click)="delete()">
+            <ion-icon name="trash" color></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+        <ion-col>
+          <button [disabled]="!productForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>
+            <ion-icon name="checkmark" color></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-buttons>
 </ion-footer>

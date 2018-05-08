@@ -1,10 +1,13 @@
+import {Brand} from "./Brand";
+
 export interface Product {
-  _id?: string,
+  id?: number,
   sku: string,
   size: string,
   description: string,
-  promoCode: string,
-  barcode: string,
-  brand: string,
+  promoCode?: string,
+  barcode?: string,
+  brand?: Brand,
+  tenantId?: number,
   tenant?: string;
 }

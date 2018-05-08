@@ -18,21 +18,19 @@ import {AccountService} from "./accounts/account.service";
 import {LocationModal} from "./locations/location-modal";
 import {LocationsPage} from "./locations/locations";
 import {LocationService} from "./locations/location.service";
-import {BrandAssignmentPage} from "./accounts/brand-assignment";
 
 @NgModule({
   declarations: [
     BrandsPage,
     BrandModal,
     ProductsPage,
-    ProductModal,
     UserEditPage,
     UserListPage,
     AccountsPage,
     AccountModal,
     LocationsPage,
     LocationModal,
-    BrandAssignmentPage
+    ProductModal
   ],
   imports: [
     BrowserModule,
@@ -49,15 +47,13 @@ import {BrandAssignmentPage} from "./accounts/brand-assignment";
     AccountsPage,
     AccountModal,
     LocationsPage,
-    LocationModal,
-    BrandAssignmentPage
   ],
   providers: [
     BrandsService,
-    ProductsService,
     UserService,
     AccountService,
     LocationService,
+    ProductsService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

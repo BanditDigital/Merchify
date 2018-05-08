@@ -1,8 +1,9 @@
-import {Product} from "./Product";
 
 export interface Brand {
-  _id?: string,
+  id?: number,
   name: string,
-  products?: Product[],
-  tenant?: string
+  products?: object[],
+  retailers?: object[],
+  tenantId?: number,
+  tenant?: object
 }
