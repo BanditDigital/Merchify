@@ -1,8 +1,11 @@
-import {Product} from "./Product";
+import {Retailer} from "./Retailer";
+import {Tenant} from "./Tenant";
 
 export interface Location {
-  _id?: any,
+  id?: any,
   name: string,
-  storeType: string,
-  products?: Product[];
+  type: string,
+  retailers?: Retailer[],
+  tenantId?: number,
+  tenant?: Tenant
 }

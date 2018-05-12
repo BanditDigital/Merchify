@@ -12,12 +12,12 @@ import {ProductModal} from "./products/product-modal";
 import {UserEditPage} from "./users/user-edit/user-edit";
 import {UserListPage} from "./users/user-list/user-list";
 import {UserService} from "./users/user.service";
-import {AccountsPage} from "./accounts/accounts";
-import {AccountModal} from "./accounts/account-modal";
-import {AccountService} from "./accounts/account.service";
-import {LocationModal} from "./locations/location-modal";
-import {LocationsPage} from "./locations/locations";
-import {LocationService} from "./locations/location.service";
+import {LocationsPage} from "./location/locations";
+import {LocationModal} from "./location/location-modal";
+import {LocationsService} from "./location/locations.service";
+import {RetailersPage} from "./retailer/retailer";
+import {RetailerModal} from "./retailer/retailer-modal";
+import {RetailerService} from "./retailer/retailer.service";
 
 @NgModule({
   declarations: [
@@ -26,11 +26,11 @@ import {LocationService} from "./locations/location.service";
     ProductsPage,
     UserEditPage,
     UserListPage,
-    AccountsPage,
-    AccountModal,
+    ProductModal,
     LocationsPage,
     LocationModal,
-    ProductModal
+    RetailersPage,
+    RetailerModal
   ],
   imports: [
     BrowserModule,
@@ -44,16 +44,17 @@ import {LocationService} from "./locations/location.service";
     ProductModal,
     UserListPage,
     UserEditPage,
-    AccountsPage,
-    AccountModal,
     LocationsPage,
+    LocationModal,
+    RetailersPage,
+    RetailerModal
   ],
   providers: [
     BrandsService,
     UserService,
-    AccountService,
-    LocationService,
     ProductsService,
+    LocationsService,
+    RetailerService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

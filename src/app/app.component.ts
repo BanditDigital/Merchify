@@ -7,8 +7,9 @@ import {SigninPage} from "../pages/auth/signin/signin";
 import {AuthService} from "../pages/auth/auth.service";
 import {UserListPage} from "../pages/admin/users/user-list/user-list";
 import {HomePage} from "../pages/home/home";
-import {AccountsPage} from "../pages/admin/accounts/accounts";
 import {ProductsPage} from "../pages/admin/products/products";
+import {LocationsPage} from "../pages/admin/location/locations";
+import {RetailersPage} from "../pages/admin/retailer/retailer";
 
 @Component({
   templateUrl: 'app.html'
@@ -36,8 +37,8 @@ export class MyApp {
       {title: 'User Management', component: UserListPage, icon: 'people'},
       {title: 'Brands', component: BrandsPage, icon: 'brush'},
       {title: 'Products', component: ProductsPage, icon: 'cube'},
-      {title: 'Locations', component: HomePage, icon: 'navigate'},
-      {title: 'Retailers', component: HomePage, icon: 'basket'},
+      {title: 'Locations', component: LocationsPage, icon: 'navigate'},
+      {title: 'Retailers', component: RetailersPage, icon: 'basket'},
     ];
 
   }
@@ -53,7 +54,7 @@ export class MyApp {
   // Checks if the user is authenticated i.e. Already logged in
   private async checkAuthenticated() {
     if (await this.authService.isAuthenticated()) {
-      this.rootPage = ProductsPage;
+      this.rootPage = RetailersPage;
     } else {
       this.rootPage = SigninPage;
     }

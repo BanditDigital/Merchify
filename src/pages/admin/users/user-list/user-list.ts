@@ -6,6 +6,7 @@ import {User} from "../../../../models/User";
 import {AlertService} from "../../../../shared/alert/alert.service";
 import {AuthService} from "../../../auth/auth.service";
 import * as _ from 'lodash';
+import {Tenant} from "../../../../models/Tenant";
 
 @Component({
   selector: 'page-user-list',
@@ -14,7 +15,7 @@ import * as _ from 'lodash';
 export class UserListPage {
 
   users: User[];
-  tenant: any;
+  tenant: Tenant;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,

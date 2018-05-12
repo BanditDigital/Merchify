@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Locations</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-refresher (ionRefresh)="getAll($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <!--ACTION FAB BUTTON-->
+  <ion-fab bottom right>
+    <button ion-fab color="secondary" (click)="create()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
+  <ion-list>
+    <button ion-item *ngFor="let location of locations" (click)="openLocation(location)">
+      {{ location?.name }} / {{ location?.type }}
+      <ion-badge color="primary" item-right>
+        <ion-icon name="basket"></ion-icon>
+        {{ location.retailers ? location.retailers.length : 0 }}</ion-badge>
+    </button>
+  </ion-list>
+
+</ion-content>

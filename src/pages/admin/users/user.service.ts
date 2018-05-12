@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {User} from "../../../models/User";
 import {environment} from "../../../environments/environment";
+import {Tenant} from "../../../models/Tenant";
 
 @Injectable()
 export class UserService {
@@ -13,8 +14,8 @@ export class UserService {
     return this.http.get<User[]>(`${environment.API}users/org`);
   }
 
-  public getOrganisation() {
-    return this.http.get(`${environment.API}users/tenant`);
+  public getOrganisation() : Observable<Tenant> {
+    return this.http.get<Tenant>(`${environment.API}users/tenant`);
   }
 
   public resendWelcomeEmail(user: User) {

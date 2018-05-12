@@ -70,7 +70,6 @@ export class ProductModal {
 
   public save() {
     let loading = this.loadingCtrl.create({content: 'Saving product...'});
-    console.log(this.productForm.getRawValue());
 
     loading.present();
 
@@ -102,7 +101,7 @@ export class ProductModal {
     }
   }
 
-  public delete(product: Product) {
+  public delete() {
     let loading = this.loadingCtrl.create({content: 'Deleting product...'});
     let confirm = this.alertCtrl.create({
       title: `Confirm delete`,
