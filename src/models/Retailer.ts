@@ -4,7 +4,7 @@ import {Product} from "./Product";
 import {Tenant} from "./Tenant";
 
 export interface Retailer {
-  id?: string,
+  id?: number,
   name: string,
   type: string,
   locations?: Location[],

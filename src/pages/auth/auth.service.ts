@@ -6,11 +6,15 @@ import {User} from "../../models/User";
 
 import * as jsonwebtoken from 'jsonwebtoken';
 import {StorageService} from "../../shared/storage/storage.service";
+import * as _ from 'lodash';
+import {Storage} from "@ionic/storage";
 
 @Injectable()
 export class AuthService {
-  constructor(private http: HttpClient, private storageService: StorageService) {
-  }
+
+  public user: User;
+
+  constructor(private http: HttpClient, private storageService: StorageService, private storage: Storage) {}
 
   public register(user: User): Observable<User[]> {
     return this.http.post<User[]>(`${environment.API}users`, user);
@@ -32,6 +36,7 @@ export class AuthService {
     return this.storageService.getToken();
   }
 
+
   public async isAuthenticated() {
     let auth: boolean = false;
     let token = await this.storageService.getTokenPromise();
@@ -39,6 +44,7 @@ export class AuthService {
       let jwt = jsonwebtoken.decode(token);
       auth = (new Date().getTime() / 1000 < jwt.exp);
     }
+
     return auth;
   }
 }

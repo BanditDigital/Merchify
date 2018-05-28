@@ -1,7 +1,7 @@
-<ion-menu [content]="content" id="app-menu">
+<ion-menu [content]="content" id="app-menu" *ngIf="isAdmin">
   <ion-header>
     <ion-toolbar>
-      <ion-title>What next?</ion-title>
+      <ion-title>Admin</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -14,15 +14,6 @@
       <button menuClose ion-item (click)="signOut()">
         <ion-icon name="exit"></ion-icon>
         Sign Out
-      </button>
-    </ion-list>
-
-    <!-- Admin options -->
-    <ion-list>
-      <ion-list-header>Admin Options</ion-list-header>
-      <button menuClose ion-item *ngFor="let p of adminPages" (click)="openPage(p)">
-        <ion-icon name="{{ p.icon }}"></ion-icon>
-        {{p.title}}
       </button>
     </ion-list>
   </ion-content>

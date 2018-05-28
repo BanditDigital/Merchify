@@ -3,6 +3,6 @@ export interface Address {
   line2: string,
   town: string,
   county: string,
-  postalCode: string,
+  postcode: string,
   country: string
 }

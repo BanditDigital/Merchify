@@ -12,6 +12,10 @@ export class BrandsService {
     return this.http.get<Brand[]>(`${environment.API}brand`);
   }
 
+  public getBrand(id: number) : Observable<Brand> {
+    return this.http.get<Brand>(`${environment.API}brand/${id}`);
+  }
+
   public addBrand(brand: Brand) : Observable<Brand> {
     return this.http.post<Brand>(`${environment.API}brand`, brand, {});
   }

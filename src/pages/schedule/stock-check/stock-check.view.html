@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      {{ endOfDay ? 'Record Sales' : 'Record Inventory' }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card no-padding *ngFor="let item of visit.stock | stockSold: endOfDay">
+      <ion-card-header>{{ item.product.description }}</ion-card-header>
+      <ion-card-content no-padding>
+          <ion-list>
+            <ion-item>Size: {{item.product.size}}</ion-item>
+            <ion-item>SKU: {{item.product.sku}}</ion-item>
+            <ion-item>Barcode: {{item.product.barcode}}</ion-item>
+            <ion-item *ngIf="!endOfDay">
+              <ion-label>Count</ion-label>
+              <ion-input type="number" placeholder="0" [(ngModel)]="item.onHand"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="endOfDay">
+              <ion-label>Sales Amount</ion-label>
+              <ion-input type="number" placeholder="0.00" [(ngModel)]="item.qtySold"></ion-input>
+            </ion-item>
+          </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left color="secondary" (click)="save()" float-right>
+            <ion-icon name="checkmark" color></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-buttons>
+</ion-footer>

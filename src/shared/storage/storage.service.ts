@@ -19,8 +19,8 @@ export class StorageService {
     return this.storage.get('token');
   }
 
-
   public removeToken() {
     return this.storage.remove('token');
   }
+
 }

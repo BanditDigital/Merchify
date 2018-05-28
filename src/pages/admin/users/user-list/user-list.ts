@@ -63,6 +63,7 @@ export class UserListPage {
     loading.present();
     this.userService.getOrganisation()
       .subscribe(tenant => {
+        console.log(tenant);
         this.tenant = tenant;
         loading.dismiss();
       }, error => {
@@ -72,32 +73,6 @@ export class UserListPage {
   }
 
 
-  public deleteUser(user: User) {
-    let loading = this.loadingCtrl.create({content: 'Deleting user...'});
-
-    let alert = this.alertCtrl.create({
-      title: 'Are you sure?',
-      message: `Are you sure you want to delete the user ${user.firstName}, you will not be able to undo this action?`,
-      buttons: [
-        {text: 'Cancel'},
-        {
-          text: 'Yes, delete it!',
-          handler: () => {
-            loading.present();
-            this.userService.deleteUser(user)
-              .subscribe(success => {
-                _.pull(this.users, user);
-                loading.dismiss();
-              }, error => {
-                this.alert.showAlert('Could not delete user', error.error.message);
-                loading.dismiss();
-              });
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
 
   public resendToken(user: User) {
      let loading = this.loadingCtrl.create({content: 'Getting access code...'});
@@ -127,23 +102,17 @@ export class UserListPage {
     alert.present();
   }
 
-  public edit(user) {
-    let loading = this.loadingCtrl.create({content: 'Getting access code...'});
-    let editModal = this.modalCtrl.create(UserEditPage, {user: user});
+  public openUser(user) {
+    let editModal = this.modalCtrl.create(UserEditPage, { user: user });
 
-    editModal.onDidDismiss(user => {
-      loading.present();
-      if(user) {
-        this.userService.updateUser(user)
-          .subscribe(() => {
-            this.getUsers();
-            loading.dismiss();
-          }, error => {
-            this.alert.showAlert('Could not update user', error.error.message);
-            loading.dismiss();
-          });
-      } else {
-        loading.dismiss();
+    editModal.onDidDismiss(results => {
+      if (results && results.edited) {
+        _.pull(this.users, user);
+        this.users.push(results.user);
+      }
+
+      if(results && results.deleted) {
+        _.pull(this.users, user);
       }
     });
 

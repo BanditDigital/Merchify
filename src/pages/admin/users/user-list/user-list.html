@@ -6,45 +6,31 @@
     <ion-title>Manage Users</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content no-padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let user of users">
-      <ion-item>
+    <ion-item *ngFor="let user of users" (click)="openUser(user)">
         <h2>{{ user.firstName + ' ' + user.lastName}}</h2>
         <p>{{ user.email }}</p>
         <button *ngIf="!user.organisationApproved" ion-button icon-left color="danger"
-                (click)="toggleUserApproval(user, true)">
+                (click)="toggleUserApproval(user, true);$event.stopPropagation();">
           <ion-icon name="cloud-outline"></ion-icon>
           Pending Approval
         </button>
         <button *ngIf="user.organisationApproved" ion-button icon-left color="secondary"
-                (click)="toggleUserApproval(user, false)">
+                (click)="toggleUserApproval(user, false);$event.stopPropagation();">
           <ion-icon name="cloud-done"></ion-icon>
           Approved
         </button>
-        <button *ngIf="!user.emailVerified" ion-button icon-left color="danger" (click)="resendToken(user)">
+        <button *ngIf="!user.emailVerified" ion-button icon-left color="danger" tappable (click)="resendToken(user);$event.stopPropagation();">
           <ion-icon name="mail"></ion-icon>
           Pending Email Verification
         </button>
-        <button *ngIf="user.emailVerified" ion-button icon-left color="secondary" (click)="resendToken(user)">
+        <button *ngIf="user.emailVerified" ion-button icon-left color="secondary" tappable (click)="resendToken(user);$event.stopPropagation();">
           <ion-icon name="mail"></ion-icon>
           Email Verified
         </button>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="secondary" (click)="edit(user)">
-          <ion-icon name="create"></ion-icon>
-          Update
-        </button>
-        <button ion-button color="danger" (click)="deleteUser(user)">
-          <ion-icon name="trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+    </ion-item>
   </ion-list>
-
 </ion-content>
 
 <ion-footer padding text-center>

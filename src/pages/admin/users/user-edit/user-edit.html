@@ -1,12 +1,44 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Update {{ user?.firstName }}</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      Edit {{ user.firstName + ' ' + user.lastName}}
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content no-padding>
 
-  <form [formGroup]="userForm" novalidate>
+  <div *ngIf="user">
+    <button ion-button icon-left full color="light" (click)="toggleBrands()">
+      <ion-icon name="{{ showBrands ? 'arrow-dropup-circle' : 'arrow-dropdown-circle' }}"></ion-icon>
+      Brands ({{ user.brands.length }})
+    </button>
+
+    <div *ngIf="showBrands">
+      <p padding-left>Assign brands to the user to make linked products, retailers and locations available to them. Only brands that have one or more products linked can
+      be linked to a user and therefore actively used throughout Merchify.</p>
+      <ion-searchbar [(ngModel)]="brandSearchTerm" (ionInput)="filterBrands()"></ion-searchbar>
+      <ion-list>
+        <ion-item *ngIf="user.brands?.length == 0">There are no brands linked to this user.</ion-item>
+        <ion-item *ngFor="let brand of filteredBrands">
+          <ion-label>{{ brand.name }}</ion-label>
+          <ion-checkbox (ionChange)="brandChecked($event, brand)"
+                        [checked]="isBrandLinked(brand)"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <div *ngIf="user">
+    <button ion-button icon-left full color="light" (click)="toggleUserDetails()">
+      <ion-icon name="{{ showUserDetails ? 'arrow-dropup-circle' : 'arrow-dropdown-circle' }}"></ion-icon>
+      User Details
+    </button>
+
+  <form [formGroup]="userForm" novalidate *ngIf="showUserDetails">
     <ion-list>
       <ion-item-divider color="light">
         <ion-icon name="contact" icon-start></ion-icon>
@@ -16,52 +48,115 @@
         <ion-label> Account Approved</ion-label>
         <ion-toggle formControlName="organisationApproved"></ion-toggle>
       </ion-item>
+
       <ion-item>
-        <ion-label floating>First name</ion-label>
-        <ion-input type="text" formControlName="firstName"></ion-input>
+        <ion-input type="text" placeholder="First Name" formControlName="firstName"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.controls.firstName.hasError('maxlength')">
+        Must be less than 40 characters.
+      </span>
+      <span class="error"
+            *ngIf="userForm.controls.firstName.hasError('required') && userForm.controls.firstName.touched">
+        First name is required.
+      </span>
+
+
       <ion-item>
-        <ion-label floating>Last name</ion-label>
-        <ion-input type="text" formControlName="lastName"></ion-input>
+        <ion-input type="text" placeholder="Last Name" formControlName="lastName"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.controls.lastName.hasError('maxlength')">
+        Must be less than 40 characters.
+      </span>
+      <span class="error" *ngIf="userForm.controls.lastName.hasError('required') && userForm.controls.lastName.touched">
+        Last name is required.
+      </span>
+
+
       <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="text" formControlName="email"></ion-input>
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.controls.email.hasError('required') && userForm.controls.email.touched">
+        Email address is required.
+      </span>
+
       <ion-item no-lines>
-        <ion-label floating>Telephone</ion-label>
-        <ion-input type="tel" formControlName="telephone"></ion-input>
+        <ion-input type="tel" placeholder="Phone number" formControlName="telephone"></ion-input>
       </ion-item>
+      <span class="error"
+            *ngIf="userForm.controls.telephone.hasError('required') && userForm.controls.telephone.touched">
+        Telephone is required.
+      </span>
 
       <ion-item-divider color="light">
         <ion-icon name="home" icon-start></ion-icon>
         Address
       </ion-item-divider>
 
+    <div formGroupName="address">
       <ion-item>
-        <ion-label floating>Address Line 1</ion-label>
-        <ion-input type="text" formControlName="address1"></ion-input>
+        <ion-input type="text" placeholder="Address Line 1" formControlName="line1"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('address').get('line1').hasError('maxlength')">
+        Must be less than 80 characters.
+      </span>
+      <span class="error"
+            *ngIf="userForm.get('address').get('line1').hasError('required')
+              && userForm.get('address').get('line1').touched">
+        Address line 1 is required
+      </span>
+
       <ion-item>
-        <ion-label floating>Address Line 2</ion-label>
-        <ion-input type="text" formControlName="address2"></ion-input>
+        <ion-input type="text" placeholder="Address Line 2" formControlName="line2"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('address').get('line2').hasError('maxlength')">
+        Must be less than 80 characters.
+      </span>
+
       <ion-item>
-        <ion-label floating>Town</ion-label>
-        <ion-input type="text" formControlName="town"></ion-input>
+        <ion-input type="text" placeholder="Town/City" formControlName="town"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('address').get('town').hasError('maxlength')">
+        Must be less than 80 characters.
+      </span>
+      <span class="error" *ngIf="userForm.get('address').get('town').hasError('required')
+      && userForm.get('address').get('town').touched">
+        Town is required.
+      </span>
+
       <ion-item>
-        <ion-label floating>County</ion-label>
-        <ion-input type="text" formControlName="county"></ion-input>
+        <ion-input type="text" placeholder="County/Region" formControlName="county"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('address').get('county').hasError('maxlength')">
+        Must be less than 40 characters.
+      </span>
+      <span class="error" *ngIf="userForm.get('address').get('county').hasError('required')
+      && userForm.get('address').get('county').touched">
+        County/Region is required.
+      </span>
+
       <ion-item>
-        <ion-label floating>Postcode</ion-label>
-        <ion-input type="text" formControlName="postcode"></ion-input>
+        <ion-input type="text" placeholder="Postal Code" formControlName="postcode"></ion-input>
       </ion-item>
-      <ion-item no-lines>
-        <ion-label floating>Country</ion-label>
-        <ion-input type="text" formControlName="country"></ion-input>
+      <span class="error" *ngIf="userForm.get('address').get('postcode').hasError('required')
+      && userForm.get('address').get('postcode').touched">
+        Postcode is required.
+      </span>
+
+      <ion-item>
+        <ion-label>Country</ion-label>
+        <ion-select formControlName="country">
+          <ion-option value="GB">United Kingdom</ion-option>
+          <ion-option value="IRE">Ireland</ion-option>
+          <ion-option value="ES">Spain</ion-option>
+          <ion-option value="DE">Germany</ion-option>
+          <ion-option value="FR">France</ion-option>
+        </ion-select>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('address').get('country').hasError('required')
+      && userForm.get('address').get('country').touched">
+        Country is required.
+      </span>
+    </div>
 
       <ion-item-divider color="light">
         <ion-icon name="briefcase" icon-start></ion-icon>
@@ -69,34 +164,45 @@
       </ion-item-divider>
 
       <ion-item>
-        <ion-label floating>Hourly Rate</ion-label>
-        <ion-input type="number" formControlName="hourlyRate"></ion-input>
+        <ion-input type="number" formControlName="hourlyRate" placeholder="Hourly Rate"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Start Date</ion-label>
-        <ion-datetime displayFormat="D MMM YYYY" pickerFormat="D MMM YYYY" formControlName="startDate"></ion-datetime>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime displayFormat="D MMM YYYY" pickerFormat="D MMM YYYY" formControlName="startDate" placeholder="Start Date"></ion-datetime>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('startDate').hasError('required')
+      && userForm.get('startDate').touched">
+        County/Region is required.
+      </span>
       <ion-item>
-        <ion-label floating>Job Title</ion-label>
-        <ion-input type="text" formControlName="jobTitle"></ion-input>
+        <ion-input type="text" formControlName="jobTitle" placeholder="Job Title"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('analysis1').hasError('maxlength')">
+        Must be less than 30 characters.
+      </span>
 
       <ion-item-divider color="light">
         <ion-icon name="pie" icon-start></ion-icon>
         Analysis Codes
       </ion-item-divider>
       <ion-item>
-        <ion-label floating>Analysis 1</ion-label>
-        <ion-input type="text" formControlName="analysis1"></ion-input>
+        <ion-input type="text" formControlName="analysis1" placeholder="Analysis Code 1"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('analysis1').hasError('maxlength')">
+        Must be less than 20 characters.
+      </span>
       <ion-item>
-        <ion-label floating>Analysis 2</ion-label>
-        <ion-input type="text" formControlName="analysis2"></ion-input>
+        <ion-input type="text" formControlName="analysis2" placeholder="Analysis Code 2"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('analysis2').hasError('maxlength')">
+        Must be less than 20 characters.
+      </span>
       <ion-item>
-        <ion-label floating>Analysis 3</ion-label>
-        <ion-input type="text" formControlName="analysis3"></ion-input>
+        <ion-input type="text" formControlName="analysis3" placeholder="Analysis Code 3"></ion-input>
       </ion-item>
+      <span class="error" *ngIf="userForm.get('analysis3').hasError('maxlength')">
+        Must be less than 20 characters.
+      </span>
     </ion-list>
 
 
@@ -104,31 +210,35 @@
       <ion-icon name="pie" icon-start></ion-icon>
       Roles
     </ion-item-divider>
-    <ion-item-group formGroupName="roles">
-      <ion-item>
-        <ion-label>Owner</ion-label>
-        <ion-checkbox formControlName="owner"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>Admin</ion-label>
-        <ion-checkbox formControlName="admin"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <ion-label>User</ion-label>
-        <ion-checkbox formControlName="user"></ion-checkbox>
+
+    <ion-item-group>
+      <ion-item *ngFor="let role of roles">
+        <ion-label>{{ role }}</ion-label>
+        <ion-checkbox (ionChange)="roleChecked($event, role)" [checked]="hasRole(user, role)"></ion-checkbox>
       </ion-item>
     </ion-item-group>
-
   </form>
+  </div>
 </ion-content>
-<ion-footer class="light">
-  <ion-toolbar padding end>
-    <ion-buttons>
-      <button ion-button (click)="dismiss()">Cancel</button>
-    </ion-buttons>
-    <ion-buttons end right>
-      <button ion-button (click)="saveChanges(userForm.value)" [disabled]="!userForm.valid">Save Changes</button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-footer>
+  <ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button *ngIf="user" ion-button icon-left color="danger" (click)="delete()">
+            <ion-icon name="trash" color></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+        <ion-col>
+          <button [disabled]="!userForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>
+            <ion-icon name="checkmark" color></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-buttons>
 </ion-footer>
+
 
