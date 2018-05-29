@@ -64,35 +64,6 @@ export class SignupPage {
         Validators.minLength(6),
         Validators.maxLength(6)
       ])],
-      telephone: ['', Validators.compose([
-        Validators.required,
-        Validators.maxLength(20)
-      ])],
-      address: this.fb.group({
-        line1: ['', Validators.compose([
-          Validators.required,
-          Validators.maxLength(80)
-        ])],
-        line2: ['', Validators.compose([
-          Validators.maxLength(80)
-        ])],
-        town: ['', Validators.compose([
-          Validators.required,
-          Validators.maxLength(80)
-        ])],
-        county: ['', Validators.compose([
-          Validators.required,
-          Validators.maxLength(80)
-        ])],
-        postcode: ['', Validators.compose([
-          Validators.required,
-          Validators.maxLength(8)
-        ])],
-        country: ['', Validators.compose([
-          Validators.required,
-          Validators.maxLength(20)
-        ])]
-      })
     }, {
       validator: PasswordValidator.MatchPassword
     });
