@@ -23,4 +23,12 @@ export class VisitReportModal {
   public dismiss() {
     this.view.dismiss();
   }
+
+  public totalSales() {
+    let total = 0;
+    for(let check of this.visit.stock) {
+      total += check.qtySold * check.product.retailPrice;
+    }
+    return total;
+  }
 }

@@ -16,6 +16,11 @@
     </ion-row>
 
     <ion-row>
+      <ion-col col-3><b>Name</b></ion-col>
+      <ion-col col-9>{{ visit.user.firstName + ' ' + visit.user.lastName }}</ion-col>
+    </ion-row>
+
+    <ion-row>
       <ion-col col-3><b>Brand</b></ion-col>
       <ion-col col-9>{{ visit.brand.name }}</ion-col>
     </ion-row>
@@ -45,19 +50,25 @@
     <ion-row>
       <ion-col col-4><b>Check In</b></ion-col>
       <ion-col col-4>{{ visit.actualArrival | amDateFormat: 'DD/MM/YY' }}</ion-col>
-      <ion-col col-4>{{ visit.actualArrival | amDateFormat: 'hh:mm' }}</ion-col>
+      <ion-col col-4>{{ visit.actualArrival | amDateFormat: 'HH:mm' }}</ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-4><b>Check Out</b></ion-col>
       <ion-col col-4>{{ visit.actualDeparture | amDateFormat: 'DD/MM/YY' }}</ion-col>
-      <ion-col col-4>{{ visit.actualDeparture | amDateFormat: 'hh:mm' }}</ion-col>
+      <ion-col col-4>{{ visit.actualDeparture | amDateFormat: 'HH:mm' }}</ion-col>
     </ion-row>
 
     <ion-row class="total-row">
       <ion-col col-4><b>Time On Site</b></ion-col>
       <ion-col col-4></ion-col>
       <ion-col col-4>{{ timeSpent(visit.actualDeparture, visit.actualArrival) }} hrs</ion-col>
+    </ion-row>
+
+    <ion-row class="total-row">
+    <ion-col col-4><b>Visit Total</b></ion-col>
+    <ion-col col-4>£{{ visit.brand.hourlyRate}}/hr</ion-col>
+    <ion-col col-4>£{{ (timeSpent(visit.actualDeparture, visit.actualArrival) * visit.brand.hourlyRate) | number: '1.2-2' }}</ion-col>
     </ion-row>
 
 
@@ -85,10 +96,15 @@
     <ion-row *ngIf="visit.stock.length === 0">
       <p>No data to display</p>
     </ion-row>
+    <ion-row class="total-row">
+      <ion-col col-4>Product</ion-col>
+      <ion-col col-4>Size</ion-col>
+      <ion-col col-4>Qty On Hand</ion-col>
+    </ion-row>
     <ion-row *ngFor="let check of visit.stock">
-      <ion-col col-7><b>{{ check.product.description }}</b></ion-col>
-      <ion-col col-4>{{ check.product.sku }}</ion-col>
-      <ion-col col-1>{{ check.onHand }}</ion-col>
+      <ion-col col-4>{{ check.product.description }}</ion-col>
+      <ion-col col-4>{{ check.product.size }}</ion-col>
+      <ion-col col-4>{{ check.onHand }}</ion-col>
     </ion-row>
 
     <ion-row margin-top class="header-row">
@@ -97,10 +113,23 @@
     <ion-row *ngIf="visit.stock.length === 0">
       <p>No data to display</p>
     </ion-row>
+    <ion-row class="total-row">
+      <ion-col col-3>Product</ion-col>
+      <ion-col col-3>Size</ion-col>
+      <ion-col col-3>Sold</ion-col>
+      <ion-col col-3>Value</ion-col>
+    </ion-row>
     <ion-row *ngFor="let check of visit.stock">
-      <ion-col col-7><b>{{ check.product.description }}</b></ion-col>
-      <ion-col col-4>{{ check.product.sku }}</ion-col>
-      <ion-col col-1>{{ check.qtySold }}</ion-col>
+      <ion-col col-3>{{ check.product.description }}</ion-col>
+      <ion-col col-3>{{ check.product.size }}</ion-col>
+      <ion-col col-3>{{ check.qtySold }}</ion-col>
+      <ion-col col-3>£{{ (check.qtySold * check.product.retailPrice) | number: '1.2-2' }}</ion-col>
+    </ion-row>
+    <ion-row class="total-row">
+      <ion-col col-3></ion-col>
+      <ion-col col-3></ion-col>
+      <ion-col col-3></ion-col>
+      <ion-col col-3>£{{ totalSales() | number: '1.2-2' }}</ion-col>
     </ion-row>
 
 

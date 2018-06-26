@@ -149,4 +149,8 @@ export class ScheduleNewModal {
 
   }
 
+  isValid() {
+    return !this.visit.brand || !this.visit.retailer || !this.visit.location;
+  }
+
 }

@@ -18,7 +18,7 @@
       <ion-input type="text" formControlName="name" placeholder="Give the location a name..."></ion-input>
     </ion-item>
     <span class="error" *ngIf="locationForm.get('name').hasError('maxlength')">
-        Must be less than 20 characters.
+        Must be less than 30 characters.
       </span>
     <span class="error" *ngIf="locationForm.get('name').hasError('minlength')">
         Must be more than 3 characters.

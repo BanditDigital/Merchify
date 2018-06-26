@@ -5,5 +5,6 @@ export interface Brand {
   products?: object[],
   retailers?: object[],
   tenantId?: number,
-  tenant?: object
+  tenant?: object,
+  hourlyRate: number
 }

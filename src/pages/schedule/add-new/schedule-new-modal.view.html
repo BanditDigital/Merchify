@@ -64,7 +64,7 @@
           </button>
         </ion-col>
         <ion-col>
-          <button [disabled]="false" ion-button icon-left color="secondary" (click)="save()" float-right>
+          <button [disabled]="isValid()" ion-button icon-left color="secondary" (click)="save()" float-right>
             <ion-icon name="checkmark" color></ion-icon>
             Save
           </button>

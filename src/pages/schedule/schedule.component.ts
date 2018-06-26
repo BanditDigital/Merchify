@@ -191,7 +191,7 @@ export class SchedulePage {
       let checkInTime = moment();
       let confirm = this.alertCtrl.create({
         title: `Confirm Check-in`,
-        message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.format('DD/MM/YYYY hh:mm')}`,
+        message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.format('DD/MM/YYYY HH:mm')}`,
         buttons: [
           {
             text: 'Cancel',
@@ -200,7 +200,7 @@ export class SchedulePage {
             text: 'Confirm',
             handler: () => {
               loading.present();
-              visit.actualArrival = checkInTime.format('YYYY-MM-DD hh:mm:ss');
+              visit.actualArrival = checkInTime.format('YYYY-MM-DD HH:mm:ss');
               this.scheduleService.editVisit(visit)
                 .subscribe((updated) => {
                   this.activeVisit = updated;
@@ -231,7 +231,7 @@ export class SchedulePage {
       let checkOutTime = moment();
       let confirm = this.alertCtrl.create({
         title: `Confirm Check-out`,
-        message: `Are you sure you want to check-out now, the time recorded will be ${checkOutTime.format('DD/MM/YYYY hh:mm')}`,
+        message: `Are you sure you want to check-out now, the time recorded will be ${checkOutTime.format('DD/MM/YYYY HH:mm')}`,
         buttons: [
           {
             text: 'Cancel',
@@ -240,7 +240,7 @@ export class SchedulePage {
             text: 'Confirm',
             handler: () => {
               loading.present();
-              visit.actualDeparture = checkOutTime.format('YYYY-MM-DD hh:mm:ss');
+              visit.actualDeparture = checkOutTime.format('YYYY-MM-DD HH:mm:ss');
               this.scheduleService.editVisit(visit)
                 .subscribe((updatedVisit) => {
                   this.activeVisit = null;

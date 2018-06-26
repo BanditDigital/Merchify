@@ -32,7 +32,7 @@
       <ion-input type="text" formControlName="description"></ion-input>
     </ion-item>
     <span class="error" *ngIf="productForm.get('description').hasError('maxlength')">
-        Must be less than 30 characters.
+        Must be less than 50 characters.
       </span>
     <span class="error" *ngIf="productForm.get('description').hasError('minlength')">
         Must be more than 2 characters.
@@ -72,13 +72,15 @@
 
 
     <ion-item>
-      <ion-label>Barcode</ion-label>
-      <ion-input type="text" formControlName="barcode"></ion-input>
+      <ion-label>Retail Price</ion-label>
+      <ion-input type="text" formControlName="retailPrice"></ion-input>
     </ion-item>
-    <span class="error" *ngIf="productForm.get('barcode').hasError('maxlength')">
-        Must be less than 15 characters.
+    <span class="error" *ngIf="productForm.get('retailPrice').hasError('min')">
+        Price cannot be less than 0.00
       </span>
-
+    <span class="error" *ngIf="productForm.get('retailPrice').hasError('max')">
+        Price cannot be more than 99999.99
+      </span>
 
     <ion-item>
       <ion-label>Promo Code</ion-label>
