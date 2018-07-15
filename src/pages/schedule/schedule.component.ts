@@ -30,6 +30,7 @@ export class SchedulePage {
 
   visitState: string = 'scheduled';
   isAdmin: boolean;
+  userId: number;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -71,6 +72,7 @@ export class SchedulePage {
         if(token) {
           let user = jwt.decode(token);
           this.isAdmin = _.includes(user.roles, 'Admin');
+          this.userId = user.userId;
         } else {
           this.isAdmin = false;
         }
@@ -86,6 +88,7 @@ export class SchedulePage {
     newAppointmentModal.onDidDismiss(results => {
       if (results && !results.edited) {
         this.visits.push(results.visit);
+        this.sortVisitsAscByDate();
       }
     });
 
@@ -98,9 +101,10 @@ export class SchedulePage {
     this.scheduleService.getVisits()
       .subscribe(visits => {
         this.visits = visits;
+        this.sortVisitsAscByDate();
 
         let active = _.filter(this.visits, (v) => {
-          return v.actualArrival != null && v.actualDeparture == null;
+          return v.actualArrival != null && v.actualDeparture == null && v.userId == this.userId;
         });
         this.activeVisit = active[0];
 
@@ -170,6 +174,7 @@ export class SchedulePage {
       if (results && results.edited) {
         _.pull(this.visits, visit);
         this.visits.push(results.visit);
+        this.sortVisitsAscByDate();
       }
     });
 
@@ -204,6 +209,7 @@ export class SchedulePage {
               this.scheduleService.editVisit(visit)
                 .subscribe((updated) => {
                   this.activeVisit = updated;
+                  this.sortVisitsAscByDate();
                   loading.dismiss();
                 }, error => {
                   this.errorAlert.showAlert('Could not check in', error.error.message);
@@ -246,6 +252,7 @@ export class SchedulePage {
                   this.activeVisit = null;
                   _.pull(this.visits, visit);
                   this.visits.push(updatedVisit);
+                  this.sortVisitsAscByDate();
                   loading.dismiss();
                 }, error => {
                   this.errorAlert.showAlert('Could not check out', error.error.message);
@@ -275,6 +282,7 @@ export class SchedulePage {
             this.scheduleService.deleteVisit(visit)
               .subscribe(() => {
                 _.pull(this.visits, visit);
+                this.sortVisitsAscByDate();
                 loading.dismiss();
               }, error => {
                 this.errorAlert.showAlert('Could not delete visit', error.error.message);
@@ -371,6 +379,7 @@ export class SchedulePage {
     this.scheduleService.editVisit(this.activeVisit)
       .subscribe(visit => {
         this.activeVisit = visit;
+        this.sortVisitsAscByDate();
         loading.dismiss();
       }, error => {
         console.log(error);
@@ -379,5 +388,14 @@ export class SchedulePage {
       });
 
   }
+
+  public sortVisitsAscByDate() {
+    this.visits.sort((a,b) => {
+      var base = moment(a.actualArrival);
+      var compare = moment(b.actualArrival);
+      return base.isBefore(compare);
+    });
+  }
+
 }
 
