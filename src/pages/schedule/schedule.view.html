@@ -90,7 +90,7 @@
       </ion-item>
       <ion-item *ngFor="let visit of visits | visitStatus: visitState" (click)="openVisit(visit)">
         <h2>{{ visit.retailer.name }} ({{ visit.location.name }})</h2>
-        <h3>{{ visit.scheduledArrival | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
+        <h3>{{ visit.actualArrival | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
         <p>On behalf of {{ visit.brand.name }}</p>
         <p *ngIf="isAdmin">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
       </ion-item>

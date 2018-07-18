@@ -391,9 +391,20 @@ export class SchedulePage {
 
   public sortVisitsAscByDate() {
     this.visits.sort((a,b) => {
-      var base = moment(a.actualArrival);
-      var compare = moment(b.actualArrival);
-      return base.isBefore(compare);
+      var base = moment(a.actualArrival.toString());
+      var compare = moment(b.actualArrival.toString());
+
+      if(base.isBefore(compare)) {
+        return 1
+      }
+
+      if(base.isAfter(compare)) {
+        return -1
+      }
+
+      return 0;
+
+
     });
   }
 
