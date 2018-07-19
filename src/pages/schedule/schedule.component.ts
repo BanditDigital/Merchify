@@ -392,7 +392,7 @@ export class SchedulePage {
   public sortVisitsAscByDate() {
     this.visits.sort((a,b) => {
 
-      if(a.actualArrival.toString() == null || b.actualArrival.toString() == null) {
+      if(a.actualArrival == null || b.actualArrival == null) {
         return 0;
       }
 
