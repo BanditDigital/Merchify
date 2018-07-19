@@ -59,10 +59,10 @@
   <!--<ion-searchbar *ngIf="!activeVisit" (ionInput)="searchVisits($event)"></ion-searchbar>-->
   <div *ngIf="!activeVisit" padding>
     <ion-segment [(ngModel)]="visitState">
-      <ion-segment-button value="scheduled">
+      <ion-segment-button value="scheduled" (click)="sortVisitsAscByDate(true)">
         Scheduled
       </ion-segment-button>
-      <ion-segment-button value="completed">
+      <ion-segment-button value="completed" (click)="sortVisitsAscByDate(false)">
         Completed
       </ion-segment-button>
     </ion-segment>
@@ -71,7 +71,7 @@
 
   <div *ngIf="!activeVisit" [ngSwitch]="visitState">
 
-    <ion-list *ngSwitchCase="'scheduled'">
+    <ion-list *ngSwitchCase="'scheduled'" >
       <ion-item *ngIf="(visits | visitStatus: visitState).length === 0">
         No scheduled visits, put your feet up!
       </ion-item>

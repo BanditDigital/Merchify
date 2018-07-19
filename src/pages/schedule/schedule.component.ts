@@ -101,7 +101,7 @@ export class SchedulePage {
     this.scheduleService.getVisits()
       .subscribe(visits => {
         this.visits = visits;
-        this.sortVisitsAscByDate();
+        this.sortVisitsAscByDate(true);
 
         let active = _.filter(this.visits, (v) => {
           return v.actualArrival != null && v.actualDeparture == null && v.userId == this.userId;
@@ -389,8 +389,23 @@ export class SchedulePage {
 
   }
 
-  public sortVisitsAscByDate() {
+  public sortVisitsAscByDate(scheduled?:boolean) {
     this.visits.sort((a,b) => {
+
+      if(scheduled) {
+        var base1 = moment(a.scheduledArrival.toString());
+        var compare1 = moment(b.scheduledArrival.toString());
+
+        if(base1.isBefore(compare1)) {
+          return -1
+        }
+
+        if(base1.isAfter(compare1)) {
+          return 0
+        }
+
+        return 0;
+      }
 
       if(a.actualArrival == null || b.actualArrival == null) {
         return 0;
@@ -408,7 +423,6 @@ export class SchedulePage {
       }
 
       return 0;
-
 
     });
   }
