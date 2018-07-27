@@ -3,10 +3,10 @@ import {LoadingController, MenuController, NavController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {StorageService} from "../../../shared/storage/storage.service";
-import {HomePage} from "../../home/home";
 import {AlertService} from "../../../shared/alert/alert.service";
 import {SignupPage} from "../signup/signup";
 import {ForgotPage} from "../forgot/forgot";
+import {SchedulePage} from "../../schedule/schedule.component";
 
 @Component({
   selector: 'page-signin',
@@ -45,7 +45,7 @@ export class SigninPage {
       .subscribe(data => {
         this.storageService.setToken(data['token']);
         this.menuCtrl.swipeEnable(true);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot(SchedulePage);
         loading.dismiss();
       }, err => {
         this.alertService.showAlert('Login Failed', err.error.message);

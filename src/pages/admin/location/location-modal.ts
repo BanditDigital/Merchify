@@ -36,7 +36,7 @@ export class LocationModal {
       name: [location ? location.name : '', Validators.compose([
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(20)
+        Validators.maxLength(30)
       ])],
       type: [location ? location.type : '', Validators.compose([
         Validators.maxLength(20)

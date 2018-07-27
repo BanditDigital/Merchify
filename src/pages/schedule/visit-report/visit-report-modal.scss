@@ -1,0 +1,24 @@
+page-visit-report-modal {
+
+  ion-row {
+    padding-left: 0.5em;
+    border-bottom: 1px solid #b4b4b4;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+  }
+
+  .total-row {
+    border-top: 2px solid #666666;
+    border-bottom: 1px solid #666666;
+    padding-left: 0.5em;
+    background-color: #2f3c51;
+    color: #f4f4f4;
+  }
+
+  .header-row {
+    background-color: #8898c0;
+    border-bottom: 1px solid #565b85;
+    font-size: 1.2em;
+    color: #f4f4f4;
+  }
+}

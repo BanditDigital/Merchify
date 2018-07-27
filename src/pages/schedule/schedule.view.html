@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Merchify</ion-title>
+  </ion-navbar>
+  <ion-searchbar (ionInput)="searchVisits()" [(ngModel)]="searchText"></ion-searchbar>
+  <div class="filters">
+    <div float-start class="my-checkbox">
+      <ion-label text-uppercase>Completed</ion-label>
+      <ion-checkbox [(ngModel)]="showCompleted" (ionChange)="searchVisits()">
+      </ion-checkbox>
+    </div>
+    <div float-start class="my-checkbox">
+      <ion-label text-uppercase>Scheduled</ion-label>
+      <ion-checkbox [(ngModel)]="showScheduled" (ionChange)="searchVisits()">
+      </ion-checkbox>
+    </div>
+  </div>
+</ion-header>
+
+
+<ion-content no-padding>
+
+  <ion-list>
+    <ion-item *ngIf="visits.length === 0">
+      No visits found, better get cracking!
+    </ion-item>
+    <ion-item-group *ngFor="let group of visits | groupBy : 'state'">
+      <ion-item-divider color="light">
+        {{ group.key }} ({{ group.list.length }})
+      </ion-item-divider>
+      <ion-item *ngFor="let visit of group.list" (click)="openVisit(visit)">
+        <h3>{{ visit.retailer.name }} ({{ visit.location.name }})</h3>
+        <h3>{{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
+        <p>On behalf of {{ visit.brand.name }}</p>
+        <p *ngIf="isAdmin">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
+        <ion-badge color="{{ getVisitBadgeColor(visit) }}" item-end>{{ visit.state }}
+        {{ visit.state == 'Checked In' ? ((visit.actualArrival | amDifference: today :'hours' : true | number: '1.2-2')*-1).toString() + 'hrs' : ''}}
+        </ion-badge>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-fab bottom right *ngIf="!activeVisit">
+    <button ion-fab color="secondary" (click)="newAppointment()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

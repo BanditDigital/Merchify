@@ -48,7 +48,7 @@ export class ProductModal {
       description: [product ? product.description : '', Validators.compose([
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(30)
+        Validators.maxLength(50)
       ])],
       size: [product ? product.size : '', Validators.compose([
         Validators.required,
@@ -61,8 +61,9 @@ export class ProductModal {
       brand: [product ? product.brand.id : null, Validators.compose([
         Validators.required
       ])],
-      barcode: [product ? product.barcode : '', Validators.compose([
-        Validators.maxLength(15)
+      retailPrice: [product ? product.retailPrice : 0, Validators.compose([
+        Validators.min(0),
+        Validators.max(99999.99)
       ])],
     });
 

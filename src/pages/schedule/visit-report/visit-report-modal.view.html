@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Visit Report
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+  <ion-grid no-padding>
+
+    <ion-row class="header-row">
+      <ion-col><p>Visit Details</p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-3><b>Name</b></ion-col>
+      <ion-col col-9>{{ visit.user.firstName + ' ' + visit.user.lastName }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-3><b>Brand</b></ion-col>
+      <ion-col col-9>{{ visit.brand.name }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-3><b>Location</b></ion-col>
+      <ion-col col-4>{{ visit.location.name }}</ion-col>
+      <ion-col col-5>{{ visit.location.type }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-3><b>Retailer</b></ion-col>
+      <ion-col col-4>{{ visit.retailer.name }}</ion-col>
+      <ion-col col-5>{{ visit.retailer.type }}</ion-col>
+    </ion-row>
+
+    <ion-row margin-top class="header-row">
+      <ion-col><p>Time Reporting</p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6><b>Scheduled</b></ion-col>
+      <ion-col col-3>{{ visit.scheduledArrival | amLocale:'en' | amDateFormat: 'DD/MM/YY' }}</ion-col>
+      <ion-col col-3>{{ visit.scheduledArrival | amLocale:'en' | amDateFormat: 'hh:mm' }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6><b>Check In</b></ion-col>
+      <ion-col col-3>{{ visit.actualArrival | amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
+      <ion-col col-3>{{ visit.actualArrival | amLocal | amDateFormat: 'hh:mm' }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6><b>Check Out</b></ion-col>
+      <ion-col col-3>{{ visit.actualDeparture | amLocale:'en' | amDateFormat: 'DD/MM/YY' }}</ion-col>
+      <ion-col col-3>{{ visit.actualDeparture | amLocale:'en' | amDateFormat: 'hh:mm' }}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6><b>Time On Site</b></ion-col>
+      <ion-col col-3></ion-col>
+      <ion-col col-3>{{ timeSpent(visit.actualDeparture, visit.actualArrival) }} hrs</ion-col>
+    </ion-row>
+
+    <ion-row class="total-row">
+    <ion-col col-6><b>Visit Total</b></ion-col>
+    <ion-col col-3>£{{ visit.brand.hourlyRate}}/hr</ion-col>
+    <ion-col col-3>£{{ (timeSpent(visit.actualDeparture, visit.actualArrival) * visit.brand.hourlyRate) | number: '1.2-2' }}</ion-col>
+    </ion-row>
+
+
+    <ion-row margin-top class="header-row">
+      <ion-col><p>Store Details</p></ion-col>
+    </ion-row>
+
+    <ion-row class="total-row">
+      <ion-col><b>Store Contact</b></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-9>{{ visit.siteContact ? visit.siteContact : 'No contact name recorded' }}</ion-col>
+    </ion-row>
+
+    <ion-row class="total-row">
+      <ion-col><b>Activities/Notes</b></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>{{ visit.visitNotes ? visit.visitNotes : 'No notes recorded' }}</ion-col>
+    </ion-row>
+
+    <ion-row margin-top class="header-row">
+      <ion-col><p>Stock Check</p></ion-col>
+    </ion-row>
+    <ion-row *ngIf="visit.stock.length === 0">
+      <p>No data to display</p>
+    </ion-row>
+    <ion-row class="total-row">
+      <ion-col col-8>Product</ion-col>
+      <ion-col col-2>Size</ion-col>
+      <ion-col col-2>On Hand</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let check of visit.stock | stock: 'stock'">
+      <ion-col col-8>{{ check.product.description }}</ion-col>
+      <ion-col col-2>{{ check.product.size }}</ion-col>
+      <ion-col col-2>{{ check.onHand }}</ion-col>
+    </ion-row>
+
+    <ion-row margin-top class="header-row">
+      <ion-col><p>Sales Report</p></ion-col>
+    </ion-row>
+    <ion-row *ngIf="visit.stock.length === 0">
+      <p>No data to display</p>
+    </ion-row>
+    <ion-row class="total-row">
+      <ion-col col-6>Product</ion-col>
+      <ion-col col-2>Size</ion-col>
+      <ion-col col-2>Sold</ion-col>
+      <ion-col col-2>Value</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let check of visit.stock | stock: 'eod'">
+      <ion-col col-6>{{ check.product.description }}</ion-col>
+      <ion-col col-2>{{ check.product.size }}</ion-col>
+      <ion-col col-2>{{ check.qtySold }}</ion-col>
+      <ion-col col-2>£{{ (check.qtySold * check.product.retailPrice) | number: '1.2-2' }}</ion-col>
+    </ion-row>
+    <ion-row class="total-row">
+      <ion-col col-6></ion-col>
+      <ion-col col-2></ion-col>
+      <ion-col col-2></ion-col>
+      <ion-col col-2>£{{ totalSales() | number: '1.2-2' }}</ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+
+</ion-footer>

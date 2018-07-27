@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Record Visit Actions
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="basket" item-start></ion-icon>{{ activeVisit?.retailer.name }}
+        </ion-item>
+        <ion-item>
+          <ion-icon name="brush" item-start></ion-icon>{{ activeVisit?.brand.name }}
+        </ion-item>
+        <ion-item>
+          <ion-icon name="navigate" item-start></ion-icon>
+          {{ activeVisit?.location.name }} - Arrived {{ activeVisit?.actualArrival | amDateFormat: 'DD/MM/YYYY hh:mm' }}
+        </ion-item>
+        <button ion-item (click)="recordStockCheck()">
+          <ion-icon name="{{ stockcheckComplete() ? 'checkmark-circle' :  'close-circle' }}"
+                    color="{{ stockcheckComplete() ? 'secondary' :  'caution' }}" item-start></ion-icon>
+          Stock Check
+        </button>
+
+        <button ion-item (click)="recordStockCheck(true)" [disabled]="!stockcheckComplete()">
+          <ion-icon name="{{ endOfDayComplete() ? 'checkmark-circle' :  'close-circle' }}"
+                    color="{{ endOfDayComplete() ? 'secondary' :  'caution' }}" item-start></ion-icon>
+          End of Day Sales
+        </button>
+
+        <button ion-item (click)="recordManagerName()">
+          <ion-icon name="checkmark-circle" *ngIf="activeVisit.siteContact" color="secondary" item-start></ion-icon>
+          <ion-icon name="close-circle" *ngIf="!activeVisit.siteContact" color="caution" item-start></ion-icon>
+          Store Contact Name
+        </button>
+
+        <button ion-item (click)="recordVisitNotes()">
+          <ion-icon name="checkmark-circle" *ngIf="activeVisit.visitNotes" color="secondary" item-start></ion-icon>
+          <ion-icon name="close-circle" *ngIf="!activeVisit.visitNotes" color="caution" item-start></ion-icon>
+          Activity Notes
+        </button>
+
+        <button ion-item [disabled]="true">
+          <ion-icon name="close-circle" color="secondary" item-start></ion-icon>
+          Location Photo (coming soon)
+        </button>
+
+        <button ion-item no-lines (click)="checkOut(activeVisit)" [disabled]="!readyToCheckout()">
+          <ion-icon name="time" color="primary" item-start></ion-icon>
+          Checkout
+        </button>
+
+      </ion-list>
+
+
+</ion-content>
+<ion-footer>
+  <ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left color="secondary" (click)="saveVisit()" float-right>
+            <ion-icon name="checkmark" color></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-buttons>
+</ion-footer>

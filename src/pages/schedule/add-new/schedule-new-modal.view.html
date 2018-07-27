@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      New Visit
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item-divider color="light">
+      <ion-icon name="calendar" icon-start></ion-icon>
+      Scheduling
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YY" [(ngModel)]="visit.scheduledArrival"></ion-datetime>
+    </ion-item>
+
+    <ion-item-divider color="light">
+      <ion-icon name="calendar" icon-start></ion-icon>
+      Appointment Particulars
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label>Brand</ion-label>
+        <ion-select [(ngModel)]="visit.brand" (ionChange)="brandSelected($event)"
+        [compareWith]="compareFn">
+          <ion-option *ngFor="let brand of brands" [value]="brand">{{ brand.name }}</ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Retailer</ion-label>
+      <ion-select [(ngModel)]="visit.retailer" [disabled]="!visit.brand" (ionChange)="retailerSelected($event)"
+                  [compareWith]="compareFn">
+        <ion-option *ngFor="let retailer of retailers" [value]="retailer">{{ retailer.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label>Location</ion-label>
+      <ion-select #locationSelect [(ngModel)]="visit.location" [disabled]="!visit.retailer"
+                  [compareWith]="compareFn">
+        <ion-option *ngFor="let location of locations" [value]="location">{{ location.name }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button *ngIf="user" ion-button icon-left color="danger" (click)="delete()">
+            <ion-icon name="trash" color></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+        <ion-col>
+          <button [disabled]="isValid()" ion-button icon-left color="secondary" (click)="save()" float-right>
+            <ion-icon name="checkmark" color></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-buttons>
+</ion-footer>

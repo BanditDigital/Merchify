@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>
+      Record Visit Actions
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item no-lines>
+      <ion-textarea placeholder="Enter a description of the activities conducted in store..." [(ngModel)]="notes"
+                    rows="10"></ion-textarea>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left color="secondary" (click)="save()" float-right>
+            <ion-icon name="checkmark" color></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-buttons>
+</ion-footer>

@@ -1,18 +1,19 @@
 import {Address} from "./Address";
 import {Tenant} from "./Tenant";
+import {Brand} from "./Brand";
 
 export interface User {
   id?: any,
   firstName: string,
   lastName: string,
-  address: Address;
+  address?: Address;
   email: string,
   password?: string,
-  telephone: string,
+  telephone?: string,
   analysis1: string,
   analysis2: string,
   analysis3: string,
-  startDate: Date,
+  startDate: string,
   country: string,
   hourlyRate: number,
   jobTitle: string,
@@ -21,5 +22,7 @@ export interface User {
   emailVerified: boolean,
   organisationApproved: boolean,
   tenantId?: number,
-  tenant?: Tenant
+  tenant?: Tenant,
+  roles?: string[]
+  brands?: Brand[]
 }

@@ -37,23 +37,30 @@ export class BrandModal {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(20)
+      ])],
+      hourlyRate: [brand ? brand.hourlyRate : 0, Validators.compose([
+        Validators.required
       ])]
     });
   }
 
   public save() {
+
     let loading = this.loadingCtrl.create({content: 'Saving brand...'});
 
     loading.present();
 
     if (!this.edit) {
       this.brand = <Brand>{
-        name: this.brandForm.controls.name.value
+        name: this.brandForm.controls.name.value,
+        hourlyRate: this.brandForm.controls.hourlyRate.value
       };
     } else {
       this.brand.name = this.brandForm.controls.name.value;
+      this.brand.hourlyRate = this.brandForm.controls.hourlyRate.value;
     }
 
+    console.log(this.brand);
 
     if (this.edit) {
 

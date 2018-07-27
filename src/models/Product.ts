@@ -6,7 +6,7 @@ export interface Product {
   size: string,
   description: string,
   promoCode?: string,
-  barcode?: string,
+  retailPrice?: number,
   brand?: Brand,
   tenantId?: number,
   tenant?: string;

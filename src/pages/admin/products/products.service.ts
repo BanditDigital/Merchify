@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs/Observable";
 import {Product} from "../../../models/Product";
+import {Brand} from "../../../models/Brand";
 
 @Injectable()
 export class ProductsService {
@@ -10,6 +11,10 @@ export class ProductsService {
 
   public getProducts() : Observable<Product[]> {
     return this.http.get<Product[]>(`${environment.API}product`);
+  }
+
+  public getProductsByBrand(brand: Brand) : Observable<Product[]> {
+    return this.http.get<Product[]>(`${environment.API}product/${brand.id}`);
   }
 
   public addProduct(product: Product) : Observable<Product> {

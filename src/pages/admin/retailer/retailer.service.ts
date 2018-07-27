@@ -12,6 +12,10 @@ export class RetailerService {
     return this.http.get<Retailer[]>(`${environment.API}retailer`);
   }
 
+  public getRetailerById(id: number) : Observable<Retailer> {
+    return this.http.get<Retailer>(`${environment.API}retailer/${id}`);
+  }
+
   public addRetailer(retailer: Retailer) : Observable<Retailer> {
     return this.http.post<Retailer>(`${environment.API}retailer`, retailer, {});
   }
