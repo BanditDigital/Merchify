@@ -5,97 +5,43 @@
     </button>
     <ion-title>Merchify</ion-title>
   </ion-navbar>
+  <ion-searchbar (ionInput)="searchVisits()" [(ngModel)]="searchText"></ion-searchbar>
+  <div class="filters">
+    <div float-start class="my-checkbox">
+      <ion-label text-uppercase>Completed</ion-label>
+      <ion-checkbox [(ngModel)]="showCompleted" (ionChange)="searchVisits()">
+      </ion-checkbox>
+    </div>
+    <div float-start class="my-checkbox">
+      <ion-label text-uppercase>Scheduled</ion-label>
+      <ion-checkbox [(ngModel)]="showScheduled" (ionChange)="searchVisits()">
+      </ion-checkbox>
+    </div>
+  </div>
 </ion-header>
+
 
 <ion-content no-padding>
 
-  <ion-card no-padding *ngIf="activeVisit">
-    <ion-card-header>
-      <h2>Currently Checked In @ {{ activeVisit?.retailer.name }}</h2>
-      <p>On behalf of {{ activeVisit?.brand.name }}</p>
-      <p>{{ activeVisit?.location.name }} - Arrived {{ activeVisit?.actualArrival | amDateFormat: 'DD/MM/YYYY HH:mm' }}</p>
-    </ion-card-header>
-    <ion-card-content no-padding>
-      <ion-list>
-        <button ion-item (click)="recordStockCheck(false)">
-          <ion-icon name="checkmark-circle" *ngIf="stockcheckComplete()" color="secondary" item-start></ion-icon>
-          <ion-icon name="close-circle" *ngIf="!stockcheckComplete()" color="shaded" item-start></ion-icon>
-          Stock Check
-        </button>
-
-        <button ion-item (click)="recordStockCheck(true)" [disabled]="!stockcheckComplete()">
-          <ion-icon name="checkmark-circle" *ngIf="endOfDayComplete()" color="secondary" item-start></ion-icon>
-          <ion-icon name="close-circle" *ngIf="!endOfDayComplete()" color="shaded" item-start></ion-icon>
-          End of Day Sales
-        </button>
-
-        <button ion-item (click)="recordManagerName()">
-          <ion-icon name="checkmark-circle" *ngIf="activeVisit.siteContact" color="secondary" item-start></ion-icon>
-          <ion-icon name="close-circle" *ngIf="!activeVisit.siteContact" color="shaded" item-start></ion-icon>
-          Store Contact Name
-        </button>
-
-        <button ion-item (click)="recordVisitNotes()">
-          <ion-icon name="checkmark-circle" *ngIf="activeVisit.visitNotes" color="secondary" item-start></ion-icon>
-          <ion-icon name="close-circle" *ngIf="!activeVisit.visitNotes" color="shaded" item-start></ion-icon>
-
-          Activity Notes
-        </button>
-
-        <!--<button ion-item (click)="takePhoto()">-->
-          <!--<ion-icon name="close-circle" color="caution" item-start></ion-icon>-->
-          <!--Location Photo-->
-        <!--</button>-->
-
-        <button ion-item no-lines (click)="checkOut(activeVisit)">
-          <ion-icon name="time" color="primary" item-start></ion-icon>
-          Checkout
-        </button>
-
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-
-  <!--<ion-searchbar *ngIf="!activeVisit" (ionInput)="searchVisits($event)"></ion-searchbar>-->
-  <div *ngIf="!activeVisit" padding>
-    <ion-segment [(ngModel)]="visitState">
-      <ion-segment-button value="scheduled" (click)="sortVisitsAscByDate(true)">
-        Scheduled
-      </ion-segment-button>
-      <ion-segment-button value="completed" (click)="sortVisitsAscByDate(false)">
-        Completed
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-
-
-  <div *ngIf="!activeVisit" [ngSwitch]="visitState">
-
-    <ion-list *ngSwitchCase="'scheduled'" >
-      <ion-item *ngIf="(visits | visitStatus: visitState).length === 0">
-        No scheduled visits, put your feet up!
-      </ion-item>
-      <ion-item *ngFor="let visit of visits | visitStatus: visitState; let l = count" (click)="openVisit(visit)">
-        <h2>{{ visit.retailer.name }} ({{ visit.location.name }})</h2>
-        <h3>{{ visit.scheduledArrival | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
+  <ion-list>
+    <ion-item *ngIf="visits.length === 0">
+      No visits found, better get cracking!
+    </ion-item>
+    <ion-item-group *ngFor="let group of visits | groupBy : 'state'">
+      <ion-item-divider color="light">
+        {{ group.key }} ({{ group.list.length }})
+      </ion-item-divider>
+      <ion-item *ngFor="let visit of group.list" (click)="openVisit(visit)">
+        <h3>{{ visit.retailer.name }} ({{ visit.location.name }})</h3>
+        <h3>{{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
         <p>On behalf of {{ visit.brand.name }}</p>
         <p *ngIf="isAdmin">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
+        <ion-badge color="{{ getVisitBadgeColor(visit) }}" item-end>{{ visit.state }}
+        {{ visit.state == 'Checked In' ? ((visit.actualArrival | amDifference: today :'hours' : true | number: '1.2-2')*-1).toString() + 'hrs' : ''}}
+        </ion-badge>
       </ion-item>
-
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'completed'">
-      <ion-item *ngIf="(visits | visitStatus: visitState).length === 0">
-        No completed visits, better get cracking!
-      </ion-item>
-      <ion-item *ngFor="let visit of visits | visitStatus: visitState" (click)="openVisit(visit)">
-        <h2>{{ visit.retailer.name }} ({{ visit.location.name }})</h2>
-        <h3>{{ visit.actualArrival | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
-        <p>On behalf of {{ visit.brand.name }}</p>
-        <p *ngIf="isAdmin">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
-      </ion-item>
-    </ion-list>
-  </div>
+    </ion-item-group>
+  </ion-list>
 
   <ion-fab bottom right *ngIf="!activeVisit">
     <button ion-fab color="secondary" (click)="newAppointment()">

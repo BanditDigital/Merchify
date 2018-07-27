@@ -19,18 +19,23 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import {AuthService} from "../auth/auth.service";
 import * as jwt from 'jsonwebtoken';
 import {VisitReportModal} from "./visit-report/visit-report-modal.component";
+import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
+import {ActionChecklistComponent} from "./check-in/action-checklist.component";
 
 @Component({
   selector: 'page-schedule',
   templateUrl: 'schedule.view.html',
 })
 export class SchedulePage {
+  rawData: Visit[] = [];
   visits: Visit[] = [];
+  filteredVisits: Visit[];
   activeVisit: Visit;
-
-  visitState: string = 'scheduled';
   isAdmin: boolean;
   userId: number;
+  showCompleted: boolean = false;
+  showScheduled: boolean = true;
+  searchText: string = '';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -65,7 +70,6 @@ export class SchedulePage {
   //   });
   // }
 
-
   private checkAdminRole() {
     this.authService.getToken()
       .subscribe(token => {
@@ -87,8 +91,8 @@ export class SchedulePage {
 
     newAppointmentModal.onDidDismiss(results => {
       if (results && !results.edited) {
-        this.visits.push(results.visit);
-        this.sortVisitsAscByDate();
+        this.rawData.push(results.visit);
+        this.visitFilters();
       }
     });
 
@@ -100,14 +104,8 @@ export class SchedulePage {
     loading.present();
     this.scheduleService.getVisits()
       .subscribe(visits => {
-        this.visits = visits;
-        this.sortVisitsAscByDate(true);
-
-        let active = _.filter(this.visits, (v) => {
-          return v.actualArrival != null && v.actualDeparture == null && v.userId == this.userId;
-        });
-        this.activeVisit = active[0];
-
+        this.rawData = visits;
+        this.visitFilters();
         loading.dismiss();
       }, error => {
         this.errorAlert.showAlert('Could not load available appointments', error.error.message);
@@ -145,6 +143,15 @@ export class SchedulePage {
       });
     }
 
+    if(visit.actualArrival && !visit.actualDeparture) {
+      buttons.push({
+        text: 'Update Record',
+        handler: () => {
+          this.updateActions(visit);
+        }
+      });
+    }
+
     if(visit.actualArrival && visit.actualDeparture) {
       buttons.push({
         text: 'View Visit Report',
@@ -163,8 +170,7 @@ export class SchedulePage {
   }
 
   public viewVisitReport(visit) {
-    let modal = this.modalCtrl.create(VisitReportModal, { visit: visit });
-    modal.present();
+    this.navCtrl.push(VisitReportModal, { visit: visit });
   }
 
   public editVisit(visit) {
@@ -172,9 +178,9 @@ export class SchedulePage {
 
     newAppointmentModal.onDidDismiss(results => {
       if (results && results.edited) {
-        _.pull(this.visits, visit);
-        this.visits.push(results.visit);
-        this.sortVisitsAscByDate();
+        _.pull(this.rawData, visit);
+        this.rawData.push(results.visit);
+        this.visitFilters();
       }
     });
 
@@ -209,53 +215,10 @@ export class SchedulePage {
               this.scheduleService.editVisit(visit)
                 .subscribe((updated) => {
                   this.activeVisit = updated;
-                  this.sortVisitsAscByDate();
+                  this.visitFilters();
                   loading.dismiss();
                 }, error => {
                   this.errorAlert.showAlert('Could not check in', error.error.message);
-                  loading.dismiss();
-                });
-            }
-          }
-        ]
-      });
-      confirm.present();
-    }
-  }
-
-  public checkOut(visit) {
-    if (!this.activeVisit) {
-      this.alertCtrl.create({
-        title: 'Not checked in',
-        message: `You are not checked in, please check-in and try again.`,
-        buttons: [
-          {text: 'OK'}
-        ]
-      }).present();
-    } else {
-      let loading = this.loadingCtrl.create({content: 'Checking out...'});
-      let checkOutTime = moment();
-      let confirm = this.alertCtrl.create({
-        title: `Confirm Check-out`,
-        message: `Are you sure you want to check-out now, the time recorded will be ${checkOutTime.format('DD/MM/YYYY HH:mm')}`,
-        buttons: [
-          {
-            text: 'Cancel',
-          },
-          {
-            text: 'Confirm',
-            handler: () => {
-              loading.present();
-              visit.actualDeparture = checkOutTime.format('YYYY-MM-DD HH:mm:ss');
-              this.scheduleService.editVisit(visit)
-                .subscribe((updatedVisit) => {
-                  this.activeVisit = null;
-                  _.pull(this.visits, visit);
-                  this.visits.push(updatedVisit);
-                  this.sortVisitsAscByDate();
-                  loading.dismiss();
-                }, error => {
-                  this.errorAlert.showAlert('Could not check out', error.error.message);
                   loading.dismiss();
                 });
             }
@@ -281,8 +244,8 @@ export class SchedulePage {
             loading.present();
             this.scheduleService.deleteVisit(visit)
               .subscribe(() => {
-                _.pull(this.visits, visit);
-                this.sortVisitsAscByDate();
+                _.pull(this.rawData, visit);
+                this.visitFilters();
                 loading.dismiss();
               }, error => {
                 this.errorAlert.showAlert('Could not delete visit', error.error.message);
@@ -295,136 +258,72 @@ export class SchedulePage {
     confirm.present();
   }
 
-  public recordManagerName() {
-    let prompt = this.alertCtrl.create({
-      title: 'Record Contact Name',
-      message: "Enter a name for a store contact",
-      inputs: [
-        {
-          name: 'name',
-          placeholder: 'Fred Bloggs',
-          value: this.activeVisit.siteContact
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel'
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.activeVisit.siteContact = data.name;
-            this.saveVisit();
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
-
-  public recordVisitNotes() {
-    let modal = this.modalCtrl.create(VisitActionModal, {notes: this.activeVisit.visitNotes});
+  public updateActions(visit) {
+    let modal = this.modalCtrl.create(ActionChecklistComponent, { visit: visit}, { enableBackdropDismiss: false });
+    let loading = this.loadingCtrl.create({content: 'Updating visit...'});
 
     modal.onDidDismiss(data => {
-      if (data && data.notes) {
-        this.activeVisit.visitNotes = data.notes;
-        this.saveVisit();
-      }
+      loading.present();
+      this.scheduleService.editVisit(data)
+        .subscribe((updatedVisit) => {
+          _.pull(this.rawData, visit);
+          this.rawData.push(updatedVisit);
+          this.visitFilters();
+          loading.dismiss();
+        }, error => {
+          this.errorAlert.showAlert('Could not update visit', error.error.message);
+          loading.dismiss();
+        });
     });
 
     modal.present();
+
   }
 
-  public recordStockCheck(endOfDay?: boolean) {
-    let stock = this.modalCtrl.create(StockCheckModal, {visit: this.activeVisit, sales: endOfDay});
+  public visitFilters() : void {
 
-    stock.onDidDismiss(data => {
-      if (data && data.stockCheck) {
-        this.activeVisit.stock = data.stockCheck;
-        this.saveVisit();
+    this.rawData.forEach(visit => {
+      if(!visit.actualArrival) {
+        visit.state = 'Scheduled';
+      }
+
+      if(visit.actualArrival && !visit.actualDeparture) {
+        visit.state = 'Checked In';
+      }
+
+      if(visit.actualArrival && visit.actualDeparture) {
+        visit.state = 'Completed';
       }
     });
 
-    stock.present();
+    this.searchVisits();
+
   }
 
-  public endOfDayComplete() {
-    let complete = false;
-    if (this.activeVisit.stock) {
-      this.activeVisit.stock.forEach(item => {
-        if (item.onHand != null) {
-          complete = item.qtySold != null;
-        }
-      });
-      return complete;
-    } else {
-      return false;
+  public getVisitBadgeColor(visit: Visit) : string {
+    if(!visit.actualArrival) {
+      return 'primary';
+    }
+
+    if(visit.actualArrival && !visit.actualDeparture) {
+      return 'secondary';
+    }
+
+    if(visit.actualArrival && visit.actualDeparture) {
+      return 'dark';
     }
   }
 
-  public stockcheckComplete() {
-    if (this.activeVisit.stock) {
-      for (let item of this.activeVisit.stock) {
-        return item.onHand != null;
-      }
-    } else {
-      return false;
-    }
-  }
+  public searchVisits() {
 
-  public saveVisit() {
-    let loading = this.loadingCtrl.create({content: 'Saving changes...'});
+    this.filteredVisits = new VisitFilterPipe()
+      .transform(this.rawData, { userInput: this.searchText, showCompleted: this.showCompleted, showScheduled: this.showScheduled});
 
-    loading.present();
-    this.scheduleService.editVisit(this.activeVisit)
-      .subscribe(visit => {
-        this.activeVisit = visit;
-        this.sortVisitsAscByDate();
-        loading.dismiss();
-      }, error => {
-        console.log(error);
-        loading.dismiss();
-        this.errorAlert.showAlert('Could not schedule new visit', error.error.message);
-      });
+    this.visits = [];
+    this.filteredVisits.forEach(visit => {
+      this.visits.push(visit);
+    })
 
-  }
-
-  public sortVisitsAscByDate(scheduled?:boolean) {
-    this.visits.sort((a,b) => {
-
-      if(scheduled) {
-        var base1 = moment(a.scheduledArrival.toString());
-        var compare1 = moment(b.scheduledArrival.toString());
-
-        if(base1.isBefore(compare1)) {
-          return -1
-        }
-
-        if(base1.isAfter(compare1)) {
-          return 0
-        }
-
-        return 0;
-      }
-
-      if(a.actualArrival == null || b.actualArrival == null) {
-        return 0;
-      }
-
-      var base = moment(a.actualArrival.toString());
-      var compare = moment(b.actualArrival.toString());
-
-      if(base.isBefore(compare)) {
-        return 1
-      }
-
-      if(base.isAfter(compare)) {
-        return -1
-      }
-
-      return 0;
-
-    });
   }
 
 }

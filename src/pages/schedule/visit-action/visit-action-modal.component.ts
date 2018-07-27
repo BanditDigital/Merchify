@@ -4,7 +4,7 @@ import {NavParams, ViewController} from "ionic-angular";
 
 @Component({
   templateUrl: 'visit-action-modal.view.html',
-  selector: 'visit-action-modal'
+  selector: 'page-visit-action-modal'
 })
 export class VisitActionModal {
 

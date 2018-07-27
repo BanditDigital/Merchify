@@ -13,6 +13,10 @@ import {StockCheckModal} from "./stock-check/stock-check.component";
 import {StockSoldPipe} from "../../shared/pipes/stock-sold.pipe";
 import {Camera} from "@ionic-native/camera";
 import {VisitReportModal} from "./visit-report/visit-report-modal.component";
+import {GroupByPipe} from "../../shared/pipes/group-by.pipe";
+import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
+import {ActionChecklistComponent} from "./check-in/action-checklist.component";
+import {StockCheckPipe} from "../../shared/pipes/stock-check.pipe";
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import {VisitReportModal} from "./visit-report/visit-report-modal.component";
     StockCheckModal,
     VisitReportModal,
     VisitStatusPipe,
-    StockSoldPipe
+    StockSoldPipe,
+    GroupByPipe,
+    VisitFilterPipe,
+    ActionChecklistComponent,
+    StockCheckPipe
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,8 @@ import {VisitReportModal} from "./visit-report/visit-report-modal.component";
     ScheduleNewModal,
     VisitActionModal,
     StockCheckModal,
-    VisitReportModal
+    VisitReportModal,
+    ActionChecklistComponent
   ],
   providers: [
     ScheduleService,

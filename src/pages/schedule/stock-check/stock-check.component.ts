@@ -55,7 +55,7 @@ export class StockCheckModal {
   }
 
 
-  public save() {
+  public saveStock() {
     this.view.dismiss({ stockCheck: this.visit.stock });
   }
 
