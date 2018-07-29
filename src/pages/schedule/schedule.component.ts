@@ -13,26 +13,22 @@ import {Component} from "@angular/core";
 import {ScheduleNewModal} from "./add-new/schedule-new-modal.component";
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {VisitActionModal} from "./visit-action/visit-action-modal.component";
-import {StockCheckModal} from "./stock-check/stock-check.component";
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import {AuthService} from "../auth/auth.service";
-import * as jwt from 'jsonwebtoken';
+import {Camera, CameraOptions} from '@ionic-native/camera';
 import {VisitReportModal} from "./visit-report/visit-report-modal.component";
 import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
 import {ActionChecklistComponent} from "./check-in/action-checklist.component";
+import {AuthService} from "../auth/auth.service";
+import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.component";
 
 @Component({
   selector: 'page-schedule',
   templateUrl: 'schedule.view.html',
 })
 export class SchedulePage {
+
   rawData: Visit[] = [];
   visits: Visit[] = [];
   filteredVisits: Visit[];
-  activeVisit: Visit;
-  isAdmin: boolean;
-  userId: number;
   showCompleted: boolean = false;
   showScheduled: boolean = true;
   searchText: string = '';
@@ -46,9 +42,8 @@ export class SchedulePage {
               public actionSheetCtrl: ActionSheetController,
               private alertCtrl: AlertController,
               private camera: Camera,
-              public authService: AuthService) {
+              private authService: AuthService) {
     this.getVisits();
-    this.checkAdminRole();
   }
 
   options: CameraOptions = {
@@ -70,20 +65,12 @@ export class SchedulePage {
   //   });
   // }
 
-  private checkAdminRole() {
-    this.authService.getToken()
-      .subscribe(token => {
-        if(token) {
-          let user = jwt.decode(token);
-          this.isAdmin = _.includes(user.roles, 'Admin');
-          this.userId = user.userId;
-        } else {
-          this.isAdmin = false;
-        }
-
-      }, error => {
-        console.log(error);
-      })
+  public isAdmin() {
+    if(this.authService.isLoggedIn()) {
+      return this.authService.isAdmin();
+    } else {
+      return false;
+    }
   }
 
   public newAppointment() {
@@ -102,6 +89,7 @@ export class SchedulePage {
   public getVisits() {
     let loading = this.loadingCtrl.create({content: 'Getting available appointments...'});
     loading.present();
+
     this.scheduleService.getVisits()
       .subscribe(visits => {
         this.rawData = visits;
@@ -156,7 +144,16 @@ export class SchedulePage {
       buttons.push({
         text: 'View Visit Report',
         handler: () => {
-          this.viewVisitReport(visit);
+          this.navCtrl.push(VisitReportModal, { visit: visit });
+        }
+      });
+    }
+
+    if(visit.actualArrival && visit.actualDeparture && this.isAdmin()) {
+      buttons.push({
+        text: 'Edit Completed Visit',
+        handler: () => {
+          this.navCtrl.push(EditCompleteComponent, { visit: visit });
         }
       });
     }
@@ -167,10 +164,6 @@ export class SchedulePage {
     });
 
     actions.present();
-  }
-
-  public viewVisitReport(visit) {
-    this.navCtrl.push(VisitReportModal, { visit: visit });
   }
 
   public editVisit(visit) {
@@ -188,16 +181,6 @@ export class SchedulePage {
   }
 
   public checkIn(visit) {
-    if (this.activeVisit) {
-      this.alertCtrl.create({
-        title: 'Already checked in',
-        message: `You are already checked in at ${this.activeVisit.retailer.name}, ${this.activeVisit.location.name} on behalf of ${this.activeVisit.brand.name}.
-        Please checkout before attempting another check-in.`,
-        buttons: [
-          {text: 'OK'}
-        ]
-      }).present();
-    } else {
       let loading = this.loadingCtrl.create({content: 'Checking in...'});
       let checkInTime = moment();
       let confirm = this.alertCtrl.create({
@@ -214,7 +197,6 @@ export class SchedulePage {
               visit.actualArrival = checkInTime.format('YYYY-MM-DD HH:mm:ss');
               this.scheduleService.editVisit(visit)
                 .subscribe((updated) => {
-                  this.activeVisit = updated;
                   this.visitFilters();
                   loading.dismiss();
                 }, error => {
@@ -226,7 +208,6 @@ export class SchedulePage {
         ]
       });
       confirm.present();
-    }
   }
 
   public deleteVisit(visit) {
@@ -324,6 +305,10 @@ export class SchedulePage {
       this.visits.push(visit);
     })
 
+  }
+
+  public timeCheckedIn(visit) {
+    return moment(moment()).diff(visit.actualArrival, 'hours', true).toFixed(2);
   }
 
 }

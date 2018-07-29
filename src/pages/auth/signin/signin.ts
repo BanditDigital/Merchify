@@ -5,8 +5,7 @@ import {AuthService} from "../auth.service";
 import {StorageService} from "../../../shared/storage/storage.service";
 import {AlertService} from "../../../shared/alert/alert.service";
 import {SignupPage} from "../signup/signup";
-import {ForgotPage} from "../forgot/forgot";
-import {SchedulePage} from "../../schedule/schedule.component";
+import {AppMenuPage} from "../../../app/app.menu.page";
 
 @Component({
   selector: 'page-signin',
@@ -27,6 +26,16 @@ export class SigninPage {
     this.menuCtrl.swipeEnable(false);
   }
 
+  ionViewWillEnter() {
+    this.authService.isAuthenticated()
+      .then(success => {
+        if(success) {
+          this.menuCtrl.swipeEnable(true);
+          this.navCtrl.setRoot(AppMenuPage);
+        }
+      });
+  }
+
   private initialiseForm() {
     this.signinForm = this.fb.group({
       email: ['', Validators.compose([
@@ -42,14 +51,15 @@ export class SigninPage {
     let loading = this.loadingCtrl.create({content: 'Logging in...'});
     loading.present();
     this.authService.signIn(accountDetails)
-      .subscribe(data => {
-        this.storageService.setToken(data['token']);
-        this.menuCtrl.swipeEnable(true);
-        this.navCtrl.setRoot(SchedulePage);
-        loading.dismiss();
-      }, err => {
-        this.alertService.showAlert('Login Failed', err.error.message);
-        loading.dismiss();
+      .then(success => {
+        if(success) {
+          this.menuCtrl.swipeEnable(true);
+          this.navCtrl.setRoot(AppMenuPage);
+          loading.dismiss();
+        } else {
+          this.alertService.showAlert('Sign In Failed', 'Please check your credentials and try again!');
+          loading.dismiss();
+        }
       });
   }
 
@@ -57,7 +67,4 @@ export class SigninPage {
     this.navCtrl.push(SignupPage);
   }
 
-  public forgot() {
-    this.navCtrl.push(ForgotPage);
-  }
 }

@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs/Observable";
 import {Visit} from "../../models/Visit";
-import {Retailer} from "../../models/Retailer";
 
 @Injectable()
 export class ScheduleService {

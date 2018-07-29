@@ -39,7 +39,6 @@ export class ForgotPage {
   public submit(emailAddress) {
     let loading = this.loadingCtrl.create({content: 'Sending...'});
     loading.present();
-      this.authService.forgot(emailAddress);
       this.alertService.showAlert('Reset Request Sent',
         'You will soon receive an email with instructions on how to reset your password');
       loading.dismiss();

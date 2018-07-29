@@ -7,6 +7,9 @@
 </ion-header>
 <ion-content>
       <ion-list>
+        <ion-list-header>
+          Visit Info
+        </ion-list-header>
         <ion-item>
           <ion-icon name="basket" item-start></ion-icon>{{ activeVisit?.retailer.name }}
         </ion-item>
@@ -15,8 +18,16 @@
         </ion-item>
         <ion-item>
           <ion-icon name="navigate" item-start></ion-icon>
-          {{ activeVisit?.location.name }} - Arrived {{ activeVisit?.actualArrival | amDateFormat: 'DD/MM/YYYY hh:mm' }}
+          {{ activeVisit?.location.name }}
         </ion-item>
+        <ion-item>
+          <ion-icon name="time" item-start></ion-icon>
+           Arrived {{ activeVisit?.actualArrival | amLocale:'en' | amDateFormat: 'DD/MM/YYYY HH:mm' }}
+        </ion-item>
+
+        <ion-list-header>
+          Visit Actions
+        </ion-list-header>
         <button ion-item (click)="recordStockCheck()">
           <ion-icon name="{{ stockcheckComplete() ? 'checkmark-circle' :  'close-circle' }}"
                     color="{{ stockcheckComplete() ? 'secondary' :  'caution' }}" item-start></ion-icon>

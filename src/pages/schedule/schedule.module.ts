@@ -17,6 +17,7 @@ import {GroupByPipe} from "../../shared/pipes/group-by.pipe";
 import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
 import {ActionChecklistComponent} from "./check-in/action-checklist.component";
 import {StockCheckPipe} from "../../shared/pipes/stock-check.pipe";
+import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.component";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {StockCheckPipe} from "../../shared/pipes/stock-check.pipe";
     VisitActionModal,
     StockCheckModal,
     VisitReportModal,
+    EditCompleteComponent,
     VisitStatusPipe,
     StockSoldPipe,
     GroupByPipe,
@@ -44,7 +46,8 @@ import {StockCheckPipe} from "../../shared/pipes/stock-check.pipe";
     VisitActionModal,
     StockCheckModal,
     VisitReportModal,
-    ActionChecklistComponent
+    ActionChecklistComponent,
+    EditCompleteComponent
   ],
   providers: [
     ScheduleService,

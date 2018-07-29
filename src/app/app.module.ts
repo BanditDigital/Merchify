@@ -11,10 +11,12 @@ import {IonicStorageModule} from "@ionic/storage";
 import {AlertService} from "../shared/alert/alert.service";
 import {ScheduleModule} from "../pages/schedule/schedule.module";
 import {MomentModule} from "angular2-moment";
+import {AppMenuPage} from "./app.menu.page";
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    AppMenuPage
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,9 @@ import {MomentModule} from "angular2-moment";
     AdminModule,
     AuthModule,
     MomentModule
+  ],
+  entryComponents: [
+    AppMenuPage
   ],
   bootstrap: [IonicApp],
   providers: [

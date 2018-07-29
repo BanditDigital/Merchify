@@ -35,9 +35,9 @@
         <h3>{{ visit.retailer.name }} ({{ visit.location.name }})</h3>
         <h3>{{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
         <p>On behalf of {{ visit.brand.name }}</p>
-        <p *ngIf="isAdmin">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
+        <p *ngIf="isAdmin()">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
         <ion-badge color="{{ getVisitBadgeColor(visit) }}" item-end>{{ visit.state }}
-        {{ visit.state == 'Checked In' ? ((visit.actualArrival | amDifference: today :'hours' : true | number: '1.2-2')*-1).toString() + 'hrs' : ''}}
+        {{ visit.state == 'Checked In' ? ((timeCheckedIn(visit) | number: '1.2-2').toString()) + 'hrs' : ''}}
         </ion-badge>
       </ion-item>
     </ion-item-group>

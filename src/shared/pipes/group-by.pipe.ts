@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'moment';
 
 @Pipe({
   name: 'groupBy',
@@ -38,14 +37,26 @@ export class GroupByPipe implements PipeTransform {
       }
     }
 
-    events.sort((a, b) => {
+    events.sort((a,b) => {
+      let aStatus = 0;
       if(a.key == 'Checked In') {
-        return -1;
+        aStatus = -1;
       } else if (a.key == 'Scheduled') {
-        return 0;
-      } else {
-        return 1;
+        aStatus = 0;
+      } else if (a.key == 'Completed') {
+        aStatus = 1;
       }
+
+      let bStatus = 0;
+      if(b.key == 'Checked In') {
+        bStatus = -1;
+      } else if (b.key == 'Scheduled') {
+        bStatus = 0;
+      } else if (b.key == 'Completed') {
+        bStatus = 1;
+      }
+
+      return aStatus - bStatus;
     });
 
     return events;
