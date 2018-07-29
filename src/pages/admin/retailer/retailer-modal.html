@@ -41,7 +41,7 @@
     <h2 padding-left>Links</h2>
     <button ion-button icon-left full color="light" (click)="toggleLocations()">
       <ion-icon name="{{ showLocations ? 'arrow-dropup-circle' : 'arrow-dropdown-circle' }}"></ion-icon>
-      Locations ({{ retailer.locations.length }})
+      Locations ({{ retailer.locations?.length ? retailer.locations.length : 0 }})
      </button>
 
     <div *ngIf="showLocations">
@@ -60,7 +60,7 @@
   <div *ngIf="retailer">
     <button ion-button icon-left full color="light" (click)="toggleBrands()">
       <ion-icon name="{{ showBrands ? 'arrow-dropup-circle' : 'arrow-dropdown-circle' }}"></ion-icon>
-      Brands ({{ retailer.brands.length }})
+      Brands ({{ retailer.brands?.length }})
     </button>
 
     <div *ngIf="showBrands">

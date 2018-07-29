@@ -35,25 +35,25 @@
     </ion-row>
 
     <ion-row margin-top class="header-row">
-      <ion-col><p>Time Reporting</p></ion-col>
+      <ion-col><p>Time Reporting (Local time)</p></ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-6><b>Scheduled</b></ion-col>
-      <ion-col col-3>{{ visit.scheduledArrival | amLocale:'en' | amDateFormat: 'DD/MM/YY' }}</ion-col>
+      <ion-col col-3>{{ visit.scheduledArrival | amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
       <ion-col col-3></ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-6><b>Check In</b></ion-col>
-      <ion-col col-3>{{ visit.actualArrival | amLocale:'en' | amDateFormat: 'DD/MM/YY' }}</ion-col>
-      <ion-col col-3>{{ visit.actualArrival | amLocale:'en' | amDateFormat: 'HH:mm' }}</ion-col>
+      <ion-col col-3>{{ visit.actualArrival | amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
+      <ion-col col-3>{{ visit.actualArrival | amLocal | amDateFormat: 'HH:mm Z' }}</ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col col-6><b>Check Out</b></ion-col>
-      <ion-col col-3>{{ visit.actualDeparture | amLocale:'en' | amDateFormat: 'DD/MM/YY' }}</ion-col>
-      <ion-col col-3>{{ visit.actualDeparture | amLocale:'en' | amDateFormat: 'HH:mm' }}</ion-col>
+      <ion-col col-3>{{ visit.actualDeparture | amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
+      <ion-col col-3>{{ visit.actualDeparture | amLocal | amDateFormat: 'HH:mm Z' }}</ion-col>
     </ion-row>
 
     <ion-row>

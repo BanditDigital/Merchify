@@ -182,10 +182,10 @@ export class SchedulePage {
 
   public checkIn(visit) {
       let loading = this.loadingCtrl.create({content: 'Checking in...'});
-      let checkInTime = moment();
+      let checkInTime = moment().utc();
       let confirm = this.alertCtrl.create({
         title: `Confirm Check-in`,
-        message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.format('DD/MM/YYYY HH:mm')}`,
+        message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.local().format('DD/MM/YYYY HH:mm Z')}`,
         buttons: [
           {
             text: 'Cancel',
@@ -194,7 +194,7 @@ export class SchedulePage {
             text: 'Confirm',
             handler: () => {
               loading.present();
-              visit.actualArrival = checkInTime.format('YYYY-MM-DD HH:mm:ss');
+              visit.actualArrival = checkInTime.utc();
               this.scheduleService.editVisit(visit)
                 .subscribe((updated) => {
                   this.visitFilters();

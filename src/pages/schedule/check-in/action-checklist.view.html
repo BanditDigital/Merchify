@@ -22,7 +22,7 @@
         </ion-item>
         <ion-item>
           <ion-icon name="time" item-start></ion-icon>
-           Arrived {{ activeVisit?.actualArrival | amLocale:'en' | amDateFormat: 'DD/MM/YYYY HH:mm' }}
+           Arrived {{ activeVisit?.actualArrival | amLocal | amDateFormat: 'DD/MM/YYYY HH:mm Z' }}
         </ion-item>
 
         <ion-list-header>

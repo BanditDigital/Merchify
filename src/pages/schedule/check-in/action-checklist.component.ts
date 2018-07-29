@@ -104,10 +104,10 @@ export class ActionChecklistComponent {
         ]
       }).present();
     } else {
-      let checkOutTime = moment();
+      let checkOutTime = moment().utc();
       let confirm = this.alertCtrl.create({
         title: `Confirm Check-out`,
-        message: `Are you sure you want to check-out now, the time recorded will be ${checkOutTime.format('DD/MM/YYYY HH:mm')}`,
+        message: `Are you sure you want to check-out now, the time recorded will be ${checkOutTime.local().format('DD/MM/YYYY HH:mm Z')}`,
         buttons: [
           {
             text: 'Cancel',
@@ -115,7 +115,7 @@ export class ActionChecklistComponent {
           {
             text: 'Confirm',
             handler: () => {
-              visit.actualDeparture = checkOutTime.format('YYYY-MM-DD HH:mm:ss');
+              visit.actualDeparture = checkOutTime.utc();
               this.saveVisit();
             }
           }

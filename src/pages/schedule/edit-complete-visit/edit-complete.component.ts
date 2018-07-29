@@ -18,6 +18,8 @@ export class EditCompleteComponent {
               private toast: ToastController,
               private loading: LoadingController) {
     this.visit = this.navParams.get('visit');
+    this.visit.actualArrival = moment(this.visit.actualArrival).local().toISOString(true);
+    this.visit.actualDeparture = moment(this.visit.actualDeparture).local().toISOString(true);
   }
 
   public timeSpent(arrival, departure) {
@@ -38,6 +40,9 @@ export class EditCompleteComponent {
 
 
   public saveVisit() {
+
+    this.visit.actualArrival = moment(<string>this.visit.actualArrival).utc().toString();
+    this.visit.actualDeparture = moment(<string>this.visit.actualDeparture).utc().toString();
     let loading = this.loading.create({content: 'Checking in...'});
     loading.present();
     this.scheduleService.editVisit(this.visit)

@@ -7,9 +7,9 @@ import {Stock} from "./Stock";
 
 export interface Visit {
   id?: number,
-  scheduledArrival?: String,
-  actualArrival?: String,
-  actualDeparture?: String,
+  scheduledArrival?: any,
+  actualArrival?: any,
+  actualDeparture?: any,
   siteContact?: string,
   visitNotes?: string,
   stock?: Stock[],
