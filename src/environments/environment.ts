@@ -1,5 +1,5 @@
 export const environment = {
   PRODUCTION: false,
-  API: 'https://merchify-web.herokuapp.com/',
+  API: 'https://merchify-server.herokuapp.com/',
   HEADERS: {}
 };

@@ -74,8 +74,8 @@ export class ActionChecklistComponent {
     let complete = false;
     if (this.activeVisit.stock) {
       this.activeVisit.stock.forEach(item => {
-        if (item.onHand != null) {
-          complete = item.qtySold != null;
+        if (item.onHand != null || item.onHand == 0) {
+          complete = item.qtySold != null || item.onHand == 0;
         }
       });
       return complete;
@@ -85,6 +85,7 @@ export class ActionChecklistComponent {
   }
 
   public stockcheckComplete() {
+    console.log(this.activeVisit);
     if (this.activeVisit.stock) {
       for (let item of this.activeVisit.stock) {
         return item.onHand != null;

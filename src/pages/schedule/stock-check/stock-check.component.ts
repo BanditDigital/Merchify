@@ -22,8 +22,11 @@ export class StockCheckModal {
     if(this.navParams.get('visit')) {
 
       this.visit = this.navParams.get('visit');
-      console.log(this.visit);
       this.endOfDay = this.navParams.get('sales');
+
+      if(!this.visit.stock) {
+        this.visit.stock = [];
+      }
 
       if(this.visit.stock.length == 0) {
         this.getProducts();

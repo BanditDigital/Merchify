@@ -311,5 +311,15 @@ export class SchedulePage {
     return moment(moment()).diff(visit.actualArrival, 'hours', true).toFixed(2);
   }
 
+  public totalSales(visit) {
+    if(visit.stock) {
+      let total = 0;
+      for(let check of visit.stock) {
+        total += check.qtySold * check.product.retailPrice;
+      }
+      return total;
+    }
+  }
+
 }
 
