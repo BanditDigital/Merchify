@@ -29,14 +29,14 @@
           Visit Actions
         </ion-list-header>
         <button ion-item (click)="recordStockCheck()">
-          <ion-icon name="{{ stockcheckComplete() ? 'checkmark-circle' :  'close-circle' }}"
-                    color="{{ stockcheckComplete() ? 'secondary' :  'caution' }}" item-start></ion-icon>
+          <ion-icon name="{{ activeVisit.stock ? 'checkmark-circle' :  'close-circle' }}"
+                    color="{{ activeVisit.stock ? 'secondary' :  'caution' }}" item-start></ion-icon>
           Stock Check
         </button>
 
-        <button ion-item (click)="recordStockCheck(true)" [disabled]="!stockcheckComplete()">
-          <ion-icon name="{{ endOfDayComplete() ? 'checkmark-circle' :  'close-circle' }}"
-                    color="{{ endOfDayComplete() ? 'secondary' :  'caution' }}" item-start></ion-icon>
+        <button ion-item (click)="recordStockCheck(true)">
+          <ion-icon name="{{ activeVisit.stock ? 'checkmark-circle' :  'close-circle' }}"
+                    color="{{ activeVisit.stock ? 'secondary' :  'caution' }}" item-start></ion-icon>
           End of Day Sales
         </button>
 
@@ -57,7 +57,7 @@
           Location Photo (coming soon)
         </button>
 
-        <button ion-item no-lines (click)="checkOut(activeVisit)" [disabled]="!readyToCheckout()">
+        <button ion-item no-lines (click)="checkOut(activeVisit)">
           <ion-icon name="time" color="primary" item-start></ion-icon>
           Checkout
         </button>

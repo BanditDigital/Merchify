@@ -1,12 +1,5 @@
 import {Component} from '@angular/core';
-import {
-  AlertController,
-  LoadingController,
-  ModalController,
-  NavController,
-  NavParams,
-  ViewController
-} from 'ionic-angular';
+import {AlertController, LoadingController, NavController, NavParams, ViewController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../../../models/User";
 import * as _ from 'lodash';
@@ -99,7 +92,6 @@ export class UserEditPage {
         Validators.compose([
           Validators.required
         ])],
-      hourlyRate: [user.hourlyRate],
       jobTitle: [user.jobTitle,
         Validators.compose([
           Validators.maxLength(30)
@@ -208,8 +200,49 @@ export class UserEditPage {
   public brandChecked(ev, brand: Brand) {
     if (ev.value) {
       this.user.brands.push(brand);
+      this.showBrandRatePrompt(brand);
     } else {
-      _.remove(this.user.brands, { id: brand.id });
+      _.remove(this.user.brands, {id: brand.id});
+      _.remove(this.user.brandRates, {brandId: brand.id});
+    }
+  }
+
+  public showBrandRatePrompt(brand: Brand) {
+    let prompt = this.alertCtrl.create({
+      title: 'Brand Pay Rate',
+      message: `Enter a the hourly rate for ${brand.name} for ${this.user.firstName + ' ' + this.user.lastName}`,
+      inputs: [
+        {
+          name: 'rate',
+          placeholder: '10.00',
+          type: 'number',
+          value: this.getUserBrandRate(brand)
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.user.brandRates.push({brandId: brand.id, rate: data.rate})
+          }
+        }
+      ]
+    });
+    prompt.present();
+
+  }
+
+  public getUserBrandRate(brand) {
+    if(this.isBrandLinked(brand)) {
+      let result = _.find(this.user.brandRates, { 'brandId': brand.id });
+      if(result) {
+        return result.rate;
+      } else {
+        return 0;
+      }
     }
   }
 

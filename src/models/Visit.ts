@@ -20,6 +20,7 @@ export interface Visit {
   tenantId?: number,
   tenant?: Tenant,
   photo?: any,
-  state?: string
+  state?: string,
+  hourlyRate?: number
 
 }

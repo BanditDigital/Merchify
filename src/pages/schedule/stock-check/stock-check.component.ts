@@ -45,8 +45,9 @@ export class StockCheckModal {
               productId: product.id,
               visitId: this.visit.id,
               product: product,
-              onHand: null,
-              qtySold: null
+              onHand: 0,
+              qtySold: 0,
+              price: product.retailPrice
             }
             this.visit.stock.push(stock);
           });

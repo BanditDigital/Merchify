@@ -126,18 +126,6 @@ export class ActionChecklistComponent {
     }
   }
 
-  public readyToCheckout() {
-
-    if(this.stockcheckComplete() &&
-      this.endOfDayComplete()
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-
   public saveVisit() {
     this.view.dismiss(this.activeVisit);
   }

@@ -27,8 +27,12 @@ export class VisitReportModal {
   public totalSales() {
     let total = 0;
     for(let check of this.visit.stock) {
-      total += check.qtySold * check.product.retailPrice;
+      total += check.qtySold * check.price;
     }
     return total;
+  }
+
+  public getHourlyRate() {
+    return this.visit.hourlyRate;
   }
 }

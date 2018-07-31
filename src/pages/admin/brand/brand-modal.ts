@@ -37,9 +37,6 @@ export class BrandModal {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(20)
-      ])],
-      hourlyRate: [brand ? brand.hourlyRate : 0, Validators.compose([
-        Validators.required
       ])]
     });
   }
@@ -52,12 +49,10 @@ export class BrandModal {
 
     if (!this.edit) {
       this.brand = <Brand>{
-        name: this.brandForm.controls.name.value,
-        hourlyRate: this.brandForm.controls.hourlyRate.value
+        name: this.brandForm.controls.name.value
       };
     } else {
       this.brand.name = this.brandForm.controls.name.value;
-      this.brand.hourlyRate = this.brandForm.controls.hourlyRate.value;
     }
 
     console.log(this.brand);

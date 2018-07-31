@@ -195,6 +195,7 @@ export class SchedulePage {
             handler: () => {
               loading.present();
               visit.actualArrival = checkInTime.utc();
+              visit.hourlyRate = this.getHourlyRate(visit);
               this.scheduleService.editVisit(visit)
                 .subscribe((updated) => {
                   this.visitFilters();
@@ -311,13 +312,27 @@ export class SchedulePage {
     return moment(moment()).diff(visit.actualArrival, 'hours', true).toFixed(2);
   }
 
+  public timeSpent(visit) {
+    return moment(visit.actualDeparture).diff(visit.actualArrival, 'hours', true).toFixed(2);
+  }
+
   public totalSales(visit) {
+    let total = 0;
     if(visit.stock) {
-      let total = 0;
-      for(let check of visit.stock) {
-        total += check.qtySold * check.product.retailPrice;
+
+      for (let check of visit.stock) {
+        total += check.qtySold * check.price;
       }
-      return total;
+    }
+    return total;
+  }
+
+  public getHourlyRate(visit: Visit) {
+    let result = _.find(visit.user.brandRates, { 'brandId': visit.brand.id });
+    if(result) {
+      return result.rate;
+    } else {
+      return 0;
     }
   }
 

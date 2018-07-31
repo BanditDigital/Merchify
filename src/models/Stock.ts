@@ -8,5 +8,6 @@ export interface Stock {
   onHand?: number,
   qtySold?: number,
   visit?: Visit,
-  visitId?: number
+  visitId?: number,
+  price?: number
 }

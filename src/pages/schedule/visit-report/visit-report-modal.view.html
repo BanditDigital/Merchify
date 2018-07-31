@@ -64,8 +64,8 @@
 
     <ion-row class="total-row">
     <ion-col col-6><b>Visit Total</b></ion-col>
-    <ion-col col-3>£{{ visit.brand.hourlyRate}}/hr</ion-col>
-    <ion-col col-3>£{{ (timeSpent(visit.actualDeparture, visit.actualArrival) * visit.brand.hourlyRate) | number: '1.2-2' }}</ion-col>
+    <ion-col col-3>£{{ getHourlyRate() }}/hr</ion-col>
+    <ion-col col-3>£{{ (timeSpent(visit.actualDeparture, visit.actualArrival) * getHourlyRate()) | number: '1.2-2' }}</ion-col>
     </ion-row>
 
 
@@ -94,14 +94,16 @@
       <p>No data to display</p>
     </ion-row>
     <ion-row class="total-row">
-      <ion-col col-8>Product</ion-col>
+      <ion-col col-6>Product</ion-col>
       <ion-col col-2>Size</ion-col>
       <ion-col col-2>On Hand</ion-col>
+      <ion-col col-2></ion-col>
     </ion-row>
     <ion-row *ngFor="let check of visit.stock | stock: 'stock'">
-      <ion-col col-8>{{ check.product.description }}</ion-col>
+      <ion-col col-6>{{ check.product.description }}</ion-col>
       <ion-col col-2>{{ check.product.size }}</ion-col>
       <ion-col col-2>{{ check.onHand }}</ion-col>
+      <ion-col col-2></ion-col>
     </ion-row>
 
     <ion-row margin-top class="header-row">

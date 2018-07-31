@@ -15,7 +15,6 @@ export interface User {
   analysis3: string,
   startDate: string,
   country: string,
-  hourlyRate: number,
   jobTitle: string,
   employeeId: string,
   profileImage: string,
@@ -25,4 +24,5 @@ export interface User {
   tenant?: Tenant,
   roles?: string[]
   brands?: Brand[]
+  brandRates?: [{brandId: number, rate: number}]
 }
