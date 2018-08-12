@@ -12,7 +12,6 @@ import {User} from "../../../models/User";
 import * as jwt from 'jsonwebtoken';
 import {Location} from "../../../models/Location";
 import {Storage} from "@ionic/storage";
-import * as _ from 'lodash';
 
 @Component({
   templateUrl: 'schedule-new-modal.view.html',

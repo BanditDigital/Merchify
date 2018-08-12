@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {AlertController, LoadingController, ModalController, NavParams} from "ionic-angular";
+import {LoadingController, ModalController} from "ionic-angular";
 import * as _ from 'lodash';
 import {Product} from "../../../models/Product";
 import {ProductsService} from "./products.service";
@@ -16,7 +16,6 @@ export class ProductsPage {
 
   constructor(private productService: ProductsService,
               private modalCtrl: ModalController,
-              private alertCtrl: AlertController,
               private errorAlert: AlertService,
               private loadingCtrl: LoadingController) {
     this.getAll();

@@ -12,6 +12,7 @@ import {AlertService} from "../shared/alert/alert.service";
 import {ScheduleModule} from "../pages/schedule/schedule.module";
 import {MomentModule} from "angular2-moment";
 import {AppMenuPage} from "./app.menu.page";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {AppMenuPage} from "./app.menu.page";
     ScheduleModule,
     AdminModule,
     AuthModule,
-    MomentModule
+    MomentModule,
+    BrowserAnimationsModule
   ],
   entryComponents: [
     AppMenuPage

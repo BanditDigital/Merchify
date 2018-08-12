@@ -1,5 +1,5 @@
 import {Component, ViewChild} from "@angular/core";
-import {App, IonicPage, Nav, NavController} from "ionic-angular";
+import {App, Nav, NavController} from "ionic-angular";
 import {AuthService} from "../pages/auth/auth.service";
 import {LocationsPage} from "../pages/admin/location/locations";
 import {SigninPage} from "../pages/auth/signin/signin";
