@@ -127,12 +127,12 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="header-row" margin-top>
+    <ion-row *ngIf="isAdmin()" class="header-row" margin-top>
       <ion-col><p>Expense Management</p></ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-list>
+  <ion-list *ngIf="isAdmin()">
     <ion-item>
       <ion-label>Approved Expenses</ion-label>
       <ion-toggle [(ngModel)]="visit.approvedExpenses"></ion-toggle>

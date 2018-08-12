@@ -6,6 +6,7 @@ import {Expense} from "../../../models/Expense";
 import {NewExpenseModal} from "./new-expense-modal";
 import {ScheduleService} from "../schedule.service";
 import {AlertService} from "../../../shared/alert/alert.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   templateUrl: 'expenses-modal.view.html',
@@ -26,8 +27,17 @@ export class ExpensesModal implements OnInit {
               private scheduleService: ScheduleService,
               private nav: NavController,
               private loading: LoadingController,
-              private error: AlertService) {
+              private error: AlertService,
+              private authService: AuthService) {
     this.visit = this.navParams.get('visit');
+  }
+
+  public isAdmin() {
+    if(this.authService.isLoggedIn()) {
+      return this.authService.isAdmin();
+    } else {
+      return false;
+    }
   }
 
   showDialogToAdd() {
