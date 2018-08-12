@@ -54,7 +54,7 @@
             ? ' Expenses £' + (expensesTotal(visit) | number: '1.2-2') : ''}}
           </div>
           <div>
-            {{ (visit.state == 'Completed') && expensesTotal(visit) > 0
+            {{ (visit.state == 'Completed') && visit.travelTime > 0
             ? ' Travel Time ' + (visit.travelTime | number: '1.2-2') : ''}}
           </div>
         </ion-badge>
