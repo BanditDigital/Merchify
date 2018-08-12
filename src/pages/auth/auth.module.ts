@@ -2,7 +2,6 @@ import {ErrorHandler, NgModule} from "@angular/core";
 import {IonicErrorHandler, IonicModule} from "ionic-angular";
 import {SigninPage} from "./signin/signin";
 import {SignupPage} from "./signup/signup";
-import {ForgotPage} from "./forgot/forgot";
 import {BrowserModule} from "@angular/platform-browser";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./auth.service";
@@ -12,7 +11,6 @@ import {SignupErrorPage} from "./signup/error.modal";
   declarations: [
     SigninPage,
     SignupPage,
-    ForgotPage,
     SignupErrorPage
   ],
   imports:[
@@ -23,7 +21,6 @@ import {SignupErrorPage} from "./signup/error.modal";
   entryComponents: [
     SigninPage,
     SignupPage,
-    ForgotPage,
     SignupErrorPage
   ],
   providers: [

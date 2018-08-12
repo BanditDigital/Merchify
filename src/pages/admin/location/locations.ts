@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {AlertController, LoadingController, ModalController, NavController} from "ionic-angular";
+import {LoadingController, ModalController} from "ionic-angular";
 import * as _ from 'lodash';
 import {AlertService} from "../../../shared/alert/alert.service";
 import {LocationsService} from "./locations.service";
@@ -16,8 +16,6 @@ export class LocationsPage {
 
   constructor(private locationsService: LocationsService,
               private modalCtrl: ModalController,
-              private alertCtrl: AlertController,
-              private navCtrl: NavController,
               private errorAlert: AlertService,
               private loadingCtrl: LoadingController) {
     this.getAll();

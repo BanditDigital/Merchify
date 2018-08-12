@@ -29,32 +29,18 @@
           Visit Actions
         </ion-list-header>
         <button ion-item (click)="recordStockCheck()">
-          <ion-icon name="{{ activeVisit.stock ? 'checkmark-circle' :  'close-circle' }}"
-                    color="{{ activeVisit.stock ? 'secondary' :  'caution' }}" item-start></ion-icon>
+          <ion-icon name="radio-button-on" color="secondary" item-start></ion-icon>
           Stock Check
         </button>
 
         <button ion-item (click)="recordStockCheck(true)">
-          <ion-icon name="{{ activeVisit.stock ? 'checkmark-circle' :  'close-circle' }}"
-                    color="{{ activeVisit.stock ? 'secondary' :  'caution' }}" item-start></ion-icon>
+          <ion-icon name="radio-button-on" color="secondary" item-start></ion-icon>
           End of Day Sales
         </button>
 
-        <button ion-item (click)="recordManagerName()">
-          <ion-icon name="checkmark-circle" *ngIf="activeVisit.siteContact" color="secondary" item-start></ion-icon>
-          <ion-icon name="close-circle" *ngIf="!activeVisit.siteContact" color="caution" item-start></ion-icon>
-          Store Contact Name
-        </button>
-
         <button ion-item (click)="recordVisitNotes()">
-          <ion-icon name="checkmark-circle" *ngIf="activeVisit.visitNotes" color="secondary" item-start></ion-icon>
-          <ion-icon name="close-circle" *ngIf="!activeVisit.visitNotes" color="caution" item-start></ion-icon>
-          Activity Notes
-        </button>
-
-        <button ion-item [disabled]="true">
-          <ion-icon name="close-circle" color="secondary" item-start></ion-icon>
-          Location Photo (coming soon)
+          <ion-icon name="radio-button-on" color="secondary" item-start></ion-icon>
+          Notes
         </button>
 
         <button ion-item no-lines (click)="checkOut(activeVisit)">

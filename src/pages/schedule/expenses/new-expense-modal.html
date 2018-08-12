@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ expense.description == '' ? 'New Expense' : 'Edit Expense'}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+<ion-list>
+  <ion-item>
+    <ion-label color="primary" stacked>Date</ion-label>
+    <ion-datetime [(ngModel)]="expense.expenseDate"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" stacked>Description</ion-label>
+    <ion-input type="text" [(ngModel)]="expense.description"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary" stacked>Amount</ion-label>
+    <ion-input type="number" [(ngModel)]="expense.amount"></ion-input>
+  </ion-item>
+</ion-list>
+</ion-content>
+<ion-footer>
+  <ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left color="danger" (click)="deleteExpense()">
+            <ion-icon name="trash" color></ion-icon>
+            Delete
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left color="secondary" (click)="save()" float-right>
+            <ion-icon name="checkmark" color></ion-icon>
+            Save
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-buttons>
+</ion-footer>

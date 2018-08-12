@@ -4,7 +4,6 @@ import {UserService} from '../user.service';
 import {UserEditPage} from "../user-edit/user-edit";
 import {User} from "../../../../models/User";
 import {AlertService} from "../../../../shared/alert/alert.service";
-import {AuthService} from "../../../auth/auth.service";
 import * as _ from 'lodash';
 import {Tenant} from "../../../../models/Tenant";
 
@@ -23,8 +22,7 @@ export class UserListPage {
               private loadingCtrl: LoadingController,
               private alert: AlertService,
               private alertCtrl: AlertController,
-              private modalCtrl: ModalController,
-              private authService: AuthService) {
+              private modalCtrl: ModalController) {
     this.getUsers();
     this.getOrganisation();
   }

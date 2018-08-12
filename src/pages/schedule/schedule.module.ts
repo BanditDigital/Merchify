@@ -11,13 +11,17 @@ import {VisitActionModal} from "./visit-action/visit-action-modal.component";
 import {ScheduleNewModal} from "./add-new/schedule-new-modal.component";
 import {StockCheckModal} from "./stock-check/stock-check.component";
 import {StockSoldPipe} from "../../shared/pipes/stock-sold.pipe";
-import {Camera} from "@ionic-native/camera";
 import {VisitReportModal} from "./visit-report/visit-report-modal.component";
 import {GroupByPipe} from "../../shared/pipes/group-by.pipe";
 import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
 import {ActionChecklistComponent} from "./check-in/action-checklist.component";
 import {StockCheckPipe} from "../../shared/pipes/stock-check.pipe";
 import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.component";
+import {ExpensesModal} from "./expenses/expenses-modal.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {NewExpenseModal} from "./expenses/new-expense-modal";
 
 @NgModule({
   declarations: [
@@ -26,19 +30,24 @@ import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.compone
     VisitActionModal,
     StockCheckModal,
     VisitReportModal,
+    ExpensesModal,
     EditCompleteComponent,
     VisitStatusPipe,
     StockSoldPipe,
     GroupByPipe,
     VisitFilterPipe,
     ActionChecklistComponent,
-    StockCheckPipe
+    StockCheckPipe,
+    NewExpenseModal
   ],
   imports: [
     BrowserModule,
     IonicModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    TableModule
   ],
   entryComponents: [
     SchedulePage,
@@ -46,12 +55,13 @@ import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.compone
     VisitActionModal,
     StockCheckModal,
     VisitReportModal,
+    ExpensesModal,
     ActionChecklistComponent,
-    EditCompleteComponent
+    EditCompleteComponent,
+    NewExpenseModal
   ],
   providers: [
     ScheduleService,
-    Camera,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

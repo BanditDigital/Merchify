@@ -4,6 +4,7 @@ import {Retailer} from "./Retailer";
 import {Tenant} from "./Tenant";
 import {Location} from "./Location";
 import {Stock} from "./Stock";
+import {Expense} from "./Expense";
 
 export interface Visit {
   id?: number,
@@ -21,6 +22,11 @@ export interface Visit {
   tenant?: Tenant,
   photo?: any,
   state?: string,
-  hourlyRate?: number
+  hourlyRate?: number,
+  expenses?: Expense[],
+  travelTime?: number
+  travelRate?: number
+  approvedExpenses?: boolean,
+  paidExpenses?: boolean
 
 }

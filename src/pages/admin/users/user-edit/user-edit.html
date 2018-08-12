@@ -24,7 +24,7 @@
       <ion-list>
         <ion-item *ngIf="user.brands?.length == 0">There are no brands linked to this user.</ion-item>
         <ion-item *ngFor="let brand of filteredBrands">
-          <ion-label>{{ isBrandLinked(brand) ? brand.name + ' (£' + getUserBrandRate(brand) + '/hr)' : brand.name }}</ion-label>
+          <ion-label>{{ isBrandLinked(brand) ? brand.name + ' (£' + getUserBrandRate(brand) + '/hr pay) (£' + getUserTravelRate(brand) + '/hr travel)' : brand.name }}</ion-label>
           <ion-checkbox (ionChange)="brandChecked($event, brand)"
                         [checked]="isBrandLinked(brand)"></ion-checkbox>
         </ion-item>

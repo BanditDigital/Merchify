@@ -13,12 +13,12 @@ import {Component} from "@angular/core";
 import {ScheduleNewModal} from "./add-new/schedule-new-modal.component";
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {Camera, CameraOptions} from '@ionic-native/camera';
 import {VisitReportModal} from "./visit-report/visit-report-modal.component";
 import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
 import {ActionChecklistComponent} from "./check-in/action-checklist.component";
 import {AuthService} from "../auth/auth.service";
 import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.component";
+import {ExpensesModal} from "./expenses/expenses-modal.component";
 
 @Component({
   selector: 'page-schedule',
@@ -41,29 +41,9 @@ export class SchedulePage {
               private errorAlert: AlertService,
               public actionSheetCtrl: ActionSheetController,
               private alertCtrl: AlertController,
-              private camera: Camera,
               private authService: AuthService) {
     this.getVisits();
   }
-
-  options: CameraOptions = {
-    quality: 10,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
-
-  // public takePhoto() {
-  //   this.camera.getPicture(this.options).then((imageData) => {
-  //     // imageData is either a base64 encoded string or a file URI
-  //     // If it's base64:
-  //     let base64Image = 'data:image/jpeg;base64,' + imageData;
-  //     this.activeVisit.photo = base64Image;
-  //     this.saveVisit();
-  //   }, (err) => {
-  //     // Handle error
-  //   });
-  // }
 
   public isAdmin() {
     if(this.authService.isLoggedIn()) {
@@ -158,6 +138,15 @@ export class SchedulePage {
       });
     }
 
+    if(visit.actualArrival && visit.actualDeparture) {
+      buttons.push({
+        text: 'Expenses & Travel',
+        handler: () => {
+          this.navCtrl.push(ExpensesModal, { visit: visit });
+        }
+      });
+    }
+
     let actions = this.actionSheetCtrl.create({
       title: 'What next?',
       buttons
@@ -196,6 +185,8 @@ export class SchedulePage {
               loading.present();
               visit.actualArrival = checkInTime.utc();
               visit.hourlyRate = this.getHourlyRate(visit);
+              visit.travelRate = this.getTravelRate(visit);
+              visit.expenses = [];
               this.scheduleService.editVisit(visit)
                 .subscribe((updated) => {
                   this.visitFilters();
@@ -261,6 +252,7 @@ export class SchedulePage {
     modal.present();
 
   }
+
 
   public visitFilters() : void {
 
@@ -334,6 +326,23 @@ export class SchedulePage {
     } else {
       return 0;
     }
+  }
+
+  public getTravelRate(visit: Visit) {
+    let result = _.find(visit.user.brandRates, { 'brandId': visit.brand.id });
+    if(result) {
+      return result.travelRate;
+    } else {
+      return 0;
+    }
+  }
+
+  public expensesTotal(visit) {
+    let total = 0;
+    visit.expenses.forEach(ex => {
+      total = +total + +ex.amount;
+    })
+    return total;
   }
 
 }

@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {LoadingController, MenuController, NavController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
-import {StorageService} from "../../../shared/storage/storage.service";
 import {AlertService} from "../../../shared/alert/alert.service";
 import {SignupPage} from "../signup/signup";
 import {AppMenuPage} from "../../../app/app.menu.page";
@@ -18,7 +17,6 @@ export class SigninPage {
   constructor(public navCtrl: NavController
     , private fb: FormBuilder
     , private authService: AuthService
-    , private storageService: StorageService
     , private menuCtrl: MenuController
     , private alertService: AlertService
     , private loadingCtrl: LoadingController) {

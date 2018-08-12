@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {Brand} from "../../../models/Brand";
 import {BrandsService} from "./brands.service";
-import {AlertController, LoadingController, ModalController, NavController} from "ionic-angular";
+import {LoadingController, ModalController} from "ionic-angular";
 import * as _ from 'lodash';
 import {BrandModal} from "./brand-modal";
 import {AlertService} from "../../../shared/alert/alert.service";
@@ -16,8 +16,6 @@ export class BrandsPage {
 
   constructor(private brandService: BrandsService,
               private modalCtrl: ModalController,
-              private alertCtrl: AlertController,
-              private navCtrl: NavController,
               private errorAlert: AlertService,
               private loadingCtrl: LoadingController) {
     this.getAll();

@@ -209,14 +209,20 @@ export class UserEditPage {
 
   public showBrandRatePrompt(brand: Brand) {
     let prompt = this.alertCtrl.create({
-      title: 'Brand Pay Rate',
+      title: 'Brand Rates',
       message: `Enter a the hourly rate for ${brand.name} for ${this.user.firstName + ' ' + this.user.lastName}`,
       inputs: [
         {
           name: 'rate',
-          placeholder: '10.00',
-          type: 'number',
+          placeholder: 'Pay Rate',
+          type: 'text',
           value: this.getUserBrandRate(brand)
+        },
+        {
+          name: 'travelRate',
+          placeholder: 'Travel Rate',
+          type: 'text',
+          value: this.getUserTravelRate(brand)
         },
       ],
       buttons: [
@@ -226,7 +232,7 @@ export class UserEditPage {
         {
           text: 'Save',
           handler: data => {
-            this.user.brandRates.push({brandId: brand.id, rate: data.rate})
+            this.user.brandRates.push({brandId: brand.id, rate: data.rate, travelRate: data.travelRate})
           }
         }
       ]
@@ -241,7 +247,18 @@ export class UserEditPage {
       if(result) {
         return result.rate;
       } else {
-        return 0;
+        return null;
+      }
+    }
+  }
+
+  public getUserTravelRate(brand) {
+    if(this.isBrandLinked(brand)) {
+      let result = _.find(this.user.brandRates, { 'brandId': brand.id });
+      if(result) {
+        return result.travelRate;
+      } else {
+        return null;
       }
     }
   }

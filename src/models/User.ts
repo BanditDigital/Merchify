@@ -24,5 +24,5 @@ export interface User {
   tenant?: Tenant,
   roles?: string[]
   brands?: Brand[]
-  brandRates?: [{brandId: number, rate: number}]
+  brandRates?: [{brandId: number, rate: number, travelRate: number}]
 }
