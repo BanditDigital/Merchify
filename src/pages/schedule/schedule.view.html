@@ -37,7 +37,7 @@
         <p>On behalf of {{ visit.brand.name }}</p>
         <p *ngIf="isAdmin()">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
         <ion-badge text-left color="{{ getVisitBadgeColor(visit) }}" item-end>
-          <div>{{ visit.state }}</div>
+          <div *ngIf="visit.state == 'Checked In' || visit.state == 'Scheduled'">{{visit.state }}</div>
           <div>
             {{ visit.state == 'Checked In'
             ? ((timeCheckedIn(visit) | number: '1.2-2').toString() + 'hrs') : ''}}
@@ -47,7 +47,7 @@
           </div>
           <div>
             {{ (visit.state == 'Completed')
-            ? ' Cost £' + ((timeSpent(visit) * visit.hourlyRate) | number: '1.2-2') : ''}}
+            ? ' Sales £' + (totalSales(visit) | number: '1.2-2') : ''}}
           </div>
           <div>
             {{ (visit.state == 'Completed') && expensesTotal(visit) > 0
