@@ -157,8 +157,8 @@ var ProductsService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_service__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_alert_alert_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__signup_signup__ = __webpack_require__(356);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_menu_page__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__signup_signup__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_app_menu_page__ = __webpack_require__(359);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -294,7 +294,7 @@ var UserService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 218:
+/***/ 219:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -307,7 +307,7 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 218;
+webpackEmptyAsyncContext.id = 219;
 
 /***/ }),
 
@@ -353,7 +353,7 @@ var AlertService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 262:
+/***/ 263:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -366,11 +366,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 262;
+webpackEmptyAsyncContext.id = 263;
 
 /***/ }),
 
-/***/ 354:
+/***/ 355:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -379,7 +379,7 @@ webpackEmptyAsyncContext.id = 262;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_storage__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromPromise__ = __webpack_require__(355);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromPromise__ = __webpack_require__(356);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_observable_fromPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -421,7 +421,7 @@ var StorageService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 356:
+/***/ 357:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -430,8 +430,8 @@ var StorageService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_validators_password_validator__ = __webpack_require__(764);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__error_modal__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_validators_password_validator__ = __webpack_require__(765);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__error_modal__ = __webpack_require__(358);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared_alert_alert_service__ = __webpack_require__(24);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -524,7 +524,7 @@ var SignupPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 357:
+/***/ 358:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -567,7 +567,7 @@ var SignupErrorPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 358:
+/***/ 359:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -575,13 +575,13 @@ var SignupErrorPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_auth_auth_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_admin_location_locations__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_admin_location_locations__ = __webpack_require__(360);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_auth_signin_signin__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_admin_retailer_retailer__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_schedule_schedule_component__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_admin_products_products__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_admin_brand_brands__ = __webpack_require__(498);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_admin_users_user_list_user_list__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_admin_retailer_retailer__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_schedule_schedule_component__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_admin_products_products__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_admin_brand_brands__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_admin_users_user_list_user_list__ = __webpack_require__(501);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -657,7 +657,7 @@ var AppMenuPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 359:
+/***/ 360:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -668,7 +668,7 @@ var AppMenuPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_alert_alert_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__locations_service__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__location_modal__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__location_modal__ = __webpack_require__(361);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -740,7 +740,7 @@ var LocationsPage = /** @class */ (function () {
     };
     LocationsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-locations',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\locations.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Locations</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-padding>\n  <ion-refresher (ionRefresh)="getAll($event)">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n\n  <!--ACTION FAB BUTTON-->\n  <ion-fab bottom right>\n    <button ion-fab color="secondary" (click)="create()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n  <ion-list>\n    <button ion-item *ngFor="let location of locations" (click)="openLocation(location)">\n      {{ location?.name }} / {{ location?.type }}\n      <ion-badge color="primary" item-right>\n        <ion-icon name="basket"></ion-icon>\n        {{ location.retailers ? location.retailers.length : 0 }}</ion-badge>\n    </button>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\locations.html"*/
+            selector: 'page-locations',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\locations.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Locations</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-padding>\n\n  <ion-refresher (ionRefresh)="getAll($event)">\n\n    <ion-refresher-content></ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n\n\n  <!--ACTION FAB BUTTON-->\n\n  <ion-fab bottom right>\n\n    <button ion-fab color="secondary" (click)="create()">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n\n\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n\n  <ion-list>\n\n    <button ion-item *ngFor="let location of locations | orderBy: \'name\'" (click)="openLocation(location)">\n\n      {{ location?.name }} / {{ location?.type }}\n\n      <ion-badge color="primary" item-right>\n\n        <ion-icon name="basket"></ion-icon>\n\n        {{ location.retailers ? location.retailers.length : 0 }}</ion-badge>\n\n    </button>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\locations.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__locations_service__["a" /* LocationsService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */],
@@ -754,7 +754,7 @@ var LocationsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 360:
+/***/ 361:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -866,7 +866,7 @@ var LocationModal = /** @class */ (function () {
     };
     LocationModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'modal-location',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\location-modal.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">Close</button>\n    </ion-buttons>\n    <ion-title>\n      {{ location ? \'Edit \' + location.name : \'Create New Location\' }}\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form [formGroup]="locationForm" novalidate>\n    <ion-item-divider>\n      Location Details\n    </ion-item-divider>\n    <ion-item>\n      <ion-label>Location Name</ion-label>\n      <ion-input type="text" formControlName="name" placeholder="Give the location a name..."></ion-input>\n    </ion-item>\n    <span class="error" *ngIf="locationForm.get(\'name\').hasError(\'maxlength\')">\n        Must be less than 30 characters.\n      </span>\n    <span class="error" *ngIf="locationForm.get(\'name\').hasError(\'minlength\')">\n        Must be more than 3 characters.\n      </span>\n    <span class="error" *ngIf="locationForm.get(\'name\').hasError(\'required\')\n      && locationForm.get(\'name\').touched">\n        Location name is required.\n      </span>\n\n\n    <ion-item>\n      <ion-label>Location Type</ion-label>\n      <ion-input type="text" formControlName="type" placeholder="i.e. Retail, High Street etc"></ion-input>\n    </ion-item>\n    <span class="error" *ngIf="locationForm.get(\'type\').hasError(\'maxlength\')">\n        Must be less than 20 characters.\n      </span>\n  </form>\n\n  <div *ngIf="location">\n    <ion-item-divider>\n      Linked Retailers\n    </ion-item-divider>\n    <ion-list>\n      <ion-item *ngIf="location.retailers?.length == 0">There are no retailers linked to this location.</ion-item>\n      <ion-item *ngFor="let retailer of location?.retailers">\n        {{ retailer.name }} - {{ retailer.type }}\n      </ion-item>\n    </ion-list>\n  </div>\n</ion-content>\n\n<ion-footer>\n  <ion-buttons>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <button *ngIf="location" ion-button icon-left color="danger" (click)="delete()">\n            <ion-icon name="trash" color></ion-icon>\n            Delete\n          </button>\n        </ion-col>\n        <ion-col>\n          <button [disabled]="!locationForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n            <ion-icon name="checkmark" color></ion-icon>\n            Save\n          </button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-buttons>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\location-modal.html"*/
+            selector: 'modal-location',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\location-modal.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Close</button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      {{ location ? \'Edit \' + location.name : \'Create New Location\' }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <form [formGroup]="locationForm" novalidate>\n\n    <ion-item-divider>\n\n      Location Details\n\n    </ion-item-divider>\n\n    <ion-item>\n\n      <ion-label>Location Name</ion-label>\n\n      <ion-input type="text" formControlName="name" placeholder="Give the location a name..."></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="locationForm.get(\'name\').hasError(\'maxlength\')">\n\n        Must be less than 30 characters.\n\n      </span>\n\n    <span class="error" *ngIf="locationForm.get(\'name\').hasError(\'minlength\')">\n\n        Must be more than 3 characters.\n\n      </span>\n\n    <span class="error" *ngIf="locationForm.get(\'name\').hasError(\'required\')\n\n      && locationForm.get(\'name\').touched">\n\n        Location name is required.\n\n      </span>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Location Type</ion-label>\n\n      <ion-input type="text" formControlName="type" placeholder="i.e. Retail, High Street etc"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="locationForm.get(\'type\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n  </form>\n\n\n\n  <div *ngIf="location">\n\n    <ion-item-divider>\n\n      Linked Retailers\n\n    </ion-item-divider>\n\n    <ion-list>\n\n      <ion-item *ngIf="location.retailers?.length == 0">There are no retailers linked to this location.</ion-item>\n\n      <ion-item *ngFor="let retailer of location?.retailers | orderBy: retailer.name">\n\n        {{ retailer.name }} - {{ retailer.type }}\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-buttons>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button *ngIf="location" ion-button icon-left color="danger" (click)="delete()">\n\n            <ion-icon name="trash" color></ion-icon>\n\n            Delete\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button [disabled]="!locationForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n\n            <ion-icon name="checkmark" color></ion-icon>\n\n            Save\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-buttons>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\location\location-modal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"],
@@ -883,7 +883,7 @@ var LocationModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 361:
+/***/ 362:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -894,7 +894,7 @@ var LocationModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_alert_alert_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__retailer_service__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__retailer_modal__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__retailer_modal__ = __webpack_require__(363);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -966,7 +966,7 @@ var RetailersPage = /** @class */ (function () {
     };
     RetailersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-retailer',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Retailers</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-padding>\n  <ion-refresher (ionRefresh)="getAll($event)">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n\n  <!--ACTION FAB BUTTON-->\n  <ion-fab bottom right>\n    <button ion-fab color="secondary" (click)="create()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n  <ion-list>\n    <button ion-item *ngFor="let retailer of retailers" (click)="openRetailer(retailer)">\n      {{ retailer?.name }} / {{ retailer?.type }}\n      <ion-badge color="primary" item-right>\n        <ion-icon name="navigate"></ion-icon>\n        {{ retailer.locations ? retailer.locations.length : 0 }}</ion-badge>\n\n      <ion-badge color="light" item-right>\n        <ion-icon name="brush"></ion-icon>\n        {{ retailer.brands ? retailer.brands.length : 0 }}</ion-badge>\n    </button>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer.html"*/
+            selector: 'page-retailer',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Retailers</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-padding>\n\n  <ion-refresher (ionRefresh)="getAll($event)">\n\n    <ion-refresher-content></ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n\n\n  <!--ACTION FAB BUTTON-->\n\n  <ion-fab bottom right>\n\n    <button ion-fab color="secondary" (click)="create()">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n\n\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n\n  <ion-list>\n\n    <button ion-item *ngFor="let retailer of retailers | orderBy: \'name\'" (click)="openRetailer(retailer)">\n\n      {{ retailer?.name }} / {{ retailer?.type }}\n\n      <ion-badge color="primary" item-right>\n\n        <ion-icon name="navigate"></ion-icon>\n\n        {{ retailer.locations ? retailer.locations.length : 0 }}</ion-badge>\n\n\n\n      <ion-badge color="light" item-right>\n\n        <ion-icon name="brush"></ion-icon>\n\n        {{ retailer.brands ? retailer.brands.length : 0 }}</ion-badge>\n\n    </button>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__retailer_service__["a" /* RetailerService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */],
@@ -980,7 +980,7 @@ var RetailersPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1188,7 +1188,7 @@ var RetailerModal = /** @class */ (function () {
     };
     RetailerModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'modal-retailer',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer-modal.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Close</button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      {{ retailer ? \'Edit \' + retailer.name : \'Create New Retailer\' }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n\n\n  <h3 padding-left>Retailer Details</h3>\n\n  <form [formGroup]="retailerForm" novalidate padding-bottom>\n\n    <ion-item>\n\n      <ion-label>Retailer Name</ion-label>\n\n      <ion-input type="text" formControlName="name" placeholder="Give the retailer a name..."></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="retailerForm.get(\'name\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n    <span class="error" *ngIf="retailerForm.get(\'name\').hasError(\'minlength\')">\n\n        Must be more than 3 characters.\n\n      </span>\n\n    <span class="error" *ngIf="retailerForm.get(\'name\').hasError(\'required\')\n\n      && retailerForm.get(\'name\').touched">\n\n        Retailer name is required.\n\n      </span>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Retailer Type</ion-label>\n\n      <ion-input type="text" formControlName="type" placeholder="i.e. Department Store, Pharmacy etc"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="retailerForm.get(\'type\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n  </form>\n\n\n\n  <div *ngIf="retailer">\n\n    <h2 padding-left>Links</h2>\n\n    <button ion-button icon-left full color="light" (click)="toggleLocations()">\n\n      <ion-icon name="{{ showLocations ? \'arrow-dropup-circle\' : \'arrow-dropdown-circle\' }}"></ion-icon>\n\n      Locations ({{ retailer.locations?.length ? retailer.locations.length : 0 }})\n\n     </button>\n\n\n\n    <div *ngIf="showLocations">\n\n      <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterLocations()"></ion-searchbar>\n\n      <ion-list>\n\n        <ion-item *ngIf="retailer.locations?.length == 0">There are no locations linked to this retailer.</ion-item>\n\n        <ion-item *ngFor="let location of filteredLocations">\n\n          <ion-label>{{ location.name }}</ion-label>\n\n          <ion-checkbox (ionChange)="locationChecked($event, location)"\n\n                        [checked]="isLocationLinked(location)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="retailer">\n\n    <button ion-button icon-left full color="light" (click)="toggleBrands()">\n\n      <ion-icon name="{{ showBrands ? \'arrow-dropup-circle\' : \'arrow-dropdown-circle\' }}"></ion-icon>\n\n      Brands ({{ retailer.brands?.length }})\n\n    </button>\n\n\n\n    <div *ngIf="showBrands">\n\n      <ion-searchbar [(ngModel)]="brandSearchTerm" (ionInput)="filterBrands()"></ion-searchbar>\n\n      <ion-list>\n\n        <ion-item *ngIf="retailer.brands?.length == 0">There are no brands linked to this retailer.</ion-item>\n\n        <ion-item *ngFor="let brand of filteredBrands">\n\n          <ion-label>{{ brand.name }}</ion-label>\n\n          <ion-checkbox (ionChange)="brandChecked($event, brand)"\n\n                        [checked]="isBrandLinked(brand)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-buttons>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button *ngIf="retailer" ion-button icon-left color="danger" (click)="delete()">\n\n            <ion-icon name="trash" color></ion-icon>\n\n            Delete\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button [disabled]="!retailerForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n\n            <ion-icon name="checkmark" color></ion-icon>\n\n            Save\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-buttons>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer-modal.html"*/
+            selector: 'modal-retailer',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer-modal.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Close</button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      {{ retailer ? \'Edit \' + retailer.name : \'Create New Retailer\' }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n\n\n  <h3 padding-left>Retailer Details</h3>\n\n  <form [formGroup]="retailerForm" novalidate padding-bottom>\n\n    <ion-item>\n\n      <ion-label>Retailer Name</ion-label>\n\n      <ion-input type="text" formControlName="name" placeholder="Give the retailer a name..."></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="retailerForm.get(\'name\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n    <span class="error" *ngIf="retailerForm.get(\'name\').hasError(\'minlength\')">\n\n        Must be more than 3 characters.\n\n      </span>\n\n    <span class="error" *ngIf="retailerForm.get(\'name\').hasError(\'required\')\n\n      && retailerForm.get(\'name\').touched">\n\n        Retailer name is required.\n\n      </span>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Retailer Type</ion-label>\n\n      <ion-input type="text" formControlName="type" placeholder="i.e. Department Store, Pharmacy etc"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="retailerForm.get(\'type\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n  </form>\n\n\n\n  <div *ngIf="retailer">\n\n    <h2 padding-left>Links</h2>\n\n    <button ion-button icon-left full color="light" (click)="toggleLocations()">\n\n      <ion-icon name="{{ showLocations ? \'arrow-dropup-circle\' : \'arrow-dropdown-circle\' }}"></ion-icon>\n\n      Locations ({{ retailer.locations?.length ? retailer.locations.length : 0 }})\n\n     </button>\n\n\n\n    <div *ngIf="showLocations">\n\n      <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterLocations()"></ion-searchbar>\n\n      <ion-list>\n\n        <ion-item *ngIf="retailer.locations?.length == 0">There are no locations linked to this retailer.</ion-item>\n\n        <ion-item *ngFor="let location of filteredLocations | orderBy: \'name\'">\n\n          <ion-label>{{ location.name }}</ion-label>\n\n          <ion-checkbox (ionChange)="locationChecked($event, location)"\n\n                        [checked]="isLocationLinked(location)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n  <div *ngIf="retailer">\n\n    <button ion-button icon-left full color="light" (click)="toggleBrands()">\n\n      <ion-icon name="{{ showBrands ? \'arrow-dropup-circle\' : \'arrow-dropdown-circle\' }}"></ion-icon>\n\n      Brands ({{ retailer.brands?.length }})\n\n    </button>\n\n\n\n    <div *ngIf="showBrands">\n\n      <ion-searchbar [(ngModel)]="brandSearchTerm" (ionInput)="filterBrands()"></ion-searchbar>\n\n      <ion-list>\n\n        <ion-item *ngIf="retailer.brands?.length == 0">There are no brands linked to this retailer.</ion-item>\n\n        <ion-item *ngFor="let brand of filteredBrands | orderBy: \'name\'">\n\n          <ion-label>{{ brand.name }}</ion-label>\n\n          <ion-checkbox (ionChange)="brandChecked($event, brand)"\n\n                        [checked]="isBrandLinked(brand)"></ion-checkbox>\n\n        </ion-item>\n\n      </ion-list>\n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-buttons>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button *ngIf="retailer" ion-button icon-left color="danger" (click)="delete()">\n\n            <ion-icon name="trash" color></ion-icon>\n\n            Delete\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button [disabled]="!retailerForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n\n            <ion-icon name="checkmark" color></ion-icon>\n\n            Save\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-buttons>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\retailer\retailer-modal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"],
@@ -1207,7 +1207,7 @@ var RetailerModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1216,17 +1216,17 @@ var RetailerModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__schedule_service__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_alert_alert_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__add_new_schedule_new_modal_component__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__add_new_schedule_new_modal_component__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__visit_report_visit_report_modal_component__ = __webpack_require__(488);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_pipes_visit_filter_pipe__ = __webpack_require__(489);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__check_in_action_checklist_component__ = __webpack_require__(490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__visit_report_visit_report_modal_component__ = __webpack_require__(489);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_pipes_visit_filter_pipe__ = __webpack_require__(490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__check_in_action_checklist_component__ = __webpack_require__(491);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_auth_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__edit_complete_visit_edit_complete_component__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__expenses_expenses_modal_component__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__edit_complete_visit_edit_complete_component__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__expenses_expenses_modal_component__ = __webpack_require__(495);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1348,6 +1348,14 @@ var SchedulePage = /** @class */ (function () {
                 text: 'Edit Completed Visit',
                 handler: function () {
                     _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_11__edit_complete_visit_edit_complete_component__["a" /* EditCompleteComponent */], { visit: visit });
+                }
+            });
+        }
+        if (visit.actualArrival && visit.actualDeparture && this.isAdmin()) {
+            buttons.push({
+                text: 'Delete Visit',
+                handler: function () {
+                    _this.deleteVisit(visit);
                 }
             });
         }
@@ -1554,7 +1562,7 @@ var SchedulePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 364:
+/***/ 365:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1567,7 +1575,7 @@ var SchedulePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_retailer_retailer_service__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_brand_brands_service__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__schedule_service__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jsonwebtoken__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jsonwebtoken__ = __webpack_require__(311);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_jsonwebtoken__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_storage__ = __webpack_require__(192);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1710,7 +1718,7 @@ var ScheduleNewModal = /** @class */ (function () {
         return !this.visit.brand || !this.visit.retailer || !this.visit.location;
     };
     ScheduleNewModal = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\schedule\add-new\schedule-new-modal.view.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">Close</button>\n    </ion-buttons>\n    <ion-title>\n      New Visit\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <ion-list>\n    <ion-item-divider color="light">\n      <ion-icon name="calendar" icon-start></ion-icon>\n      Scheduling\n    </ion-item-divider>\n\n    <ion-item>\n      <ion-label>Date</ion-label>\n      <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YY" [(ngModel)]="visit.scheduledArrival"></ion-datetime>\n    </ion-item>\n\n    <ion-item-divider color="light">\n      <ion-icon name="calendar" icon-start></ion-icon>\n      Appointment Particulars\n    </ion-item-divider>\n\n    <ion-item>\n      <ion-label>Brand</ion-label>\n        <ion-select [(ngModel)]="visit.brand" (ionChange)="brandSelected($event)"\n        [compareWith]="compareFn">\n          <ion-option *ngFor="let brand of brands" [value]="brand">{{ brand.name }}</ion-option>\n        </ion-select>\n    </ion-item>\n\n    <ion-item>\n      <ion-label>Retailer</ion-label>\n      <ion-select [(ngModel)]="visit.retailer" [disabled]="!visit.brand" (ionChange)="retailerSelected($event)"\n                  [compareWith]="compareFn">\n        <ion-option *ngFor="let retailer of retailers" [value]="retailer">{{ retailer.name }}</ion-option>\n      </ion-select>\n    </ion-item>\n\n    <ion-item no-lines>\n      <ion-label>Location</ion-label>\n      <ion-select #locationSelect [(ngModel)]="visit.location" [disabled]="!visit.retailer"\n                  [compareWith]="compareFn">\n        <ion-option *ngFor="let location of locations" [value]="location">{{ location.name }}</ion-option>\n      </ion-select>\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n<ion-footer>\n  <ion-buttons>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <button *ngIf="user" ion-button icon-left color="danger" (click)="delete()">\n            <ion-icon name="trash" color></ion-icon>\n            Delete\n          </button>\n        </ion-col>\n        <ion-col>\n          <button [disabled]="isValid()" ion-button icon-left color="secondary" (click)="save()" float-right>\n            <ion-icon name="checkmark" color></ion-icon>\n            Save\n          </button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-buttons>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\schedule\add-new\schedule-new-modal.view.html"*/,
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\schedule\add-new\schedule-new-modal.view.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Close</button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      New Visit\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n\n    <ion-item-divider color="light">\n\n      <ion-icon name="calendar" icon-start></ion-icon>\n\n      Scheduling\n\n    </ion-item-divider>\n\n\n\n    <ion-item>\n\n      <ion-label>Date</ion-label>\n\n      <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YY" [(ngModel)]="visit.scheduledArrival"></ion-datetime>\n\n    </ion-item>\n\n\n\n    <ion-item-divider color="light">\n\n      <ion-icon name="calendar" icon-start></ion-icon>\n\n      Appointment Particulars\n\n    </ion-item-divider>\n\n\n\n    <ion-item>\n\n      <ion-label>Brand</ion-label>\n\n        <ion-select [(ngModel)]="visit.brand" (ionChange)="brandSelected($event)"\n\n        [compareWith]="compareFn">\n\n          <ion-option *ngFor="let brand of brands | orderBy: \'name\'" [value]="brand">{{ brand.name }}</ion-option>\n\n        </ion-select>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      <ion-label>Retailer</ion-label>\n\n      <ion-select [(ngModel)]="visit.retailer" [disabled]="!visit.brand" (ionChange)="retailerSelected($event)"\n\n                  [compareWith]="compareFn">\n\n        <ion-option *ngFor="let retailer of retailers | orderBy: \'name\'" [value]="retailer">{{ retailer.name }}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n    <ion-item no-lines>\n\n      <ion-label>Location</ion-label>\n\n      <ion-select #locationSelect [(ngModel)]="visit.location" [disabled]="!visit.retailer"\n\n                  [compareWith]="compareFn">\n\n        <ion-option *ngFor="let location of locations | orderBy: \'name\'" [value]="location">{{ location.name }}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n\n\n  </ion-list>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-buttons>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button *ngIf="user" ion-button icon-left color="danger" (click)="delete()">\n\n            <ion-icon name="trash" color></ion-icon>\n\n            Delete\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button [disabled]="isValid()" ion-button icon-left color="secondary" (click)="save()" float-right>\n\n            <ion-icon name="checkmark" color></ion-icon>\n\n            Save\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-buttons>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\schedule\add-new\schedule-new-modal.view.html"*/,
             selector: 'page-schedule-new-modal'
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["o" /* ViewController */],
@@ -1729,7 +1737,7 @@ var ScheduleNewModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 488:
+/***/ 489:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1787,7 +1795,7 @@ var VisitReportModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 489:
+/***/ 490:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1849,14 +1857,14 @@ var VisitFilterPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 490:
+/***/ 491:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionChecklistComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__visit_action_visit_action_modal_component__ = __webpack_require__(491);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stock_check_stock_check_component__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__visit_action_visit_action_modal_component__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stock_check_stock_check_component__ = __webpack_require__(493);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
@@ -2008,7 +2016,7 @@ var ActionChecklistComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 491:
+/***/ 492:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2055,7 +2063,7 @@ var VisitActionModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 492:
+/***/ 493:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2142,7 +2150,7 @@ var StockCheckModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 493:
+/***/ 494:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2232,7 +2240,7 @@ var EditCompleteComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 494:
+/***/ 495:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2241,7 +2249,7 @@ var EditCompleteComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__new_expense_modal__ = __webpack_require__(495);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__new_expense_modal__ = __webpack_require__(496);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__schedule_service__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_alert_alert_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_auth_service__ = __webpack_require__(58);
@@ -2380,7 +2388,7 @@ var ExpensesModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 495:
+/***/ 496:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2424,7 +2432,7 @@ var NewExpenseModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 496:
+/***/ 497:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2434,7 +2442,7 @@ var NewExpenseModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__products_service__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__product_modal__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__product_modal__ = __webpack_require__(498);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_alert_alert_service__ = __webpack_require__(24);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2507,7 +2515,7 @@ var ProductsPage = /** @class */ (function () {
     };
     ProductsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-products',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\products.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Products</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-padding>\n\n  <!--ACTION FAB BUTTON-->\n  <ion-fab bottom right>\n    <button ion-fab color="secondary" (click)="create()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n  <ion-list>\n    <ion-item *ngFor="let product of products" (click)="openProduct(product)">\n      <h2>{{ product.description }}</h2>\n      <p>{{ product.sku }} | {{ product.brand.name }}\n        <ion-badge item-end>{{ product.size }}</ion-badge>\n      </p>\n    </ion-item>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\products.html"*/
+            selector: 'page-products',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\products.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Products</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-padding>\n\n\n\n  <!--ACTION FAB BUTTON-->\n\n  <ion-fab bottom right>\n\n    <button ion-fab color="secondary" (click)="create()">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n\n\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n\n  <ion-list>\n\n    <ion-item *ngFor="let product of products | orderBy: \'sku\'" (click)="openProduct(product)">\n\n      <h2>{{ product.description }}</h2>\n\n      <p>{{ product.sku }} | {{ product.brand.name }}\n\n        <ion-badge item-end>{{ product.size }}</ion-badge>\n\n      </p>\n\n    </ion-item>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\products.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__products_service__["a" /* ProductsService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ModalController */],
@@ -2521,7 +2529,7 @@ var ProductsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 497:
+/***/ 498:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2672,7 +2680,7 @@ var ProductModal = /** @class */ (function () {
     };
     ProductModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'modal-product',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\product-modal.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">Close</button>\n    </ion-buttons>\n    <ion-title>\n      {{ brand ? \'Edit \' + product.description : \'Create New Product\' }}\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form [formGroup]="productForm" novalidate>\n\n    <ion-item>\n      <ion-label>SKU</ion-label>\n      <ion-input type="text" formControlName="sku"></ion-input>\n    </ion-item>\n    <span class="error" *ngIf="productForm.get(\'sku\').hasError(\'maxlength\')">\n        Must be less than 20 characters.\n      </span>\n    <span class="error" *ngIf="productForm.get(\'sku\').hasError(\'minlength\')">\n        Must be more than 2 characters.\n      </span>\n    <span class="error" *ngIf="productForm.get(\'sku\').hasError(\'required\')\n      && productForm.get(\'sku\').touched">\n        Product SKU is required.\n      </span>\n\n\n    <ion-item>\n      <ion-label>Description</ion-label>\n      <ion-input type="text" formControlName="description"></ion-input>\n    </ion-item>\n    <span class="error" *ngIf="productForm.get(\'description\').hasError(\'maxlength\')">\n        Must be less than 50 characters.\n      </span>\n    <span class="error" *ngIf="productForm.get(\'description\').hasError(\'minlength\')">\n        Must be more than 2 characters.\n      </span>\n    <span class="error" *ngIf="productForm.get(\'description\').hasError(\'required\')\n      && productForm.get(\'description\').touched">\n        Product description is required.\n      </span>\n\n    <ion-item>\n      <ion-label>Size</ion-label>\n      <ion-input type="text" formControlName="size"></ion-input>\n    </ion-item>\n    <span class="error" *ngIf="productForm.get(\'size\').hasError(\'maxlength\')">\n        Must be less than 10 characters.\n      </span>\n    <span class="error" *ngIf="productForm.get(\'size\').hasError(\'minlength\')">\n        Must be more than 1 characters.\n      </span>\n    <span class="error" *ngIf="productForm.get(\'size\').hasError(\'required\')\n      && productForm.get(\'size\').touched">\n        Product size is required.\n      </span>\n\n\n\n    <ion-item>\n      <ion-label>Brand</ion-label>\n      <ion-select formControlName="brand">\n        <ion-option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</ion-option>\n      </ion-select>\n    </ion-item>\n    <span class="error" *ngIf="productForm.get(\'brand\').hasError(\'required\')\n      && productForm.get(\'brand\').touched">\n        Product brand is required.\n      </span>\n\n\n    <ion-item>\n      <ion-label>Retail Price</ion-label>\n      <ion-input type="text" formControlName="retailPrice"></ion-input>\n    </ion-item>\n    <span class="error" *ngIf="productForm.get(\'retailPrice\').hasError(\'min\')">\n        Price cannot be less than 0.00\n      </span>\n    <span class="error" *ngIf="productForm.get(\'retailPrice\').hasError(\'max\')">\n        Price cannot be more than 99999.99\n      </span>\n\n    <ion-item>\n      <ion-label>Promo Code</ion-label>\n      <ion-input type="text" formControlName="promoCode"></ion-input>\n    </ion-item>\n    <span class="error" *ngIf="productForm.get(\'promoCode\').hasError(\'maxlength\')">\n        Must be less than 10 characters.\n      </span>\n\n\n  </form>\n</ion-content>\n<ion-footer>\n  <ion-buttons>\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <button *ngIf="product" ion-button icon-left color="danger" (click)="delete()">\n            <ion-icon name="trash" color></ion-icon>\n            Delete\n          </button>\n        </ion-col>\n        <ion-col>\n          <button [disabled]="!productForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n            <ion-icon name="checkmark" color></ion-icon>\n            Save\n          </button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-buttons>\n</ion-footer>\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\product-modal.html"*/
+            selector: 'modal-product',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\product-modal.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Close</button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      {{ brand ? \'Edit \' + product.description : \'Create New Product\' }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <form [formGroup]="productForm" novalidate>\n\n\n\n    <ion-item>\n\n      <ion-label>SKU</ion-label>\n\n      <ion-input type="text" formControlName="sku"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="productForm.get(\'sku\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n    <span class="error" *ngIf="productForm.get(\'sku\').hasError(\'minlength\')">\n\n        Must be more than 2 characters.\n\n      </span>\n\n    <span class="error" *ngIf="productForm.get(\'sku\').hasError(\'required\')\n\n      && productForm.get(\'sku\').touched">\n\n        Product SKU is required.\n\n      </span>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Description</ion-label>\n\n      <ion-input type="text" formControlName="description"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="productForm.get(\'description\').hasError(\'maxlength\')">\n\n        Must be less than 50 characters.\n\n      </span>\n\n    <span class="error" *ngIf="productForm.get(\'description\').hasError(\'minlength\')">\n\n        Must be more than 2 characters.\n\n      </span>\n\n    <span class="error" *ngIf="productForm.get(\'description\').hasError(\'required\')\n\n      && productForm.get(\'description\').touched">\n\n        Product description is required.\n\n      </span>\n\n\n\n    <ion-item>\n\n      <ion-label>Size</ion-label>\n\n      <ion-input type="text" formControlName="size"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="productForm.get(\'size\').hasError(\'maxlength\')">\n\n        Must be less than 10 characters.\n\n      </span>\n\n    <span class="error" *ngIf="productForm.get(\'size\').hasError(\'minlength\')">\n\n        Must be more than 1 characters.\n\n      </span>\n\n    <span class="error" *ngIf="productForm.get(\'size\').hasError(\'required\')\n\n      && productForm.get(\'size\').touched">\n\n        Product size is required.\n\n      </span>\n\n\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Brand</ion-label>\n\n      <ion-select formControlName="brand">\n\n        <ion-option *ngFor="let brand of brands | orderBy: \'name\'" [value]="brand.id">{{ brand.name }}</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <span class="error" *ngIf="productForm.get(\'brand\').hasError(\'required\')\n\n      && productForm.get(\'brand\').touched">\n\n        Product brand is required.\n\n      </span>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Retail Price</ion-label>\n\n      <ion-input type="text" formControlName="retailPrice"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="productForm.get(\'retailPrice\').hasError(\'min\')">\n\n        Price cannot be less than 0.00\n\n      </span>\n\n    <span class="error" *ngIf="productForm.get(\'retailPrice\').hasError(\'max\')">\n\n        Price cannot be more than 99999.99\n\n      </span>\n\n\n\n    <ion-item>\n\n      <ion-label>Promo Code</ion-label>\n\n      <ion-input type="text" formControlName="promoCode"></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="productForm.get(\'promoCode\').hasError(\'maxlength\')">\n\n        Must be less than 10 characters.\n\n      </span>\n\n\n\n\n\n  </form>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-buttons>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button *ngIf="product" ion-button icon-left color="danger" (click)="delete()">\n\n            <ion-icon name="trash" color></ion-icon>\n\n            Delete\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button [disabled]="!productForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n\n            <ion-icon name="checkmark" color></ion-icon>\n\n            Save\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-buttons>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\products\product-modal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"],
@@ -2690,7 +2698,7 @@ var ProductModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 498:
+/***/ 499:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2700,7 +2708,7 @@ var ProductModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__brand_modal__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__brand_modal__ = __webpack_require__(500);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared_alert_alert_service__ = __webpack_require__(24);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2773,7 +2781,7 @@ var BrandsPage = /** @class */ (function () {
     };
     BrandsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-brands',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brands.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Brands</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-padding>\n  <ion-refresher (ionRefresh)="getAll($event)">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n\n  <!--ACTION FAB BUTTON-->\n  <ion-fab bottom right>\n    <button ion-fab color="secondary" (click)="create()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n  <ion-list>\n    <button ion-item *ngFor="let brand of brands" (click)="openBrand(brand)">\n      {{ brand?.name }}\n      <ion-badge color="primary" item-right>\n        <ion-icon name="cube"></ion-icon>\n        {{ brand.products ? brand.products.length : 0 }}</ion-badge>\n    </button>\n  </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brands.html"*/
+            selector: 'page-brands',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brands.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Brands</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-padding>\n\n  <ion-refresher (ionRefresh)="getAll($event)">\n\n    <ion-refresher-content></ion-refresher-content>\n\n  </ion-refresher>\n\n\n\n\n\n  <!--ACTION FAB BUTTON-->\n\n  <ion-fab bottom right>\n\n    <button ion-fab color="secondary" (click)="create()">\n\n      <ion-icon name="add"></ion-icon>\n\n    </button>\n\n  </ion-fab>\n\n\n\n\n\n  <!--LIST WITH SLIDING ITEMS AND ACTIONS-->\n\n  <ion-list>\n\n    <button ion-item *ngFor="let brand of brands | orderBy: \'name\'" (click)="openBrand(brand)">\n\n      {{ brand?.name }}\n\n      <ion-badge color="primary" item-right>\n\n        <ion-icon name="cube"></ion-icon>\n\n        {{ brand.products ? brand.products.length : 0 }}</ion-badge>\n\n    </button>\n\n  </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brands.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__brands_service__["a" /* BrandsService */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* ModalController */],
@@ -2787,7 +2795,7 @@ var BrandsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 499:
+/***/ 500:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2903,7 +2911,7 @@ var BrandModal = /** @class */ (function () {
     };
     BrandModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'modal-brand',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brand-modal.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Close</button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      {{ brand ? \'Edit \' + brand.name : \'Create New Brand\' }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <form [formGroup]="brandForm" novalidate>\n\n    <ion-item-divider>\n\n      Brand Details\n\n    </ion-item-divider>\n\n    <ion-item>\n\n      <ion-label>Brand Name</ion-label>\n\n      <ion-input type="text" formControlName="name" placeholder="Give the brand name..."></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="brandForm.get(\'name\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n    <span class="error" *ngIf="brandForm.get(\'name\').hasError(\'minlength\')">\n\n        Must be more than 2 characters.\n\n      </span>\n\n    <span class="error" *ngIf="brandForm.get(\'name\').hasError(\'required\')\n\n      && brandForm.get(\'name\').touched">\n\n        Brand name is required.\n\n      </span>\n\n  </form>\n\n\n\n  <div *ngIf="brand">\n\n    <ion-item-divider>\n\n      Linked Products\n\n    </ion-item-divider>\n\n    <ion-list>\n\n      <ion-item *ngIf="!brand.products">There are no products linked to this brand.</ion-item>\n\n      <ion-item *ngFor="let product of brand?.products">\n\n        {{ product.sku }} - {{ product.description }}\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-buttons>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button *ngIf="brand" ion-button icon-left color="danger" (click)="delete()">\n\n            <ion-icon name="trash" color></ion-icon>\n\n            Delete\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button [disabled]="!brandForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n\n            <ion-icon name="checkmark" color></ion-icon>\n\n            Save\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-buttons>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brand-modal.html"*/
+            selector: 'modal-brand',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brand-modal.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">Close</button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      {{ brand ? \'Edit \' + brand.name : \'Create New Brand\' }}\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <form [formGroup]="brandForm" novalidate>\n\n    <ion-item-divider>\n\n      Brand Details\n\n    </ion-item-divider>\n\n    <ion-item>\n\n      <ion-label>Brand Name</ion-label>\n\n      <ion-input type="text" formControlName="name" placeholder="Give the brand name..."></ion-input>\n\n    </ion-item>\n\n    <span class="error" *ngIf="brandForm.get(\'name\').hasError(\'maxlength\')">\n\n        Must be less than 20 characters.\n\n      </span>\n\n    <span class="error" *ngIf="brandForm.get(\'name\').hasError(\'minlength\')">\n\n        Must be more than 2 characters.\n\n      </span>\n\n    <span class="error" *ngIf="brandForm.get(\'name\').hasError(\'required\')\n\n      && brandForm.get(\'name\').touched">\n\n        Brand name is required.\n\n      </span>\n\n  </form>\n\n\n\n  <div *ngIf="brand">\n\n    <ion-item-divider>\n\n      Linked Products\n\n    </ion-item-divider>\n\n    <ion-list>\n\n      <ion-item *ngIf="!brand.products">There are no products linked to this brand.</ion-item>\n\n      <ion-item *ngFor="let product of brand?.products | orderBy: \'sku\'">\n\n        {{ product.sku }} - {{ product.description }}\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <ion-buttons>\n\n    <ion-grid>\n\n      <ion-row>\n\n        <ion-col>\n\n          <button *ngIf="brand" ion-button icon-left color="danger" (click)="delete()">\n\n            <ion-icon name="trash" color></ion-icon>\n\n            Delete\n\n          </button>\n\n        </ion-col>\n\n        <ion-col>\n\n          <button [disabled]="!brandForm.valid" ion-button icon-left color="secondary" (click)="save()" float-right>\n\n            <ion-icon name="checkmark" color></ion-icon>\n\n            Save\n\n          </button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-grid>\n\n  </ion-buttons>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\brand\brand-modal.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"],
@@ -2920,7 +2928,7 @@ var BrandModal = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 500:
+/***/ 501:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2928,7 +2936,7 @@ var BrandModal = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_edit_user_edit__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_edit_user_edit__ = __webpack_require__(502);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_alert_alert_service__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_lodash__);
@@ -3045,7 +3053,7 @@ var UserListPage = /** @class */ (function () {
     };
     UserListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-user-list',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\users\user-list\user-list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Manage Users</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content no-padding>\n  <ion-list>\n    <ion-item *ngFor="let user of users" (click)="openUser(user)">\n        <h2>{{ user.firstName + \' \' + user.lastName}}</h2>\n        <p>{{ user.email }}</p>\n        <button *ngIf="!user.organisationApproved" ion-button icon-left color="danger"\n                (click)="toggleUserApproval(user, true);$event.stopPropagation();">\n          <ion-icon name="cloud-outline"></ion-icon>\n          Pending Approval\n        </button>\n        <button *ngIf="user.organisationApproved" ion-button icon-left color="secondary"\n                (click)="toggleUserApproval(user, false);$event.stopPropagation();">\n          <ion-icon name="cloud-done"></ion-icon>\n          Approved\n        </button>\n        <button *ngIf="!user.emailVerified" ion-button icon-left color="danger" tappable (click)="resendToken(user);$event.stopPropagation();">\n          <ion-icon name="mail"></ion-icon>\n          Pending Email Verification\n        </button>\n        <button *ngIf="user.emailVerified" ion-button icon-left color="secondary" tappable (click)="resendToken(user);$event.stopPropagation();">\n          <ion-icon name="mail"></ion-icon>\n          Email Verified\n        </button>\n    </ion-item>\n  </ion-list>\n</ion-content>\n\n<ion-footer padding text-center>\n  <h3>Organisation ID {{ tenant?.accessCode }}</h3>\n  <p>This identifier is required by users during sign up.</p>\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\users\user-list\user-list.html"*/,
+            selector: 'page-user-list',template:/*ion-inline-start:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\users\user-list\user-list.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Manage Users</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content no-padding>\n\n  <ion-list>\n\n    <ion-item *ngFor="let user of users | orderBy: \'firstName\'" (click)="openUser(user)">\n\n        <h2>{{ user.firstName + \' \' + user.lastName}}</h2>\n\n        <p>{{ user.email }}</p>\n\n        <button *ngIf="!user.organisationApproved" ion-button icon-left color="danger"\n\n                (click)="toggleUserApproval(user, true);$event.stopPropagation();">\n\n          <ion-icon name="cloud-outline"></ion-icon>\n\n          Pending Approval\n\n        </button>\n\n        <button *ngIf="user.organisationApproved" ion-button icon-left color="secondary"\n\n                (click)="toggleUserApproval(user, false);$event.stopPropagation();">\n\n          <ion-icon name="cloud-done"></ion-icon>\n\n          Approved\n\n        </button>\n\n        <button *ngIf="!user.emailVerified" ion-button icon-left color="danger" tappable (click)="resendToken(user);$event.stopPropagation();">\n\n          <ion-icon name="mail"></ion-icon>\n\n          Pending Email Verification\n\n        </button>\n\n        <button *ngIf="user.emailVerified" ion-button icon-left color="secondary" tappable (click)="resendToken(user);$event.stopPropagation();">\n\n          <ion-icon name="mail"></ion-icon>\n\n          Email Verified\n\n        </button>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer padding text-center>\n\n  <h3>Organisation ID {{ tenant?.accessCode }}</h3>\n\n  <p>This identifier is required by users during sign up.</p>\n\n</ion-footer>\n\n\n\n'/*ion-inline-end:"C:\Users\danny.varley\WebstormProjects\Merchify\src\pages\admin\users\user-list\user-list.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
@@ -3062,7 +3070,7 @@ var UserListPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 501:
+/***/ 502:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3363,13 +3371,13 @@ var UserEditPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 502:
+/***/ 503:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TokenInterceptor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_mergeMap__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_mergeMap__ = __webpack_require__(504);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_mergeMap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__(58);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3417,9 +3425,9 @@ var TokenInterceptor = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jsonwebtoken__ = __webpack_require__(310);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jsonwebtoken__ = __webpack_require__(311);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jsonwebtoken___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jsonwebtoken__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_storage_storage_service__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_storage_storage_service__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_lodash__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3513,20 +3521,6 @@ var environment = {
 
 /***/ }),
 
-/***/ 609:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(610);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(614);
-
-
-Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
 /***/ 61:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3577,7 +3571,21 @@ var BrandsService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 614:
+/***/ 610:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(611);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(615);
+
+
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
+//# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ 615:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3585,19 +3593,19 @@ var BrandsService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(307);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_admin_admin_module__ = __webpack_require__(766);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_auth_auth_module__ = __webpack_require__(768);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_storage_storage_service__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_admin_admin_module__ = __webpack_require__(767);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_auth_auth_module__ = __webpack_require__(769);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared_storage_storage_service__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_storage__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_alert_alert_service__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_schedule_schedule_module__ = __webpack_require__(769);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular2_moment__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_schedule_schedule_module__ = __webpack_require__(770);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular2_moment__ = __webpack_require__(505);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_angular2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_menu_page__ = __webpack_require__(358);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_platform_browser_animations__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_menu_page__ = __webpack_require__(359);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__angular_platform_browser_animations__ = __webpack_require__(519);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3660,15 +3668,15 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 651:
+/***/ 652:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(302);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(303);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(308);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_auth_signin_signin__ = __webpack_require__(173);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3753,21 +3761,14 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 663:
+/***/ 664:
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
 
-/***/ 665:
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
-/***/ 701:
+/***/ 666:
 /***/ (function(module, exports) {
 
 /* (ignored) */
@@ -3781,7 +3782,14 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 764:
+/***/ 703:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 765:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3806,256 +3814,256 @@ var PasswordValidator = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 765:
+/***/ 766:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 365,
-	"./af.js": 365,
-	"./ar": 366,
-	"./ar-dz": 367,
-	"./ar-dz.js": 367,
-	"./ar-kw": 368,
-	"./ar-kw.js": 368,
-	"./ar-ly": 369,
-	"./ar-ly.js": 369,
-	"./ar-ma": 370,
-	"./ar-ma.js": 370,
-	"./ar-sa": 371,
-	"./ar-sa.js": 371,
-	"./ar-tn": 372,
-	"./ar-tn.js": 372,
-	"./ar.js": 366,
-	"./az": 373,
-	"./az.js": 373,
-	"./be": 374,
-	"./be.js": 374,
-	"./bg": 375,
-	"./bg.js": 375,
-	"./bm": 376,
-	"./bm.js": 376,
-	"./bn": 377,
-	"./bn.js": 377,
-	"./bo": 378,
-	"./bo.js": 378,
-	"./br": 379,
-	"./br.js": 379,
-	"./bs": 380,
-	"./bs.js": 380,
-	"./ca": 381,
-	"./ca.js": 381,
-	"./cs": 382,
-	"./cs.js": 382,
-	"./cv": 383,
-	"./cv.js": 383,
-	"./cy": 384,
-	"./cy.js": 384,
-	"./da": 385,
-	"./da.js": 385,
-	"./de": 386,
-	"./de-at": 387,
-	"./de-at.js": 387,
-	"./de-ch": 388,
-	"./de-ch.js": 388,
-	"./de.js": 386,
-	"./dv": 389,
-	"./dv.js": 389,
-	"./el": 390,
-	"./el.js": 390,
-	"./en-au": 391,
-	"./en-au.js": 391,
-	"./en-ca": 392,
-	"./en-ca.js": 392,
-	"./en-gb": 393,
-	"./en-gb.js": 393,
-	"./en-ie": 394,
-	"./en-ie.js": 394,
-	"./en-il": 395,
-	"./en-il.js": 395,
-	"./en-nz": 396,
-	"./en-nz.js": 396,
-	"./eo": 397,
-	"./eo.js": 397,
-	"./es": 398,
-	"./es-do": 399,
-	"./es-do.js": 399,
-	"./es-us": 400,
-	"./es-us.js": 400,
-	"./es.js": 398,
-	"./et": 401,
-	"./et.js": 401,
-	"./eu": 402,
-	"./eu.js": 402,
-	"./fa": 403,
-	"./fa.js": 403,
-	"./fi": 404,
-	"./fi.js": 404,
-	"./fo": 405,
-	"./fo.js": 405,
-	"./fr": 406,
-	"./fr-ca": 407,
-	"./fr-ca.js": 407,
-	"./fr-ch": 408,
-	"./fr-ch.js": 408,
-	"./fr.js": 406,
-	"./fy": 409,
-	"./fy.js": 409,
-	"./gd": 410,
-	"./gd.js": 410,
-	"./gl": 411,
-	"./gl.js": 411,
-	"./gom-latn": 412,
-	"./gom-latn.js": 412,
-	"./gu": 413,
-	"./gu.js": 413,
-	"./he": 414,
-	"./he.js": 414,
-	"./hi": 415,
-	"./hi.js": 415,
-	"./hr": 416,
-	"./hr.js": 416,
-	"./hu": 417,
-	"./hu.js": 417,
-	"./hy-am": 418,
-	"./hy-am.js": 418,
-	"./id": 419,
-	"./id.js": 419,
-	"./is": 420,
-	"./is.js": 420,
-	"./it": 421,
-	"./it.js": 421,
-	"./ja": 422,
-	"./ja.js": 422,
-	"./jv": 423,
-	"./jv.js": 423,
-	"./ka": 424,
-	"./ka.js": 424,
-	"./kk": 425,
-	"./kk.js": 425,
-	"./km": 426,
-	"./km.js": 426,
-	"./kn": 427,
-	"./kn.js": 427,
-	"./ko": 428,
-	"./ko.js": 428,
-	"./ky": 429,
-	"./ky.js": 429,
-	"./lb": 430,
-	"./lb.js": 430,
-	"./lo": 431,
-	"./lo.js": 431,
-	"./lt": 432,
-	"./lt.js": 432,
-	"./lv": 433,
-	"./lv.js": 433,
-	"./me": 434,
-	"./me.js": 434,
-	"./mi": 435,
-	"./mi.js": 435,
-	"./mk": 436,
-	"./mk.js": 436,
-	"./ml": 437,
-	"./ml.js": 437,
-	"./mn": 438,
-	"./mn.js": 438,
-	"./mr": 439,
-	"./mr.js": 439,
-	"./ms": 440,
-	"./ms-my": 441,
-	"./ms-my.js": 441,
-	"./ms.js": 440,
-	"./mt": 442,
-	"./mt.js": 442,
-	"./my": 443,
-	"./my.js": 443,
-	"./nb": 444,
-	"./nb.js": 444,
-	"./ne": 445,
-	"./ne.js": 445,
-	"./nl": 446,
-	"./nl-be": 447,
-	"./nl-be.js": 447,
-	"./nl.js": 446,
-	"./nn": 448,
-	"./nn.js": 448,
-	"./pa-in": 449,
-	"./pa-in.js": 449,
-	"./pl": 450,
-	"./pl.js": 450,
-	"./pt": 451,
-	"./pt-br": 452,
-	"./pt-br.js": 452,
-	"./pt.js": 451,
-	"./ro": 453,
-	"./ro.js": 453,
-	"./ru": 454,
-	"./ru.js": 454,
-	"./sd": 455,
-	"./sd.js": 455,
-	"./se": 456,
-	"./se.js": 456,
-	"./si": 457,
-	"./si.js": 457,
-	"./sk": 458,
-	"./sk.js": 458,
-	"./sl": 459,
-	"./sl.js": 459,
-	"./sq": 460,
-	"./sq.js": 460,
-	"./sr": 461,
-	"./sr-cyrl": 462,
-	"./sr-cyrl.js": 462,
-	"./sr.js": 461,
-	"./ss": 463,
-	"./ss.js": 463,
-	"./sv": 464,
-	"./sv.js": 464,
-	"./sw": 465,
-	"./sw.js": 465,
-	"./ta": 466,
-	"./ta.js": 466,
-	"./te": 467,
-	"./te.js": 467,
-	"./tet": 468,
-	"./tet.js": 468,
-	"./tg": 469,
-	"./tg.js": 469,
-	"./th": 470,
-	"./th.js": 470,
-	"./tl-ph": 471,
-	"./tl-ph.js": 471,
-	"./tlh": 472,
-	"./tlh.js": 472,
-	"./tr": 473,
-	"./tr.js": 473,
-	"./tzl": 474,
-	"./tzl.js": 474,
-	"./tzm": 475,
-	"./tzm-latn": 476,
-	"./tzm-latn.js": 476,
-	"./tzm.js": 475,
-	"./ug-cn": 477,
-	"./ug-cn.js": 477,
-	"./uk": 478,
-	"./uk.js": 478,
-	"./ur": 479,
-	"./ur.js": 479,
-	"./uz": 480,
-	"./uz-latn": 481,
-	"./uz-latn.js": 481,
-	"./uz.js": 480,
-	"./vi": 482,
-	"./vi.js": 482,
-	"./x-pseudo": 483,
-	"./x-pseudo.js": 483,
-	"./yo": 484,
-	"./yo.js": 484,
-	"./zh-cn": 485,
-	"./zh-cn.js": 485,
-	"./zh-hk": 486,
-	"./zh-hk.js": 486,
-	"./zh-tw": 487,
-	"./zh-tw.js": 487
+	"./af": 366,
+	"./af.js": 366,
+	"./ar": 367,
+	"./ar-dz": 368,
+	"./ar-dz.js": 368,
+	"./ar-kw": 369,
+	"./ar-kw.js": 369,
+	"./ar-ly": 370,
+	"./ar-ly.js": 370,
+	"./ar-ma": 371,
+	"./ar-ma.js": 371,
+	"./ar-sa": 372,
+	"./ar-sa.js": 372,
+	"./ar-tn": 373,
+	"./ar-tn.js": 373,
+	"./ar.js": 367,
+	"./az": 374,
+	"./az.js": 374,
+	"./be": 375,
+	"./be.js": 375,
+	"./bg": 376,
+	"./bg.js": 376,
+	"./bm": 377,
+	"./bm.js": 377,
+	"./bn": 378,
+	"./bn.js": 378,
+	"./bo": 379,
+	"./bo.js": 379,
+	"./br": 380,
+	"./br.js": 380,
+	"./bs": 381,
+	"./bs.js": 381,
+	"./ca": 382,
+	"./ca.js": 382,
+	"./cs": 383,
+	"./cs.js": 383,
+	"./cv": 384,
+	"./cv.js": 384,
+	"./cy": 385,
+	"./cy.js": 385,
+	"./da": 386,
+	"./da.js": 386,
+	"./de": 387,
+	"./de-at": 388,
+	"./de-at.js": 388,
+	"./de-ch": 389,
+	"./de-ch.js": 389,
+	"./de.js": 387,
+	"./dv": 390,
+	"./dv.js": 390,
+	"./el": 391,
+	"./el.js": 391,
+	"./en-au": 392,
+	"./en-au.js": 392,
+	"./en-ca": 393,
+	"./en-ca.js": 393,
+	"./en-gb": 394,
+	"./en-gb.js": 394,
+	"./en-ie": 395,
+	"./en-ie.js": 395,
+	"./en-il": 396,
+	"./en-il.js": 396,
+	"./en-nz": 397,
+	"./en-nz.js": 397,
+	"./eo": 398,
+	"./eo.js": 398,
+	"./es": 399,
+	"./es-do": 400,
+	"./es-do.js": 400,
+	"./es-us": 401,
+	"./es-us.js": 401,
+	"./es.js": 399,
+	"./et": 402,
+	"./et.js": 402,
+	"./eu": 403,
+	"./eu.js": 403,
+	"./fa": 404,
+	"./fa.js": 404,
+	"./fi": 405,
+	"./fi.js": 405,
+	"./fo": 406,
+	"./fo.js": 406,
+	"./fr": 407,
+	"./fr-ca": 408,
+	"./fr-ca.js": 408,
+	"./fr-ch": 409,
+	"./fr-ch.js": 409,
+	"./fr.js": 407,
+	"./fy": 410,
+	"./fy.js": 410,
+	"./gd": 411,
+	"./gd.js": 411,
+	"./gl": 412,
+	"./gl.js": 412,
+	"./gom-latn": 413,
+	"./gom-latn.js": 413,
+	"./gu": 414,
+	"./gu.js": 414,
+	"./he": 415,
+	"./he.js": 415,
+	"./hi": 416,
+	"./hi.js": 416,
+	"./hr": 417,
+	"./hr.js": 417,
+	"./hu": 418,
+	"./hu.js": 418,
+	"./hy-am": 419,
+	"./hy-am.js": 419,
+	"./id": 420,
+	"./id.js": 420,
+	"./is": 421,
+	"./is.js": 421,
+	"./it": 422,
+	"./it.js": 422,
+	"./ja": 423,
+	"./ja.js": 423,
+	"./jv": 424,
+	"./jv.js": 424,
+	"./ka": 425,
+	"./ka.js": 425,
+	"./kk": 426,
+	"./kk.js": 426,
+	"./km": 427,
+	"./km.js": 427,
+	"./kn": 428,
+	"./kn.js": 428,
+	"./ko": 429,
+	"./ko.js": 429,
+	"./ky": 430,
+	"./ky.js": 430,
+	"./lb": 431,
+	"./lb.js": 431,
+	"./lo": 432,
+	"./lo.js": 432,
+	"./lt": 433,
+	"./lt.js": 433,
+	"./lv": 434,
+	"./lv.js": 434,
+	"./me": 435,
+	"./me.js": 435,
+	"./mi": 436,
+	"./mi.js": 436,
+	"./mk": 437,
+	"./mk.js": 437,
+	"./ml": 438,
+	"./ml.js": 438,
+	"./mn": 439,
+	"./mn.js": 439,
+	"./mr": 440,
+	"./mr.js": 440,
+	"./ms": 441,
+	"./ms-my": 442,
+	"./ms-my.js": 442,
+	"./ms.js": 441,
+	"./mt": 443,
+	"./mt.js": 443,
+	"./my": 444,
+	"./my.js": 444,
+	"./nb": 445,
+	"./nb.js": 445,
+	"./ne": 446,
+	"./ne.js": 446,
+	"./nl": 447,
+	"./nl-be": 448,
+	"./nl-be.js": 448,
+	"./nl.js": 447,
+	"./nn": 449,
+	"./nn.js": 449,
+	"./pa-in": 450,
+	"./pa-in.js": 450,
+	"./pl": 451,
+	"./pl.js": 451,
+	"./pt": 452,
+	"./pt-br": 453,
+	"./pt-br.js": 453,
+	"./pt.js": 452,
+	"./ro": 454,
+	"./ro.js": 454,
+	"./ru": 455,
+	"./ru.js": 455,
+	"./sd": 456,
+	"./sd.js": 456,
+	"./se": 457,
+	"./se.js": 457,
+	"./si": 458,
+	"./si.js": 458,
+	"./sk": 459,
+	"./sk.js": 459,
+	"./sl": 460,
+	"./sl.js": 460,
+	"./sq": 461,
+	"./sq.js": 461,
+	"./sr": 462,
+	"./sr-cyrl": 463,
+	"./sr-cyrl.js": 463,
+	"./sr.js": 462,
+	"./ss": 464,
+	"./ss.js": 464,
+	"./sv": 465,
+	"./sv.js": 465,
+	"./sw": 466,
+	"./sw.js": 466,
+	"./ta": 467,
+	"./ta.js": 467,
+	"./te": 468,
+	"./te.js": 468,
+	"./tet": 469,
+	"./tet.js": 469,
+	"./tg": 470,
+	"./tg.js": 470,
+	"./th": 471,
+	"./th.js": 471,
+	"./tl-ph": 472,
+	"./tl-ph.js": 472,
+	"./tlh": 473,
+	"./tlh.js": 473,
+	"./tr": 474,
+	"./tr.js": 474,
+	"./tzl": 475,
+	"./tzl.js": 475,
+	"./tzm": 476,
+	"./tzm-latn": 477,
+	"./tzm-latn.js": 477,
+	"./tzm.js": 476,
+	"./ug-cn": 478,
+	"./ug-cn.js": 478,
+	"./uk": 479,
+	"./uk.js": 479,
+	"./ur": 480,
+	"./ur.js": 480,
+	"./uz": 481,
+	"./uz-latn": 482,
+	"./uz-latn.js": 482,
+	"./uz.js": 481,
+	"./vi": 483,
+	"./vi.js": 483,
+	"./x-pseudo": 484,
+	"./x-pseudo.js": 484,
+	"./yo": 485,
+	"./yo.js": 485,
+	"./zh-cn": 486,
+	"./zh-cn.js": 486,
+	"./zh-hk": 487,
+	"./zh-hk.js": 487,
+	"./zh-tw": 488,
+	"./zh-tw.js": 488
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -4071,41 +4079,43 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 765;
+webpackContext.id = 766;
 
 /***/ }),
 
-/***/ 766:
+/***/ 767:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__brand_brands__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__brand_brands__ = __webpack_require__(499);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__brand_brands_service__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__brand_brand_modal__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__brand_brand_modal__ = __webpack_require__(500);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__products_products_service__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__products_products__ = __webpack_require__(496);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__auth_token_interceptor__ = __webpack_require__(502);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__products_product_modal__ = __webpack_require__(497);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__users_user_edit_user_edit__ = __webpack_require__(501);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__users_user_list_user_list__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__products_products__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__auth_token_interceptor__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__products_product_modal__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__users_user_edit_user_edit__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__users_user_list_user_list__ = __webpack_require__(501);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__users_user_service__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__location_locations__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__location_location_modal__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__location_locations__ = __webpack_require__(360);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__location_location_modal__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__location_locations_service__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__retailer_retailer__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__retailer_retailer_modal__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__retailer_retailer__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__retailer_retailer_modal__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__retailer_retailer_service__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_ngx_order_pipe__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -4146,7 +4156,8 @@ var AdminModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpClientModule */]
+                __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_20_ngx_order_pipe__["a" /* OrderModule */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_1__brand_brands__["a" /* BrandsPage */],
@@ -4178,7 +4189,7 @@ var AdminModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 768:
+/***/ 769:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4186,17 +4197,19 @@ var AdminModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__signin_signin__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(356);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(357);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__auth_service__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signup_error_modal__ = __webpack_require__(357);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signup_error_modal__ = __webpack_require__(358);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_ngx_order_pipe__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -4218,7 +4231,8 @@ var AuthModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["c" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicModule */]
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicModule */],
+                __WEBPACK_IMPORTED_MODULE_8_ngx_order_pipe__["a" /* OrderModule */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_2__signin_signin__["a" /* SigninPage */],
@@ -4238,7 +4252,7 @@ var AuthModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 769:
+/***/ 770:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4247,35 +4261,37 @@ var AuthModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_token_interceptor__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__auth_token_interceptor__ = __webpack_require__(503);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__schedule_service__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_moment__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_moment__ = __webpack_require__(505);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angular2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_angular2_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_pipes_visit_status_pipe__ = __webpack_require__(771);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__schedule_component__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__visit_action_visit_action_modal_component__ = __webpack_require__(491);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__add_new_schedule_new_modal_component__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__stock_check_stock_check_component__ = __webpack_require__(492);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_pipes_stock_sold_pipe__ = __webpack_require__(772);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__visit_report_visit_report_modal_component__ = __webpack_require__(488);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_pipes_group_by_pipe__ = __webpack_require__(773);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_pipes_visit_filter_pipe__ = __webpack_require__(489);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__check_in_action_checklist_component__ = __webpack_require__(490);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_pipes_stock_check_pipe__ = __webpack_require__(774);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__edit_complete_visit_edit_complete_component__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__expenses_expenses_modal_component__ = __webpack_require__(494);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser_animations__ = __webpack_require__(518);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_primeng_table__ = __webpack_require__(776);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__shared_pipes_visit_status_pipe__ = __webpack_require__(772);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__schedule_component__ = __webpack_require__(364);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__visit_action_visit_action_modal_component__ = __webpack_require__(492);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__add_new_schedule_new_modal_component__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__stock_check_stock_check_component__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_pipes_stock_sold_pipe__ = __webpack_require__(773);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__visit_report_visit_report_modal_component__ = __webpack_require__(489);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_pipes_group_by_pipe__ = __webpack_require__(774);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__shared_pipes_visit_filter_pipe__ = __webpack_require__(490);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__check_in_action_checklist_component__ = __webpack_require__(491);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_pipes_stock_check_pipe__ = __webpack_require__(775);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__edit_complete_visit_edit_complete_component__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__expenses_expenses_modal_component__ = __webpack_require__(495);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser_animations__ = __webpack_require__(519);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_primeng_table__ = __webpack_require__(777);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_primeng_table___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_primeng_table__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_primeng_button__ = __webpack_require__(1055);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_primeng_button__ = __webpack_require__(1056);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_primeng_button___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_primeng_button__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__expenses_new_expense_modal__ = __webpack_require__(495);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__expenses_new_expense_modal__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_ngx_order_pipe__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -4328,7 +4344,8 @@ var ScheduleModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6_angular2_moment__["MomentModule"],
                 __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
                 __WEBPACK_IMPORTED_MODULE_22_primeng_button__["ButtonModule"],
-                __WEBPACK_IMPORTED_MODULE_21_primeng_table__["TableModule"]
+                __WEBPACK_IMPORTED_MODULE_21_primeng_table__["TableModule"],
+                __WEBPACK_IMPORTED_MODULE_24_ngx_order_pipe__["a" /* OrderModule */]
             ],
             entryComponents: [
                 __WEBPACK_IMPORTED_MODULE_8__schedule_component__["a" /* SchedulePage */],
@@ -4355,7 +4372,7 @@ var ScheduleModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 771:
+/***/ 772:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4403,7 +4420,7 @@ var VisitStatusPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 772:
+/***/ 773:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4444,7 +4461,7 @@ var StockSoldPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 773:
+/***/ 774:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4524,7 +4541,7 @@ var GroupByPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 774:
+/***/ 775:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4618,5 +4635,5 @@ var ScheduleService = /** @class */ (function () {
 
 /***/ })
 
-},[609]);
+},[610]);
 //# sourceMappingURL=main.js.map
