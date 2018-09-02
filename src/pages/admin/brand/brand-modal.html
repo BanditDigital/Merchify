@@ -35,7 +35,7 @@
     </ion-item-divider>
     <ion-list>
       <ion-item *ngIf="!brand.products">There are no products linked to this brand.</ion-item>
-      <ion-item *ngFor="let product of brand?.products">
+      <ion-item *ngFor="let product of brand?.products | orderBy: 'sku'">
         {{ product.sku }} - {{ product.description }}
       </ion-item>
     </ion-list>

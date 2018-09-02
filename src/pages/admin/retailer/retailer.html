@@ -23,7 +23,7 @@
 
   <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
   <ion-list>
-    <button ion-item *ngFor="let retailer of retailers" (click)="openRetailer(retailer)">
+    <button ion-item *ngFor="let retailer of retailers | orderBy: 'name'" (click)="openRetailer(retailer)">
       {{ retailer?.name }} / {{ retailer?.type }}
       <ion-badge color="primary" item-right>
         <ion-icon name="navigate"></ion-icon>

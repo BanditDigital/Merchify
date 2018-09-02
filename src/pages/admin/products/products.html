@@ -19,7 +19,7 @@
 
   <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
   <ion-list>
-    <ion-item *ngFor="let product of products" (click)="openProduct(product)">
+    <ion-item *ngFor="let product of products | orderBy: 'sku'" (click)="openProduct(product)">
       <h2>{{ product.description }}</h2>
       <p>{{ product.sku }} | {{ product.brand.name }}
         <ion-badge item-end>{{ product.size }}</ion-badge>

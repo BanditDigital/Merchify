@@ -23,7 +23,7 @@
 
   <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
   <ion-list>
-    <button ion-item *ngFor="let brand of brands" (click)="openBrand(brand)">
+    <button ion-item *ngFor="let brand of brands | orderBy: 'name'" (click)="openBrand(brand)">
       {{ brand?.name }}
       <ion-badge color="primary" item-right>
         <ion-icon name="cube"></ion-icon>

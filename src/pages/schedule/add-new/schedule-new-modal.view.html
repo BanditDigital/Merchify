@@ -29,7 +29,7 @@
       <ion-label>Brand</ion-label>
         <ion-select [(ngModel)]="visit.brand" (ionChange)="brandSelected($event)"
         [compareWith]="compareFn">
-          <ion-option *ngFor="let brand of brands" [value]="brand">{{ brand.name }}</ion-option>
+          <ion-option *ngFor="let brand of brands | orderBy: 'name'" [value]="brand">{{ brand.name }}</ion-option>
         </ion-select>
     </ion-item>
 
@@ -37,7 +37,7 @@
       <ion-label>Retailer</ion-label>
       <ion-select [(ngModel)]="visit.retailer" [disabled]="!visit.brand" (ionChange)="retailerSelected($event)"
                   [compareWith]="compareFn">
-        <ion-option *ngFor="let retailer of retailers" [value]="retailer">{{ retailer.name }}</ion-option>
+        <ion-option *ngFor="let retailer of retailers | orderBy: 'name'" [value]="retailer">{{ retailer.name }}</ion-option>
       </ion-select>
     </ion-item>
 
@@ -45,7 +45,7 @@
       <ion-label>Location</ion-label>
       <ion-select #locationSelect [(ngModel)]="visit.location" [disabled]="!visit.retailer"
                   [compareWith]="compareFn">
-        <ion-option *ngFor="let location of locations" [value]="location">{{ location.name }}</ion-option>
+        <ion-option *ngFor="let location of locations | orderBy: 'name'" [value]="location">{{ location.name }}</ion-option>
       </ion-select>
     </ion-item>
 

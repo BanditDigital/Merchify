@@ -138,6 +138,15 @@ export class SchedulePage {
       });
     }
 
+    if(visit.actualArrival && visit.actualDeparture && this.isAdmin()) {
+      buttons.push({
+        text: 'Delete Visit',
+        handler: () => {
+          this.deleteVisit(visit);
+        }
+      });
+    }
+
     if(visit.actualArrival && visit.actualDeparture) {
       buttons.push({
         text: 'Expenses & Travel',

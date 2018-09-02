@@ -48,7 +48,7 @@
       <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterLocations()"></ion-searchbar>
       <ion-list>
         <ion-item *ngIf="retailer.locations?.length == 0">There are no locations linked to this retailer.</ion-item>
-        <ion-item *ngFor="let location of filteredLocations">
+        <ion-item *ngFor="let location of filteredLocations | orderBy: 'name'">
           <ion-label>{{ location.name }}</ion-label>
           <ion-checkbox (ionChange)="locationChecked($event, location)"
                         [checked]="isLocationLinked(location)"></ion-checkbox>
@@ -67,7 +67,7 @@
       <ion-searchbar [(ngModel)]="brandSearchTerm" (ionInput)="filterBrands()"></ion-searchbar>
       <ion-list>
         <ion-item *ngIf="retailer.brands?.length == 0">There are no brands linked to this retailer.</ion-item>
-        <ion-item *ngFor="let brand of filteredBrands">
+        <ion-item *ngFor="let brand of filteredBrands | orderBy: 'name'">
           <ion-label>{{ brand.name }}</ion-label>
           <ion-checkbox (ionChange)="brandChecked($event, brand)"
                         [checked]="isBrandLinked(brand)"></ion-checkbox>

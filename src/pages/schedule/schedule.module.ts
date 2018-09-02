@@ -22,6 +22,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {NewExpenseModal} from "./expenses/new-expense-modal";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {NewExpenseModal} from "./expenses/new-expense-modal";
     MomentModule,
     BrowserAnimationsModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    OrderModule
   ],
   entryComponents: [
     SchedulePage,

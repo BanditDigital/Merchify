@@ -6,6 +6,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {SignupErrorPage} from "./signup/error.modal";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {SignupErrorPage} from "./signup/error.modal";
   imports:[
     BrowserModule,
     HttpClientModule,
-    IonicModule
+    IonicModule,
+    OrderModule
   ],
   entryComponents: [
     SigninPage,

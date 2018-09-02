@@ -23,7 +23,7 @@
 
   <!--LIST WITH SLIDING ITEMS AND ACTIONS-->
   <ion-list>
-    <button ion-item *ngFor="let location of locations" (click)="openLocation(location)">
+    <button ion-item *ngFor="let location of locations | orderBy: 'name'" (click)="openLocation(location)">
       {{ location?.name }} / {{ location?.type }}
       <ion-badge color="primary" item-right>
         <ion-icon name="basket"></ion-icon>

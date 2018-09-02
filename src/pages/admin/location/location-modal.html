@@ -44,7 +44,7 @@
     </ion-item-divider>
     <ion-list>
       <ion-item *ngIf="location.retailers?.length == 0">There are no retailers linked to this location.</ion-item>
-      <ion-item *ngFor="let retailer of location?.retailers">
+      <ion-item *ngFor="let retailer of location?.retailers | orderBy: retailer.name">
         {{ retailer.name }} - {{ retailer.type }}
       </ion-item>
     </ion-list>

@@ -18,6 +18,7 @@ import {LocationsService} from "./location/locations.service";
 import {RetailersPage} from "./retailer/retailer";
 import {RetailerModal} from "./retailer/retailer-modal";
 import {RetailerService} from "./retailer/retailer.service";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {RetailerService} from "./retailer/retailer.service";
   imports: [
     BrowserModule,
     IonicModule,
-    HttpClientModule
+    HttpClientModule,
+    OrderModule
   ],
   entryComponents: [
     BrandsPage,

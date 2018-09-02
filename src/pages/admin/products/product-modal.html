@@ -62,7 +62,7 @@
     <ion-item>
       <ion-label>Brand</ion-label>
       <ion-select formControlName="brand">
-        <ion-option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</ion-option>
+        <ion-option *ngFor="let brand of brands | orderBy: 'name'" [value]="brand.id">{{ brand.name }}</ion-option>
       </ion-select>
     </ion-item>
     <span class="error" *ngIf="productForm.get('brand').hasError('required')
