@@ -4,14 +4,14 @@ import {Brand} from "../../../models/Brand";
 import {Retailer} from "../../../models/Retailer";
 import {LoadingController, NavParams, ViewController} from "ionic-angular";
 import {AlertService} from "../../../shared/alert/alert.service";
-import {RetailerService} from "../../admin/retailer/retailer.service";
-import {BrandsService} from "../../admin/brand/brands.service";
 import {ScheduleService} from "../schedule.service";
 import {Visit} from "../../../models/Visit";
 import {User} from "../../../models/User";
 import * as jwt from 'jsonwebtoken';
 import {Location} from "../../../models/Location";
 import {Storage} from "@ionic/storage";
+import {RetailerService} from "../../../services/retailer/retailer.service";
+import {BrandsService} from "../../../services/brand/brands.service";
 
 @Component({
   templateUrl: 'schedule-new-modal.view.html',
@@ -59,6 +59,8 @@ export class ScheduleNewModal {
         console.log(decoded.brands);
         this.brands = decoded.brands;
         this.visit.user = decoded;
+        this.visit.checkInLocation = { long: null, lat: null};
+        this.visit.checkOutLocation = { long: null, lat: null};
         if(this.edit) {
           this.setupEdit();
         }

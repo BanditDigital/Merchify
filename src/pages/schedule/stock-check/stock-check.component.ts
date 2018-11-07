@@ -1,9 +1,9 @@
 import {Component} from "@angular/core";
 import {LoadingController, NavParams, ViewController} from "ionic-angular";
-import {ProductsService} from "../../admin/products/products.service";
 import {AlertService} from "../../../shared/alert/alert.service";
 import {Stock} from "../../../models/Stock";
 import {Visit} from "../../../models/Visit";
+import {ProductsService} from "../../../services/products/products.service";
 
 @Component({
   templateUrl: 'stock-check.view.html',
@@ -12,7 +12,7 @@ import {Visit} from "../../../models/Visit";
 export class StockCheckModal {
 
   visit:Visit;
-  endOfDay: boolean = false;
+  type: string;
 
   constructor(private navParams: NavParams,
               private view: ViewController,
@@ -22,7 +22,7 @@ export class StockCheckModal {
     if(this.navParams.get('visit')) {
 
       this.visit = this.navParams.get('visit');
-      this.endOfDay = this.navParams.get('sales');
+      this.type = this.navParams.get('type');
 
       if(!this.visit.stock) {
         this.visit.stock = [];
@@ -45,6 +45,7 @@ export class StockCheckModal {
               productId: product.id,
               visitId: this.visit.id,
               product: product,
+              systemQty: 0,
               onHand: 0,
               qtySold: 0,
               price: product.retailPrice

@@ -12,8 +12,14 @@ export class ScheduleService {
     return this.http.post<Visit>(`${environment.API}visit`, visit, {});
   }
 
-  public getVisits() : Observable<Visit[]> {
-    return this.http.get<Visit[]>(`${environment.API}visit`);
+  public getVisits(skip, take) : Observable<any> {
+    return this.http.post<any>(`${environment.API}visit/app/infinite`, {
+      skip: skip,
+      take: take,
+      filters: {},
+      sortOrder: 1,
+      sortField: 'scheduleDate'
+    });
   }
 
   public editVisit(visit: Visit) : Observable<Visit> {

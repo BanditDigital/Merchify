@@ -6,13 +6,15 @@ import {User} from "../../models/User";
 import * as jsonwebtoken from 'jsonwebtoken';
 import {StorageService} from "../../shared/storage/storage.service";
 import * as _ from 'lodash';
+import {NavController} from "ionic-angular";
 
 @Injectable()
 export class AuthService {
 
   public user: User;
 
-  constructor(private http: HttpClient, private storageService: StorageService) {}
+  constructor(private http: HttpClient,
+              private storageService: StorageService) {}
 
   public register(user: User): Observable<User[]> {
     return this.http.post<User[]>(`${environment.API}users`, user);
@@ -20,7 +22,7 @@ export class AuthService {
 
   public signIn(accountDetails) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${environment.API}users/login`, accountDetails)
+      this.http.post(`${environment.API}auth`, accountDetails)
         .subscribe(result => {
           this.user = jsonwebtoken.decode(result);
           this.storageService.setToken(<string>result);
@@ -50,10 +52,6 @@ export class AuthService {
 
   public isLoggedIn() {
     return this.user != null;
-  }
-
-  public isAdmin() {
-    return _.includes(this.user.roles, 'Admin');
   }
 
   public signOut() {

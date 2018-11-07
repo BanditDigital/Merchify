@@ -6,6 +6,7 @@ export interface Stock {
   productId?: number,
   product?: Product,
   onHand?: number,
+  systemQty?: number,
   qtySold?: number,
   visit?: Visit,
   visitId?: number,

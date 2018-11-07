@@ -2,7 +2,6 @@ import {IonicErrorHandler, IonicModule} from "ionic-angular";
 import {ErrorHandler, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {TokenInterceptor} from "../auth/token.interceptor";
 import {ScheduleService} from "./schedule.service";
 import {MomentModule} from "angular2-moment";
 import {VisitStatusPipe} from "../../shared/pipes/visit-status.pipe";
@@ -23,6 +22,15 @@ import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {NewExpenseModal} from "./expenses/new-expense-modal";
 import {OrderModule} from "ngx-order-pipe";
+import {ServicesModule} from "../../services/services.module";
+import {TokenInterceptor} from "../auth/token.interceptor";
+import {Geolocation} from "@ionic-native/geolocation";
+import {ShelfStockCheckModal} from "./shelf-stock-check/shelf-stock-check.component";
+import {PhotoModal} from "./photos/photo-modal.component";
+import {Camera} from "@ionic-native/camera";
+import {Transfer} from "@ionic-native/transfer";
+import {FilePath} from "@ionic-native/file-path";
+import {File} from "@ionic-native/file";
 
 @NgModule({
   declarations: [
@@ -30,6 +38,7 @@ import {OrderModule} from "ngx-order-pipe";
     ScheduleNewModal,
     VisitActionModal,
     StockCheckModal,
+    ShelfStockCheckModal,
     VisitReportModal,
     ExpensesModal,
     EditCompleteComponent,
@@ -39,7 +48,8 @@ import {OrderModule} from "ngx-order-pipe";
     VisitFilterPipe,
     ActionChecklistComponent,
     StockCheckPipe,
-    NewExpenseModal
+    NewExpenseModal,
+    PhotoModal
   ],
   imports: [
     BrowserModule,
@@ -49,21 +59,29 @@ import {OrderModule} from "ngx-order-pipe";
     BrowserAnimationsModule,
     ButtonModule,
     TableModule,
-    OrderModule
+    OrderModule,
+    ServicesModule
   ],
   entryComponents: [
     SchedulePage,
     ScheduleNewModal,
     VisitActionModal,
     StockCheckModal,
+    ShelfStockCheckModal,
     VisitReportModal,
     ExpensesModal,
     ActionChecklistComponent,
     EditCompleteComponent,
-    NewExpenseModal
+    NewExpenseModal,
+    PhotoModal
   ],
   providers: [
     ScheduleService,
+    Geolocation,
+    File,
+    Transfer,
+    Camera,
+    FilePath,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

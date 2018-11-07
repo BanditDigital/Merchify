@@ -4,6 +4,8 @@ import {StockCheckModal} from "../stock-check/stock-check.component";
 import {Visit} from "../../../models/Visit";
 import {AlertController, ModalController, NavParams, ViewController} from "ionic-angular";
 import * as moment from 'moment';
+import {Geolocation} from "@ionic-native/geolocation";
+import {PhotoModal} from "../photos/photo-modal.component";
 
 @Component({
   selector: 'page-action-checklist',
@@ -16,7 +18,8 @@ export class ActionChecklistComponent {
   constructor(private alertCtrl: AlertController,
               private modalCtrl: ModalController,
               private navParams: NavParams,
-              private view: ViewController) {
+              private view: ViewController,
+              private geolocation: Geolocation) {
     this.activeVisit = this.navParams.get('visit');
   }
 
@@ -58,8 +61,8 @@ export class ActionChecklistComponent {
     modal.present();
   }
 
-  public recordStockCheck(endOfDay?: boolean) {
-    let stock = this.modalCtrl.create(StockCheckModal, {visit: this.activeVisit, sales: endOfDay});
+  public recordStockCheck(type: string) {
+    let stock = this.modalCtrl.create(StockCheckModal, {visit: this.activeVisit, type: type});
 
     stock.onDidDismiss(data => {
       if (data && data.stockCheck) {
@@ -116,7 +119,12 @@ export class ActionChecklistComponent {
           {
             text: 'Confirm',
             handler: () => {
-              visit.actualDeparture = checkOutTime.utc();
+              this.geolocation.getCurrentPosition().then(position => {
+                visit.actualDeparture = checkOutTime.utc();
+                visit.checkOutLocation = { long: position.coords.longitude, lat: position.coords.latitude};
+              });
+
+
               this.saveVisit();
             }
           }
@@ -124,6 +132,18 @@ export class ActionChecklistComponent {
       });
       confirm.present();
     }
+  }
+
+  public takePhotos() {
+    let photos = this.modalCtrl.create(PhotoModal, {visit: this.activeVisit});
+
+    photos.onDidDismiss(data => {
+      if (data && data.photos) {
+        this.activeVisit.photos = data.photos;
+      }
+    });
+
+    photos.present();
   }
 
   public saveVisit() {
