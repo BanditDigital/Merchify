@@ -3,8 +3,8 @@ import {LoadingController, MenuController, NavController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {AlertService} from "../../../shared/alert/alert.service";
-import {SignupPage} from "../signup/signup";
-import {AppMenuPage} from "../../../app/app.menu.page";
+import {MyApp} from "../../../app/app.component";
+import {SchedulePage} from "../../schedule/schedule.component";
 
 @Component({
   selector: 'page-signin',
@@ -29,7 +29,7 @@ export class SigninPage {
       .then(success => {
         if(success) {
           this.menuCtrl.swipeEnable(true);
-          this.navCtrl.setRoot(AppMenuPage);
+          this.navCtrl.setRoot(SchedulePage);
         }
       });
   }
@@ -52,17 +52,13 @@ export class SigninPage {
       .then(success => {
         if(success) {
           this.menuCtrl.swipeEnable(true);
-          this.navCtrl.setRoot(AppMenuPage);
+          this.navCtrl.setRoot(SchedulePage);
           loading.dismiss();
         } else {
           this.alertService.showAlert('Sign In Failed', 'Please check your credentials and try again!');
           loading.dismiss();
         }
       });
-  }
-
-  public signUp() {
-    this.navCtrl.push(SignupPage);
   }
 
 }

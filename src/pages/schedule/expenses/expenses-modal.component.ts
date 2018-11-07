@@ -27,17 +27,8 @@ export class ExpensesModal implements OnInit {
               private scheduleService: ScheduleService,
               private nav: NavController,
               private loading: LoadingController,
-              private error: AlertService,
-              private authService: AuthService) {
+              private error: AlertService) {
     this.visit = this.navParams.get('visit');
-  }
-
-  public isAdmin() {
-    if(this.authService.isLoggedIn()) {
-      return this.authService.isAdmin();
-    } else {
-      return false;
-    }
   }
 
   showDialogToAdd() {

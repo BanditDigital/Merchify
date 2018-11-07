@@ -1,10 +1,12 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Merchify</ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-title><img src="../../assets/imgs/logo.png" height="20" width="133"/></ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="signOut()">
+        <ion-icon name="close" icon-left></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
   <ion-searchbar (ionInput)="searchVisits()" [(ngModel)]="searchText"></ion-searchbar>
   <div class="filters">
     <div float-start class="my-checkbox">
@@ -22,7 +24,9 @@
 
 
 <ion-content no-padding>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-item *ngIf="visits.length === 0">
       No visits found, better get cracking!
@@ -33,9 +37,8 @@
       </ion-item-divider>
       <ion-item *ngFor="let visit of group.list" (click)="openVisit(visit)">
         <h3>{{ visit.retailer.name }} ({{ visit.location.name }})</h3>
-        <h3>{{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'dddd MMMM Do YYYY' }}</h3>
-        <p>On behalf of {{ visit.brand.name }}</p>
-        <p *ngIf="isAdmin()">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
+        <p>{{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'ddd, DD/MM/YY' }}</p>
+        <p>{{ visit.brand.name }}</p>
         <ion-badge text-left color="{{ getVisitBadgeColor(visit) }}" item-end>
           <div *ngIf="visit.state == 'Checked In' || visit.state == 'Scheduled'">{{visit.state }}</div>
           <div>
@@ -43,7 +46,7 @@
             ? ((timeCheckedIn(visit) | number: '1.2-2').toString() + 'hrs') : ''}}
 
             {{ visit.state == 'Completed'
-            ? ( 'Hours Worked ' + (timeSpent(visit) | number: '1.2-2').toString()) : ''}}
+            ? ( 'Hours ' + (timeSpent(visit) | number: '1.2-2').toString()) : ''}}
           </div>
           <div>
             {{ (visit.state == 'Completed')
@@ -67,5 +70,9 @@
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+
+  <ion-infinite-scroll (ionInfinite)="getMoreVisits($event)" loadingSpinner="bubbles" loadingText="Loading More Visits...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

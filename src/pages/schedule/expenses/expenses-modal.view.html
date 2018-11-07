@@ -57,6 +57,7 @@
       <ion-col col-3>{{ visit.actualDeparture | amLocal | amDateFormat: 'HH:mm Z' }}</ion-col>
     </ion-row>
 
+
     <ion-row class="header-row" margin-top>
       <ion-col><p>Expense Report</p></ion-col>
     </ion-row>
@@ -98,7 +99,7 @@
     </ng-template>
     <ng-template pTemplate="summary" let-rowData>
       <div style="text-align:left">
-        <button ion-button icon-end (click)="showDialogToAdd()">Add
+        <button ion-button icon-end (click)="showDialogToAdd()" *ngIf="!visit.approvedExpenses">Add
           <ion-icon name="add"></ion-icon>
         </button>
       </div>
@@ -111,57 +112,64 @@
       <ion-col><p>Travel Report</p></ion-col>
     </ion-row>
     <ion-row class="total-row">
-      <ion-col col-4>Time</ion-col>
-      <ion-col col-4>Rate</ion-col>
-      <ion-col col-4>Total</ion-col>
+      <ion-col col-3>Time</ion-col>
+      <ion-col>Threshold</ion-col>
+      <ion-col col-3>Rate/hr</ion-col>
+      <ion-col col-3>Total</ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-4>
-        <ion-input type="number" [(ngModel)]="visit.travelTime"></ion-input>
+      <ion-col col-3>
+        <ion-input type="number" [(ngModel)]="visit.travelTime" [disabled]="visit.approvedExpenses"></ion-input>
       </ion-col>
-      <ion-col col-4>
-        <ion-label>£{{ visit.travelRate | number: '1.2-2' }}</ion-label>
+      <ion-col col-3>
+        <ion-label>{{ visit.travelTimeThreshold | number: '1.2-2' }}hrs</ion-label>
       </ion-col>
-      <ion-col col-4>
-        <ion-label>£{{ visit.travelRate * visit.travelTime | number: '1.2-2' }}</ion-label>
+      <ion-col col-3>
+        <ion-label>£{{ visit.travelRate | number: '1.2-2' }}/hr</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>£{{ ((visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) > 0 ?
+          (visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) : 0) | number: '1.2-2' }}</ion-label>
       </ion-col>
     </ion-row>
-
-    <ion-row *ngIf="isAdmin()" class="header-row" margin-top>
-      <ion-col><p>Expense Management</p></ion-col>
+    <ion-row class="total-row">
+      <ion-col col-3>Miles</ion-col>
+      <ion-col>Threshold</ion-col>
+      <ion-col col-3>Rate/m</ion-col>
+      <ion-col col-3>Total</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>
+        <ion-input type="number" [(ngModel)]="visit.mileage" [disabled]="visit.approvedExpenses"></ion-input>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>{{ visit.mileageThreshold | number: '1.2-2' }} miles</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>£{{ visit.mileageRate | number: '1.2-2' }}</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>£{{ ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) > 0 ?
+          ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) : 0 | number: '1.2-2' }}</ion-label>
+      </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-list *ngIf="isAdmin()">
-    <ion-item>
-      <ion-label>Approved Expenses</ion-label>
-      <ion-toggle [(ngModel)]="visit.approvedExpenses"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Paid Expenses</ion-label>
-      <ion-toggle [(ngModel)]="visit.paidExpenses"></ion-toggle>
-    </ion-item>
-  </ion-list>
-
-</ion-content>
-
-<ion-footer>
-  <ion-buttons>
     <ion-grid>
-      <ion-row>
-        <ion-col>
+      <ion-row align-items-center>
+          <ion-col *ngIf="!visit.approvedExpenses && !visit.paidExpenses"><h2>Status: Pending</h2></ion-col>
+          <ion-col *ngIf="visit.approvedExpenses && !visit.paidExpenses"><h2>Status: Approved</h2></ion-col>
+          <ion-col *ngIf="visit.approvedExpenses && visit.paidExpenses"><h2>Status: Paid</h2></ion-col>
 
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left color="secondary" (click)="saveAndClose()" float-right>
+        <ion-col align-self-end style="text-align: right">
+          <button ion-button icon-left color="secondary" (click)="saveAndClose()">
             <ion-icon name="checkmark" color></ion-icon>
             Save
           </button>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-buttons>
-</ion-footer>
+</ion-content>
 
 
 

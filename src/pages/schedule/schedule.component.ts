@@ -16,9 +16,10 @@ import * as _ from 'lodash';
 import {VisitReportModal} from "./visit-report/visit-report-modal.component";
 import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
 import {ActionChecklistComponent} from "./check-in/action-checklist.component";
-import {AuthService} from "../auth/auth.service";
-import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.component";
 import {ExpensesModal} from "./expenses/expenses-modal.component";
+import {AuthService} from "../auth/auth.service";
+import {SigninPage} from "../auth/signin/signin";
+import {Geolocation} from "@ionic-native/geolocation";
 
 @Component({
   selector: 'page-schedule',
@@ -32,6 +33,10 @@ export class SchedulePage {
   showCompleted: boolean = false;
   showScheduled: boolean = true;
   searchText: string = '';
+  totalVisits: number;
+  skip = 0;
+  take = 2;
+  recordsPerPage = 15;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -41,16 +46,9 @@ export class SchedulePage {
               private errorAlert: AlertService,
               public actionSheetCtrl: ActionSheetController,
               private alertCtrl: AlertController,
-              private authService: AuthService) {
+              private auth: AuthService,
+              private geolocation: Geolocation) {
     this.getVisits();
-  }
-
-  public isAdmin() {
-    if(this.authService.isLoggedIn()) {
-      return this.authService.isAdmin();
-    } else {
-      return false;
-    }
   }
 
   public newAppointment() {
@@ -66,19 +64,78 @@ export class SchedulePage {
     newAppointmentModal.present();
   }
 
-  public getVisits() {
+  public getVisits(refresher?) {
+    this.skip = 0;
+    this.take = this.recordsPerPage;
+
     let loading = this.loadingCtrl.create({content: 'Getting available appointments...'});
     loading.present();
 
-    this.scheduleService.getVisits()
-      .subscribe(visits => {
-        this.rawData = visits;
-        this.visitFilters();
+    this.scheduleService.getVisits(this.skip, this.take)
+      .subscribe(data => {
+          this.rawData = data.completed.concat(data.scheduled, data.checkedIn);
+          this.visitFilters();
+
+        if(refresher) {
+          refresher.complete();
+        }
         loading.dismiss();
       }, error => {
         this.errorAlert.showAlert('Could not load available appointments', error.error.message);
         loading.dismiss();
       });
+  }
+
+  public getTotalVisits(refresher?) {
+    let loading = this.loadingCtrl.create({content: 'Getting available appointments...'});
+    loading.present();
+
+    this.scheduleService.getVisits(this.skip, this.take).subscribe(data => {
+      this.totalVisits = data.total;
+      loading.dismiss();
+
+      if(refresher) {
+        this.getVisits(refresher)
+      } else {
+        this.getVisits();
+      }
+
+    }, error => {
+      this.errorAlert.showAlert('Could not get total appointments', error.error.message);
+      loading.dismiss();
+    });
+  }
+
+  public doRefresh(refresher) {
+    this.skip = 0;
+    this.take = 0;
+    this.getTotalVisits(refresher);
+  }
+
+  public getMoreVisits(infiniteScroll) {
+    if((this.skip + this.recordsPerPage) < this.totalVisits) {
+      this.skip = this.skip + this.recordsPerPage;
+      this.take = this.take + this.recordsPerPage;
+      this.scheduleService.getVisits(this.skip, this.take).subscribe(data => {
+
+        this.rawData = this.rawData.concat(data.completed);
+        this.visitFilters();
+
+        if(infiniteScroll) {
+          infiniteScroll.complete();
+        }
+
+      }, err => {
+        if(infiniteScroll) {
+          infiniteScroll.complete();
+        }
+      });
+    } else {
+      if(infiniteScroll) {
+        infiniteScroll.complete();
+      }
+    }
+
   }
 
   public openVisit(visit) {
@@ -129,23 +186,6 @@ export class SchedulePage {
       });
     }
 
-    if(visit.actualArrival && visit.actualDeparture && this.isAdmin()) {
-      buttons.push({
-        text: 'Edit Completed Visit',
-        handler: () => {
-          this.navCtrl.push(EditCompleteComponent, { visit: visit });
-        }
-      });
-    }
-
-    if(visit.actualArrival && visit.actualDeparture && this.isAdmin()) {
-      buttons.push({
-        text: 'Delete Visit',
-        handler: () => {
-          this.deleteVisit(visit);
-        }
-      });
-    }
 
     if(visit.actualArrival && visit.actualDeparture) {
       buttons.push({
@@ -179,36 +219,46 @@ export class SchedulePage {
   }
 
   public checkIn(visit) {
-      let loading = this.loadingCtrl.create({content: 'Checking in...'});
-      let checkInTime = moment().utc();
-      let confirm = this.alertCtrl.create({
-        title: `Confirm Check-in`,
-        message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.local().format('DD/MM/YYYY HH:mm Z')}`,
-        buttons: [
-          {
-            text: 'Cancel',
-          },
-          {
-            text: 'Confirm',
-            handler: () => {
-              loading.present();
-              visit.actualArrival = checkInTime.utc();
-              visit.hourlyRate = this.getHourlyRate(visit);
-              visit.travelRate = this.getTravelRate(visit);
-              visit.expenses = [];
-              this.scheduleService.editVisit(visit)
-                .subscribe((updated) => {
-                  this.visitFilters();
-                  loading.dismiss();
-                }, error => {
-                  this.errorAlert.showAlert('Could not check in', error.error.message);
-                  loading.dismiss();
-                });
+    let loading = this.loadingCtrl.create({content: 'Checking in...'});
+    let checkInTime = moment().utc();
+
+      this.geolocation.getCurrentPosition().then(position => {
+        console.log(position);
+        let confirm = this.alertCtrl.create({
+          title: `Confirm Check-in`,
+          message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.local().format('DD/MM/YYYY HH:mm Z')}`,
+          buttons: [
+            {
+              text: 'Cancel',
+            },
+            {
+              text: 'Confirm',
+              handler: () => {
+                loading.present();
+                visit.actualArrival = checkInTime.utc();
+                visit.hourlyRate = visit.brand.hourlyRate;
+                visit.travelRate = visit.brand.travelTimeRate;
+                visit.mileageRate = visit.brand.mileageRate;
+                visit.travelTimeThreshold = visit.brand.travelTimePayableThreshold;
+                visit.mileageThreshold = visit.brand.mileagePayableThreshold;
+                visit.expenses = [];
+                visit.checkInLocation = { long: position.coords.longitude, lat: position.coords.latitude };
+                visit.checkOutLocation = { long: null, lat: null};
+                this.scheduleService.editVisit(visit)
+                  .subscribe((updated) => {
+                    this.visitFilters();
+                    loading.dismiss();
+                  }, error => {
+                    this.errorAlert.showAlert('Could not check in', error.error.message);
+                    loading.dismiss();
+                  });
+              }
             }
-          }
-        ]
+          ]
+        });
+        confirm.present();
       });
-      confirm.present();
+
   }
 
   public deleteVisit(visit) {
@@ -261,7 +311,6 @@ export class SchedulePage {
     modal.present();
 
   }
-
 
   public visitFilters() : void {
 
@@ -353,6 +402,13 @@ export class SchedulePage {
     })
     return total;
   }
+
+  public signOut() {
+    this.auth.signOut();
+    this.navCtrl.setRoot(SigninPage);
+  }
+
+
 
 }
 
