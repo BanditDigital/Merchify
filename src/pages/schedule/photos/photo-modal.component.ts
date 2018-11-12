@@ -109,12 +109,47 @@ export class PhotoModal {
     this.view.dismiss();
   }
 
+  public uploadImage() {
+    // Destination URL
+    let url = environment.API + 'visit/images';
+
+    // File for Upload
+    let targetPath = this.pathForImage(this.lastImage);
+
+    // File name only
+    let filename = this.lastImage;
+
+    console.log(this.lastImage);
+
+    let options = {
+      fileName: filename,
+      chunkedMode: false,
+      params: {'fileName': filename}
+    };
+
+    const fileTransfer: TransferObject = this.transfer.create();
+
+    this.loading = this.loadingCtrl.create({
+      content: 'Uploading...',
+    });
+    this.loading.present();
+
+    // Use the FileTransfer to upload the image
+    fileTransfer.upload(targetPath, url, options).then(data => {
+      this.loading.dismissAll()
+      this.presentToast('Image successfully uploaded.');
+    }, err => {
+      this.loading.dismissAll()
+      this.presentToast('Error while uploading file.');
+    });
+  }
+
   // Create a new name for the image
   private createFileName() {
-    var d = new Date(),
-      n = d.getTime(),
-      newFileName = n + ".jpg";
-    return newFileName;
+    const d = new Date();
+    const n = d.getTime() + '.jpg';
+    console.log(n);
+    return n;
   }
 
 // Copy the image to a local folder
@@ -133,41 +168,6 @@ export class PhotoModal {
       position: 'top'
     });
     toast.present();
-  }
-
-  public uploadImage() {
-    // Destination URL
-    let url = environment.API + 'visit/images';
-
-    // File for Upload
-    let targetPath = this.pathForImage(this.lastImage);
-
-    // File name only
-    let filename = this.lastImage;
-
-    console.log(this.lastImage);
-
-    let options = {
-      fileName: filename,
-      chunkedMode: false,
-      params : {'fileName': filename}
-    };
-
-    const fileTransfer: TransferObject = this.transfer.create();
-
-    this.loading = this.loadingCtrl.create({
-      content: 'Uploading...',
-    });
-    this.loading.present();
-
-    // Use the FileTransfer to upload the image
-    fileTransfer.upload(targetPath, url, options).then(data => {
-      this.loading.dismissAll()
-      this.presentToast('Image successfully uploaded.');
-    }, err => {
-      this.loading.dismissAll()
-      this.presentToast('Error while uploading file.');
-    });
   }
 
 }
