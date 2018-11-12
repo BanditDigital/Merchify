@@ -5,7 +5,8 @@ import {
   NavParams,
   Platform,
   ToastController,
-  ViewController
+  ViewController,
+  normalizeURL
 } from "ionic-angular";
 import {Visit} from "../../../models/Visit";
 import {Camera} from '@ionic-native/camera';
@@ -101,7 +102,7 @@ export class PhotoModal {
       return '';
     } else {
       console.log(cordova.file.dataDirectory + img);
-      return cordova.file.dataDirectory + img;
+      return normalizeURL(cordova.file.dataDirectory + img);
     }
   }
 
