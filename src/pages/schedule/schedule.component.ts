@@ -20,6 +20,7 @@ import {ExpensesModal} from "./expenses/expenses-modal.component";
 import {AuthService} from "../auth/auth.service";
 import {SigninPage} from "../auth/signin/signin";
 import {Geolocation} from "@ionic-native/geolocation";
+import {Rate} from "../../models/Rate";
 
 @Component({
   selector: 'page-schedule',
@@ -236,11 +237,15 @@ export class SchedulePage {
               handler: () => {
                 loading.present();
                 visit.actualArrival = checkInTime.utc();
-                visit.hourlyRate = visit.brand.hourlyRate;
-                visit.travelRate = visit.brand.travelTimeRate;
-                visit.mileageRate = visit.brand.mileageRate;
-                visit.travelTimeThreshold = visit.brand.travelTimePayableThreshold;
-                visit.mileageThreshold = visit.brand.mileagePayableThreshold;
+                console.log(visit.user);
+                const rate:Rate = _.find(visit.user.rates, { brandId: visit.brand.id });
+                console.log(rate);
+
+                visit.hourlyRate = rate.hourlyRate;
+                visit.travelRate = rate.travelTimeRate;
+                visit.mileageRate = rate.mileageRate;
+                visit.travelTimeThreshold = rate.travelTimePayableThreshold;
+                visit.mileageThreshold = rate.mileagePayableThreshold;
                 visit.expenses = [];
                 visit.checkInLocation = { long: position.coords.longitude, lat: position.coords.latitude };
                 visit.checkOutLocation = { long: null, lat: null};
@@ -378,18 +383,18 @@ export class SchedulePage {
   }
 
   public getHourlyRate(visit: Visit) {
-    let result = _.find(visit.user.brandRates, { 'brandId': visit.brand.id });
+    let result: Rate = _.find(visit.user.rates, { 'brandId': visit.brand.id });
     if(result) {
-      return result.rate;
+      return result.hourlyRate;
     } else {
       return 0;
     }
   }
 
   public getTravelRate(visit: Visit) {
-    let result = _.find(visit.user.brandRates, { 'brandId': visit.brand.id });
+    let result: Rate = _.find(visit.user.rates, { 'brandId': visit.brand.id });
     if(result) {
-      return result.travelRate;
+      return result.travelTimeRate;
     } else {
       return 0;
     }

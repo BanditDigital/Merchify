@@ -17,7 +17,7 @@
 
     <ion-item>
       <ion-label>Date</ion-label>
-      <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YY" [(ngModel)]="visit.scheduledArrival"></ion-datetime>
+      <ion-datetime displayFormat="DD-MMM-YYYY" pickerFormat="DD MMM YY" max="{{ max }}" [(ngModel)]="visit.scheduledArrival"></ion-datetime>
     </ion-item>
 
     <ion-item-divider color="light">

@@ -6,7 +6,6 @@ import {Expense} from "../../../models/Expense";
 import {NewExpenseModal} from "./new-expense-modal";
 import {ScheduleService} from "../schedule.service";
 import {AlertService} from "../../../shared/alert/alert.service";
-import {AuthService} from "../../auth/auth.service";
 
 @Component({
   templateUrl: 'expenses-modal.view.html',
@@ -52,15 +51,18 @@ export class ExpensesModal implements OnInit {
   }
 
   onRowSelect(event) {
-    let modal = this.modal.create(NewExpenseModal, { expense: event.data }, { enableBackdropDismiss: false });
-    modal.onDidDismiss(data => {
-      if(data.expense && !data.delete) {
-        this.expense = data.expense;
-      } else if (data.expense && data.delete) {
-        this.delete(data.expense);
-      }
-    });
-    modal.present();
+    if(!this.visit.paidExpenses && !this.visit.approvedExpenses) {
+      let modal = this.modal.create(NewExpenseModal, { expense: event.data }, { enableBackdropDismiss: false });
+      modal.onDidDismiss(data => {
+        if(data.expense && !data.delete) {
+          this.expense = data.expense;
+        } else if (data.expense && data.delete) {
+          this.delete(data.expense);
+        }
+      });
+      modal.present();
+    }
+
   }
 
   save() {

@@ -22,6 +22,7 @@ export class ScheduleNewModal {
   brands: Brand[] = [];
   retailers: Retailer[] = [];
   locations: Location[] = [];
+  max: string = moment().add(3, 'y').format('YYYY-MM-DD').toString();
 
   edit:boolean = false;
   public visit: Visit = {

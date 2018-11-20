@@ -40,26 +40,7 @@
         <p>{{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'ddd, DD/MM/YY' }}</p>
         <p>{{ visit.brand.name }}</p>
         <ion-badge text-left color="{{ getVisitBadgeColor(visit) }}" item-end>
-          <div *ngIf="visit.state == 'Checked In' || visit.state == 'Scheduled'">{{visit.state }}</div>
-          <div>
-            {{ visit.state == 'Checked In'
-            ? ((timeCheckedIn(visit) | number: '1.2-2').toString() + 'hrs') : ''}}
-
-            {{ visit.state == 'Completed'
-            ? ( 'Hours ' + (timeSpent(visit) | number: '1.2-2').toString()) : ''}}
-          </div>
-          <div>
-            {{ (visit.state == 'Completed')
-            ? ' Sales £' + (totalSales(visit) | number: '1.2-2') : ''}}
-          </div>
-          <div>
-            {{ (visit.state == 'Completed') && expensesTotal(visit) > 0
-            ? ' Expenses £' + (expensesTotal(visit) | number: '1.2-2') : ''}}
-          </div>
-          <div>
-            {{ (visit.state == 'Completed') && visit.travelTime > 0
-            ? ' Travel Time ' + (visit.travelTime | number: '1.2-2') : ''}}
-          </div>
+          {{visit.state }}
         </ion-badge>
       </ion-item>
     </ion-item-group>

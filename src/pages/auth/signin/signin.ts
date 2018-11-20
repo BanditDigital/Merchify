@@ -3,7 +3,6 @@ import {LoadingController, MenuController, NavController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {AlertService} from "../../../shared/alert/alert.service";
-import {MyApp} from "../../../app/app.component";
 import {SchedulePage} from "../../schedule/schedule.component";
 
 @Component({

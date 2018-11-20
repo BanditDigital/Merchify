@@ -5,8 +5,6 @@ import {environment} from "../../environments/environment";
 import {User} from "../../models/User";
 import * as jsonwebtoken from 'jsonwebtoken';
 import {StorageService} from "../../shared/storage/storage.service";
-import * as _ from 'lodash';
-import {NavController} from "ionic-angular";
 
 @Injectable()
 export class AuthService {
