@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-navbar>
     <ion-buttons start>
@@ -8,20 +9,33 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
-  <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
+<ion-content no-padding>
+  <div class="thumbnail portrait">
+    <img src="{{ visit?.photo1 ? visit.photo1 : placeholder }}" (click)="presentActionSheet(1)">
+  </div>
+  <div class="thumbnail">
+    <img src="{{ visit?.photo2 ? visit.photo2 : placeholder }}" (click)="presentActionSheet(2)">
+  </div>
+  <div class="thumbnail">
+    <img src="{{ visit?.photo3 ? visit.photo3 : placeholder }}" (click)="presentActionSheet(3)">
+  </div>
+  <div class="thumbnail">
+    <img src="{{ visit?.photo4 ? visit.photo4 : placeholder }}" (click)="presentActionSheet(4)">
+  </div>
+  <div class="thumbnail">
+    <img src="{{ visit?.photo5 ? visit.photo5 : placeholder }}" (click)="presentActionSheet(5)">
+  </div>
+  <div class="thumbnail">
+    <img src="{{ visit?.photo6 ? visit.photo6 : placeholder }}" (click)="presentActionSheet(6)">
+  </div>
 </ion-content>
-
 
 <ion-footer>
   <ion-toolbar color="primary">
     <ion-buttons>
-      <button ion-button icon-left (click)="presentActionSheet()">
-        <ion-icon name="camera"></ion-icon>Select Image
-      </button>
-      <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
-        <ion-icon name="cloud-upload"></ion-icon>Upload
+      <button ion-button icon-left (click)="uploadImages()" [disabled]="uploadDisabled">
+        <ion-icon name="cloud-upload"></ion-icon>
+        Upload Images
       </button>
     </ion-buttons>
   </ion-toolbar>

@@ -34,5 +34,11 @@ export interface Visit {
   paidExpenses?: boolean;
   checkInLocation?: any;
   checkOutLocation?: any;
-  photos?: any[]
+  photo1?: string;
+  photo2?: string;
+  photo3?: string;
+  photo4?: string;
+  photo5?: string;
+  photo6?: string;
+
 }

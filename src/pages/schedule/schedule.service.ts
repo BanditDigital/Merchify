@@ -27,6 +27,10 @@ export class ScheduleService {
   }
 
   public deleteVisit(visit: Visit) : Observable<Visit> {
-    return this.http.delete<Visit>(`${environment.API}visit/${visit.id}`)
+    return this.http.delete<Visit>(`${environment.API}visit/${visit.id}`);
+  }
+
+  public getVisitWithPhotos(visit: Visit) : Observable<Visit> {
+   return this.http.get<Visit>(`${environment.API}visit/photos/` + visit.id);
   }
 }

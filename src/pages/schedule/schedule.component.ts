@@ -21,6 +21,8 @@ import {AuthService} from "../auth/auth.service";
 import {SigninPage} from "../auth/signin/signin";
 import {Geolocation} from "@ionic-native/geolocation";
 import {Rate} from "../../models/Rate";
+import {PhotoModal} from "./photos/photo-modal.component";
+import {VisitActionModal} from "./visit-action/visit-action-modal.component";
 
 @Component({
   selector: 'page-schedule',
@@ -74,10 +76,10 @@ export class SchedulePage {
 
     this.scheduleService.getVisits(this.skip, this.take)
       .subscribe(data => {
-          this.rawData = data.completed.concat(data.scheduled, data.checkedIn);
-          this.visitFilters();
+        this.rawData = data.completed.concat(data.scheduled, data.checkedIn);
+        this.visitFilters();
 
-        if(refresher) {
+        if (refresher) {
           refresher.complete();
         }
         loading.dismiss();
@@ -95,7 +97,7 @@ export class SchedulePage {
       this.totalVisits = data.total;
       loading.dismiss();
 
-      if(refresher) {
+      if (refresher) {
         this.getVisits(refresher)
       } else {
         this.getVisits();
@@ -114,7 +116,7 @@ export class SchedulePage {
   }
 
   public getMoreVisits(infiniteScroll) {
-    if((this.skip + this.recordsPerPage) < this.totalVisits) {
+    if ((this.skip + this.recordsPerPage) < this.totalVisits) {
       this.skip = this.skip + this.recordsPerPage;
       this.take = this.take + this.recordsPerPage;
       this.scheduleService.getVisits(this.skip, this.take).subscribe(data => {
@@ -122,17 +124,17 @@ export class SchedulePage {
         this.rawData = this.rawData.concat(data.completed);
         this.visitFilters();
 
-        if(infiniteScroll) {
+        if (infiniteScroll) {
           infiniteScroll.complete();
         }
 
       }, err => {
-        if(infiniteScroll) {
+        if (infiniteScroll) {
           infiniteScroll.complete();
         }
       });
     } else {
-      if(infiniteScroll) {
+      if (infiniteScroll) {
         infiniteScroll.complete();
       }
     }
@@ -151,17 +153,17 @@ export class SchedulePage {
       });
     }
 
-    if(!visit.actualArrival)
-    buttons.push({
-      text: 'Edit Visit Details',
-      handler: () => {
-        this.editVisit(visit);
-      }
-    });
-
-    if(!visit.actualArrival) {
+    if (!visit.actualArrival)
       buttons.push({
-        text: 'Delete Scheduled Visit',
+        text: 'Edit',
+        handler: () => {
+          this.editVisit(visit);
+        }
+      });
+
+    if (!visit.actualArrival) {
+      buttons.push({
+        text: 'Delete',
         role: 'destructive',
         handler: () => {
           this.deleteVisit(visit);
@@ -169,33 +171,53 @@ export class SchedulePage {
       });
     }
 
-    if(visit.actualArrival && !visit.actualDeparture) {
+    if (visit.actualArrival && !visit.actualDeparture) {
       buttons.push({
-        text: 'Update Record',
-        handler: () => {
-          this.updateActions(visit);
-        }
-      });
+          text: 'Record Activity',
+          handler: () => {
+            this.updateActions(visit);
+          }
+        });
     }
 
-    if(visit.actualArrival && visit.actualDeparture) {
-      buttons.push({
-        text: 'View Visit Report',
-        handler: () => {
-          this.navCtrl.push(VisitReportModal, { visit: visit });
-        }
-      });
+    if (visit.actualArrival && visit.actualDeparture) {
+      buttons.push(
+        {
+          text: 'Photos',
+          handler: () => {
+            this.visitPhotos(visit);
+          }
+        });
     }
 
+    if (visit.actualArrival && visit.actualDeparture) {
+      buttons.push(
+        {
+          text: 'Notes',
+          handler: () => {
+            this.editVisitNotes(visit);
+          }
+        });
+    }
 
-    if(visit.actualArrival && visit.actualDeparture) {
+    if (visit.actualArrival && visit.actualDeparture) {
       buttons.push({
         text: 'Expenses & Travel',
         handler: () => {
-          this.navCtrl.push(ExpensesModal, { visit: visit });
+          this.navCtrl.push(ExpensesModal, {visit: visit});
         }
       });
     }
+
+    if (visit.actualArrival && visit.actualDeparture) {
+      buttons.push({
+          text: 'Visit Report',
+          handler: () => {
+            this.navCtrl.push(VisitReportModal, {visit: visit});
+          }
+        });
+    }
+
 
     let actions = this.actionSheetCtrl.create({
       title: 'What next?',
@@ -219,50 +241,77 @@ export class SchedulePage {
     newAppointmentModal.present();
   }
 
+  public editVisitNotes(visit) {
+    let loading = this.loadingCtrl.create({content: 'Updating notes...'});
+    let notes = this.modalCtrl.create(VisitActionModal, {notes: visit.visitNotes});
+    notes.onDidDismiss(data => {
+      if(data) {
+        visit.visitNotes = data.notes;
+        loading.present();
+        this.scheduleService.editVisit(visit)
+          .subscribe((updatedVisit) => {
+            _.pull(this.rawData, visit);
+            this.rawData.push(updatedVisit);
+            this.visitFilters();
+            loading.dismiss();
+          }, error => {
+            this.errorAlert.showAlert('Could not update visit notes', error.error.message);
+            loading.dismiss();
+          });
+      }
+    });
+    notes.present();
+  }
+
+  public visitPhotos(visit) {
+    let photos = this.modalCtrl.create(PhotoModal, {visit: visit});
+    photos.present();
+  }
+
   public checkIn(visit) {
     let loading = this.loadingCtrl.create({content: 'Checking in...'});
     let checkInTime = moment().utc();
 
-      this.geolocation.getCurrentPosition().then(position => {
-        console.log(position);
-        let confirm = this.alertCtrl.create({
-          title: `Confirm Check-in`,
-          message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.local().format('DD/MM/YYYY HH:mm Z')}`,
-          buttons: [
-            {
-              text: 'Cancel',
-            },
-            {
-              text: 'Confirm',
-              handler: () => {
-                loading.present();
-                visit.actualArrival = checkInTime.utc();
-                console.log(visit.user);
-                const rate:Rate = _.find(visit.user.rates, { brandId: visit.brand.id });
-                console.log(rate);
+    this.geolocation.getCurrentPosition().then(position => {
+      console.log(position);
+      let confirm = this.alertCtrl.create({
+        title: `Confirm Check-in`,
+        message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.local().format('DD/MM/YYYY HH:mm Z')}`,
+        buttons: [
+          {
+            text: 'Cancel',
+          },
+          {
+            text: 'Confirm',
+            handler: () => {
+              loading.present();
+              visit.actualArrival = checkInTime.utc();
+              console.log(visit.user);
+              const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
+              console.log(rate);
 
-                visit.hourlyRate = rate.hourlyRate;
-                visit.travelRate = rate.travelTimeRate;
-                visit.mileageRate = rate.mileageRate;
-                visit.travelTimeThreshold = rate.travelTimePayableThreshold;
-                visit.mileageThreshold = rate.mileagePayableThreshold;
-                visit.expenses = [];
-                visit.checkInLocation = { long: position.coords.longitude, lat: position.coords.latitude };
-                visit.checkOutLocation = { long: null, lat: null};
-                this.scheduleService.editVisit(visit)
-                  .subscribe((updated) => {
-                    this.visitFilters();
-                    loading.dismiss();
-                  }, error => {
-                    this.errorAlert.showAlert('Could not check in', error.error.message);
-                    loading.dismiss();
-                  });
-              }
+              visit.hourlyRate = rate.hourlyRate;
+              visit.travelRate = rate.travelTimeRate;
+              visit.mileageRate = rate.mileageRate;
+              visit.travelTimeThreshold = rate.travelTimePayableThreshold;
+              visit.mileageThreshold = rate.mileagePayableThreshold;
+              visit.expenses = [];
+              visit.checkInLocation = {long: position.coords.longitude, lat: position.coords.latitude};
+              visit.checkOutLocation = {long: null, lat: null};
+              this.scheduleService.editVisit(visit)
+                .subscribe((updated) => {
+                  this.visitFilters();
+                  loading.dismiss();
+                }, error => {
+                  this.errorAlert.showAlert('Could not check in', error.error.message);
+                  loading.dismiss();
+                });
             }
-          ]
-        });
-        confirm.present();
+          }
+        ]
       });
+      confirm.present();
+    });
 
   }
 
@@ -296,7 +345,7 @@ export class SchedulePage {
   }
 
   public updateActions(visit) {
-    let modal = this.modalCtrl.create(ActionChecklistComponent, { visit: visit}, { enableBackdropDismiss: false });
+    let modal = this.modalCtrl.create(ActionChecklistComponent, {visit: visit}, {enableBackdropDismiss: false});
     let loading = this.loadingCtrl.create({content: 'Updating visit...'});
 
     modal.onDidDismiss(data => {
@@ -317,18 +366,18 @@ export class SchedulePage {
 
   }
 
-  public visitFilters() : void {
+  public visitFilters(): void {
 
     this.rawData.forEach(visit => {
-      if(!visit.actualArrival) {
+      if (!visit.actualArrival) {
         visit.state = 'Scheduled';
       }
 
-      if(visit.actualArrival && !visit.actualDeparture) {
+      if (visit.actualArrival && !visit.actualDeparture) {
         visit.state = 'Checked In';
       }
 
-      if(visit.actualArrival && visit.actualDeparture) {
+      if (visit.actualArrival && visit.actualDeparture) {
         visit.state = 'Completed';
       }
     });
@@ -337,16 +386,16 @@ export class SchedulePage {
 
   }
 
-  public getVisitBadgeColor(visit: Visit) : string {
-    if(!visit.actualArrival) {
+  public getVisitBadgeColor(visit: Visit): string {
+    if (!visit.actualArrival) {
       return 'primary';
     }
 
-    if(visit.actualArrival && !visit.actualDeparture) {
+    if (visit.actualArrival && !visit.actualDeparture) {
       return 'secondary';
     }
 
-    if(visit.actualArrival && visit.actualDeparture) {
+    if (visit.actualArrival && visit.actualDeparture) {
       return 'dark';
     }
   }
@@ -354,7 +403,11 @@ export class SchedulePage {
   public searchVisits() {
 
     this.filteredVisits = new VisitFilterPipe()
-      .transform(this.rawData, { userInput: this.searchText, showCompleted: this.showCompleted, showScheduled: this.showScheduled});
+      .transform(this.rawData, {
+        userInput: this.searchText,
+        showCompleted: this.showCompleted,
+        showScheduled: this.showScheduled
+      });
 
     this.visits = [];
     this.filteredVisits.forEach(visit => {
@@ -373,7 +426,7 @@ export class SchedulePage {
 
   public totalSales(visit) {
     let total = 0;
-    if(visit.stock) {
+    if (visit.stock) {
 
       for (let check of visit.stock) {
         total += check.qtySold * check.price;
@@ -383,8 +436,8 @@ export class SchedulePage {
   }
 
   public getHourlyRate(visit: Visit) {
-    let result: Rate = _.find(visit.user.rates, { 'brandId': visit.brand.id });
-    if(result) {
+    let result: Rate = _.find(visit.user.rates, {'brandId': visit.brand.id});
+    if (result) {
       return result.hourlyRate;
     } else {
       return 0;
@@ -392,8 +445,8 @@ export class SchedulePage {
   }
 
   public getTravelRate(visit: Visit) {
-    let result: Rate = _.find(visit.user.rates, { 'brandId': visit.brand.id });
-    if(result) {
+    let result: Rate = _.find(visit.user.rates, {'brandId': visit.brand.id});
+    if (result) {
       return result.travelTimeRate;
     } else {
       return 0;
@@ -412,7 +465,6 @@ export class SchedulePage {
     this.auth.signOut();
     this.navCtrl.setRoot(SigninPage);
   }
-
 
 
 }

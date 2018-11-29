@@ -136,13 +136,6 @@ export class ActionChecklistComponent {
 
   public takePhotos() {
     let photos = this.modalCtrl.create(PhotoModal, {visit: this.activeVisit});
-
-    photos.onDidDismiss(data => {
-      if (data && data.photos) {
-        this.activeVisit.photos = data.photos;
-      }
-    });
-
     photos.present();
   }
 
