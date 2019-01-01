@@ -24,11 +24,7 @@ export class StockCheckModal {
       this.visit = this.navParams.get('visit');
       this.type = this.navParams.get('type');
 
-      if(!this.visit.stock) {
-        this.visit.stock = [];
-      }
-
-      if(this.visit.stock.length == 0) {
+      if(this.visit.stock.length === 0) {
         this.getProducts();
       }
     }

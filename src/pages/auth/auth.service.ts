@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {User} from "../../models/User";
 import * as jsonwebtoken from 'jsonwebtoken';
 import {StorageService} from "../../shared/storage/storage.service";
+import * as _ from 'lodash';
 
 @Injectable()
 export class AuthService {
@@ -50,6 +51,16 @@ export class AuthService {
 
   public isLoggedIn() {
     return this.user != null;
+  }
+
+  public isAdmin() {
+    if(this.isLoggedIn()) {
+      if (_.find(this.user.roles, {id: 'Admin'}) || _.find(this.user.roles, {id: 'Owner'})) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 
   public signOut() {

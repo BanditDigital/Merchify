@@ -8,6 +8,7 @@ import {Expense} from "./Expense";
 
 export interface Visit {
   id?: number;
+  type?: string;
   scheduledArrival?: any;
   actualArrival?: any;
   actualDeparture?: any;
@@ -40,5 +41,4 @@ export interface Visit {
   photo4?: string;
   photo5?: string;
   photo6?: string;
-
 }

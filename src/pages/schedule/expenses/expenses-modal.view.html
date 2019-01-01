@@ -1,65 +1,70 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Expenses
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button color="danger" ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title *ngIf="!visit.approvedExpenses && !visit.paidExpenses">Expenses: Pending</ion-title>
+    <ion-title *ngIf="visit.approvedExpenses && !visit.paidExpenses">Expenses: Approved</ion-title>
+    <ion-title *ngIf="visit.approvedExpenses && visit.paidExpenses">Expenses: Paid</ion-title>
+    <ion-buttons end>
+      <button color="secondary" ion-button icon-only (click)="saveAndClose()">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content no-padding>
 
   <ion-grid no-padding>
-
     <ion-row class="header-row">
-      <ion-col><p>Visit Details</p></ion-col>
+      <ion-col><p>Travel</p></ion-col>
     </ion-row>
-
+    <ion-row class="total-row">
+      <ion-col col-3>Time</ion-col>
+      <ion-col>Threshold</ion-col>
+      <ion-col col-3>Rate/hr</ion-col>
+      <ion-col col-3>Total</ion-col>
+    </ion-row>
     <ion-row>
-      <ion-col col-3><b>Name</b></ion-col>
-      <ion-col col-9>{{ visit.user.firstName + ' ' + visit.user.lastName }}</ion-col>
+      <ion-col col-3>
+        <ion-input type="number" [(ngModel)]="visit.travelTime" [disabled]="visit.approvedExpenses"></ion-input>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>{{ visit.travelTimeThreshold | number: '1.2-2' }}hrs</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>£{{ visit.travelRate | number: '1.2-2' }}/hr</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>£{{ ((visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) > 0 ?
+          (visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) : 0) | number: '1.2-2' }}</ion-label>
+      </ion-col>
     </ion-row>
-
+    <ion-row class="total-row">
+      <ion-col col-3>Miles</ion-col>
+      <ion-col>Threshold</ion-col>
+      <ion-col col-3>Rate/m</ion-col>
+      <ion-col col-3>Total</ion-col>
+    </ion-row>
     <ion-row>
-      <ion-col col-3><b>Brand</b></ion-col>
-      <ion-col col-9>{{ visit.brand.name }}</ion-col>
+      <ion-col col-3>
+        <ion-input type="number" [(ngModel)]="visit.mileage" [disabled]="visit.approvedExpenses"></ion-input>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>{{ visit.mileageThreshold | number: '1.2-2' }} miles</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>£{{ visit.mileageRate | number: '1.2-2' }}</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-label>£{{ ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) > 0 ?
+          ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) : 0 | number: '1.2-2' }}</ion-label>
+      </ion-col>
     </ion-row>
-
-    <ion-row>
-      <ion-col col-3><b>Location</b></ion-col>
-      <ion-col col-4>{{ visit.location.name }}</ion-col>
-      <ion-col col-5>{{ visit.location.type }}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-3><b>Retailer</b></ion-col>
-      <ion-col col-4>{{ visit.retailer.name }}</ion-col>
-      <ion-col col-5>{{ visit.retailer.type }}</ion-col>
-    </ion-row>
-
-    <ion-row margin-top class="header-row">
-      <ion-col><p>Time Reporting (Local time)</p></ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6><b>Scheduled</b></ion-col>
-      <ion-col col-3>{{ visit.scheduledArrival | amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
-      <ion-col col-3></ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6><b>Check In</b></ion-col>
-      <ion-col col-3>{{ visit.actualArrival | amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
-      <ion-col col-3>{{ visit.actualArrival | amLocal | amDateFormat: 'HH:mm Z' }}</ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-6><b>Check Out</b></ion-col>
-      <ion-col col-3>{{ visit.actualDeparture | amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
-      <ion-col col-3>{{ visit.actualDeparture | amLocal | amDateFormat: 'HH:mm Z' }}</ion-col>
-    </ion-row>
-
-
-    <ion-row class="header-row" margin-top>
-      <ion-col><p>Expense Report</p></ion-col>
+    <ion-row class="header-row">
+      <ion-col><p>Expenses</p></ion-col>
     </ion-row>
   </ion-grid>
 
@@ -106,69 +111,6 @@
     </ng-template>
 
   </p-table>
-
-  <ion-grid no-padding>
-    <ion-row class="header-row" margin-top>
-      <ion-col><p>Travel Report</p></ion-col>
-    </ion-row>
-    <ion-row class="total-row">
-      <ion-col col-3>Time</ion-col>
-      <ion-col>Threshold</ion-col>
-      <ion-col col-3>Rate/hr</ion-col>
-      <ion-col col-3>Total</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3>
-        <ion-input type="number" [(ngModel)]="visit.travelTime" [disabled]="visit.approvedExpenses"></ion-input>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label>{{ visit.travelTimeThreshold | number: '1.2-2' }}hrs</ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label>£{{ visit.travelRate | number: '1.2-2' }}/hr</ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label>£{{ ((visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) > 0 ?
-          (visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) : 0) | number: '1.2-2' }}</ion-label>
-      </ion-col>
-    </ion-row>
-    <ion-row class="total-row">
-      <ion-col col-3>Miles</ion-col>
-      <ion-col>Threshold</ion-col>
-      <ion-col col-3>Rate/m</ion-col>
-      <ion-col col-3>Total</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3>
-        <ion-input type="number" [(ngModel)]="visit.mileage" [disabled]="visit.approvedExpenses"></ion-input>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label>{{ visit.mileageThreshold | number: '1.2-2' }} miles</ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label>£{{ visit.mileageRate | number: '1.2-2' }}</ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-label>£{{ ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) > 0 ?
-          ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) : 0 | number: '1.2-2' }}</ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-    <ion-grid>
-      <ion-row align-items-center>
-          <ion-col *ngIf="!visit.approvedExpenses && !visit.paidExpenses"><h2>Status: Pending</h2></ion-col>
-          <ion-col *ngIf="visit.approvedExpenses && !visit.paidExpenses"><h2>Status: Approved</h2></ion-col>
-          <ion-col *ngIf="visit.approvedExpenses && visit.paidExpenses"><h2>Status: Paid</h2></ion-col>
-
-        <ion-col align-self-end style="text-align: right">
-          <button ion-button icon-left color="secondary" (click)="saveAndClose()">
-            <ion-icon name="checkmark" color></ion-icon>
-            Save
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
 </ion-content>
 
 

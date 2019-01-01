@@ -1,13 +1,20 @@
 
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <ion-buttons start>
-      <button ion-button (click)="dismiss()">Close</button>
+      <button color="danger" ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
     </ion-buttons>
     <ion-title>
       Visit Photos
     </ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button color="secondary" ion-button icon-only (click)="uploadImages()" [disabled]="uploadDisabled">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content no-padding>
   <div class="thumbnail portrait">
@@ -30,13 +37,3 @@
   </div>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar color="primary">
-    <ion-buttons>
-      <button ion-button icon-left (click)="uploadImages()" [disabled]="uploadDisabled">
-        <ion-icon name="cloud-upload"></ion-icon>
-        Upload Images
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

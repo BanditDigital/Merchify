@@ -11,6 +11,7 @@ import {AlertService} from "../shared/alert/alert.service";
 import {ScheduleModule} from "../pages/schedule/schedule.module";
 import {MomentModule} from "angular2-moment";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AppVersion} from "@ionic-native/app-version";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ScheduleModule,
     AuthModule,
     MomentModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   entryComponents: [
     MyApp
@@ -34,6 +35,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     SplashScreen,
     StorageService,
     AlertService,
+    AppVersion,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

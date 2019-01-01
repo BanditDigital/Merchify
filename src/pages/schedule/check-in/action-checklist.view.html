@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar>
     <ion-title>
       Record Visit Actions
     </ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button color="secondary" ion-button icon-only (click)="saveVisit()">
+        <ion-icon name="checkmark-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
 
@@ -63,20 +68,3 @@
 
 
 </ion-content>
-<ion-footer>
-  <ion-buttons>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left color="secondary" (click)="saveVisit()" float-right>
-            <ion-icon name="checkmark" color></ion-icon>
-            Save
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-buttons>
-</ion-footer>
-

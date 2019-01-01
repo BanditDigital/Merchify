@@ -21,6 +21,9 @@ export class ActionChecklistComponent {
               private view: ViewController,
               private geolocation: Geolocation) {
     this.activeVisit = this.navParams.get('visit');
+    if(!this.activeVisit.stock) {
+      this.activeVisit.stock = [];
+    }
   }
 
   public recordManagerName() {

@@ -23,6 +23,7 @@ import {Geolocation} from "@ionic-native/geolocation";
 import {Rate} from "../../models/Rate";
 import {PhotoModal} from "./photos/photo-modal.component";
 import {VisitActionModal} from "./visit-action/visit-action-modal.component";
+import {AppVersion} from "@ionic-native/app-version";
 
 @Component({
   selector: 'page-schedule',
@@ -50,10 +51,21 @@ export class SchedulePage {
               public actionSheetCtrl: ActionSheetController,
               private alertCtrl: AlertController,
               private auth: AuthService,
-              private geolocation: Geolocation) {
+              private geolocation: Geolocation,
+              private version: AppVersion) {
     this.getVisits();
   }
 
+  showSupport() {
+    this.version.getVersionNumber().then(info => {
+      this.alertCtrl.create({
+        title: 'Merchifi',
+        subTitle: 'Version ' + info,
+        message: 'For support please contact your administrator or submit an email request to support@banditdigital.co.uk'
+      }).present();
+    })
+
+  }
   public newAppointment() {
     let newAppointmentModal = this.modalCtrl.create(ScheduleNewModal);
 
@@ -65,6 +77,11 @@ export class SchedulePage {
     });
 
     newAppointmentModal.present();
+  }
+
+  public isAdmin() {
+    console.log(this.auth.isAdmin());
+    return this.auth.isAdmin();
   }
 
   public getVisits(refresher?) {

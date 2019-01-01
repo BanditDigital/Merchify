@@ -24,10 +24,6 @@ export class ShelfStockCheckModal {
       this.visit = this.navParams.get('visit');
       this.endOfDay = this.navParams.get('sales');
 
-      if(!this.visit.stock) {
-        this.visit.stock = [];
-      }
-
       if(this.visit.stock.length == 0) {
         this.getProducts();
       }
