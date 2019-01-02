@@ -1,5 +1,5 @@
 export const environment = {
   PRODUCTION: true,
-  API: 'https://merchifi-server-staging.herokuapp.com/',
+  API: 'https://merchifi-server-production.herokuapp.com/',
   HEADERS: {}
 };
