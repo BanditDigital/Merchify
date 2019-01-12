@@ -80,11 +80,10 @@ export class SchedulePage {
   }
 
   public isAdmin() {
-    console.log(this.auth.isAdmin());
     return this.auth.isAdmin();
   }
 
-  public getVisits(refresher?) {
+  public getVisits() {
     this.skip = 0;
     this.take = this.recordsPerPage;
 
@@ -94,11 +93,9 @@ export class SchedulePage {
     this.scheduleService.getVisits(this.skip, this.take)
       .subscribe(data => {
         this.rawData = data.completed.concat(data.scheduled, data.checkedIn);
+        this.totalVisits = data.total;
         this.visitFilters();
 
-        if (refresher) {
-          refresher.complete();
-        }
         loading.dismiss();
       }, error => {
         this.errorAlert.showAlert('Could not load available appointments', error.error.message);
@@ -106,36 +103,11 @@ export class SchedulePage {
       });
   }
 
-  public getTotalVisits(refresher?) {
-    let loading = this.loadingCtrl.create({content: 'Getting available appointments...'});
-    loading.present();
-
-    this.scheduleService.getVisits(this.skip, this.take).subscribe(data => {
-      this.totalVisits = data.total;
-      loading.dismiss();
-
-      if (refresher) {
-        this.getVisits(refresher)
-      } else {
-        this.getVisits();
-      }
-
-    }, error => {
-      this.errorAlert.showAlert('Could not get total appointments', error.error.message);
-      loading.dismiss();
-    });
-  }
-
-  public doRefresh(refresher) {
-    this.skip = 0;
-    this.take = 0;
-    this.getTotalVisits(refresher);
-  }
-
   public getMoreVisits(infiniteScroll) {
+    console.log(infiniteScroll);
     if ((this.skip + this.recordsPerPage) < this.totalVisits) {
       this.skip = this.skip + this.recordsPerPage;
-      this.take = this.take + this.recordsPerPage;
+      this.take = this.recordsPerPage;
       this.scheduleService.getVisits(this.skip, this.take).subscribe(data => {
 
         this.rawData = this.rawData.concat(data.completed);

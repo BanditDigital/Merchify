@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><img src="../../assets/imgs/logo.png" height="20" width="133" (click)="showSupport()" /></ion-title>
+    <ion-title><img src="../../assets/imgs/logo.png" height="20" width="133" (click)="showSupport()"/></ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="royal" (click)="signOut()">
         <ion-icon name="close" icon-left></ion-icon>
@@ -24,9 +24,6 @@
 
 
 <ion-content no-padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
   <ion-list>
     <ion-item *ngIf="visits.length === 0">
       No visits found, better get cracking!
@@ -67,8 +64,10 @@
 
         </ion-badge>
       </ion-item>
+
     </ion-item-group>
   </ion-list>
+
 
   <ion-fab bottom right *ngIf="!activeVisit">
     <button ion-fab color="secondary" (click)="newAppointment()">
@@ -76,7 +75,7 @@
     </button>
   </ion-fab>
 
-  <ion-infinite-scroll (ionInfinite)="getMoreVisits($event)" loadingSpinner="bubbles" loadingText="Loading More Visits...">
+  <ion-infinite-scroll (ionInfinite)="getMoreVisits($event)" loadingSpinner="bubbles"loadingText="Loading More Visits...">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
