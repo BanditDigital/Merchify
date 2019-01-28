@@ -24,6 +24,8 @@ import {Rate} from "../../models/Rate";
 import {PhotoModal} from "./photos/photo-modal.component";
 import {VisitActionModal} from "./visit-action/visit-action-modal.component";
 import {AppVersion} from "@ionic-native/app-version";
+import {ProductsService} from "../../services/products/products.service";
+import {Stock} from "../../models/Stock";
 
 @Component({
   selector: 'page-schedule',
@@ -52,9 +54,11 @@ export class SchedulePage {
               private alertCtrl: AlertController,
               private auth: AuthService,
               private geolocation: Geolocation,
-              private version: AppVersion) {
+              private version: AppVersion,
+              private productService: ProductsService) {
     this.getVisits();
   }
+
 
   showSupport() {
     this.version.getVersionNumber().then(info => {
@@ -81,6 +85,26 @@ export class SchedulePage {
 
   public isAdmin() {
     return this.auth.isAdmin();
+  }
+
+  doRefresh() {
+    this.visits = [];
+    this.skip = 0;
+    this.take = this.recordsPerPage;
+
+    let loading = this.loadingCtrl.create({content: 'Getting available appointments...'});
+    loading.present();
+
+    this.scheduleService.getVisits(this.skip, this.take)
+      .subscribe(data => {
+        this.rawData = data.completed.concat(data.scheduled, data.checkedIn);
+        this.totalVisits = data.total;
+        this.visitFilters();
+        loading.dismiss();
+      }, error => {
+        this.errorAlert.showAlert('Could not load available appointments', error.error.message);
+        loading.dismiss();
+      });
   }
 
   public getVisits() {
@@ -274,32 +298,58 @@ export class SchedulePage {
             text: 'Confirm',
             handler: () => {
               loading.present();
-              visit.actualArrival = checkInTime.utc();
-              console.log(visit.user);
-              const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
-              console.log(rate);
+              this.productService.getProductsByBrand(visit.brand)
+                .subscribe(products => {
+                  visit.stock = [];
+                  products.forEach(product => {
+                    let stock: Stock = {
+                      productId: product.id,
+                      visitId: visit.id,
+                      product: product,
+                      systemQty: 0,
+                      onHand: 0,
+                      qtySold: 0,
+                      price: product.retailPrice
+                    }
+                    visit.stock.push(stock);
+                  });
+                  visit.actualArrival = checkInTime.utc();
+                  console.log(visit.user);
+                  const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
+                  console.log(rate);
 
-              visit.hourlyRate = rate.hourlyRate;
-              visit.travelRate = rate.travelTimeRate;
-              visit.mileageRate = rate.mileageRate;
-              visit.travelTimeThreshold = rate.travelTimePayableThreshold;
-              visit.mileageThreshold = rate.mileagePayableThreshold;
-              visit.expenses = [];
-              visit.checkInLocation = {long: position.coords.longitude, lat: position.coords.latitude};
-              visit.checkOutLocation = {long: null, lat: null};
-              this.scheduleService.editVisit(visit)
-                .subscribe((updated) => {
-                  this.visitFilters();
-                  loading.dismiss();
+                  visit.hourlyRate = rate.hourlyRate;
+                  visit.travelRate = rate.travelTimeRate;
+                  visit.mileageRate = rate.mileageRate;
+                  visit.travelTimeThreshold = rate.travelTimePayableThreshold;
+                  visit.mileageThreshold = rate.mileagePayableThreshold;
+                  visit.expenses = [];
+                  visit.checkInLocation = {long: position.coords.longitude, lat: position.coords.latitude};
+                  visit.checkOutLocation = {long: null, lat: null};
+                  this.scheduleService.editVisit(visit)
+                    .subscribe((updated) => {
+                      this.visitFilters();
+                      loading.dismiss();
+                    }, error => {
+                      this.errorAlert.showAlert('Could not check in', error.error.message);
+                      loading.dismiss();
+                    });
                 }, error => {
-                  this.errorAlert.showAlert('Could not check in', error.error.message);
-                  loading.dismiss();
+                  this.errorAlert.showAlert('Could not load products', error.error.message);
                 });
             }
           }
         ]
       });
       confirm.present();
+    }, err => {
+      console.log(err);
+      let error = this.alertCtrl.create({
+        title: 'Unable to check in',
+        subTitle: 'Your location could not be calculated',
+        message: 'Check that you have location services enabled. It is hard to retrieve location from inside large structures, try moving outside to complete this action.'
+      });
+      error.present();
     });
 
   }

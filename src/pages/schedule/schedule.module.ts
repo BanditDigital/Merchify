@@ -25,7 +25,6 @@ import {OrderModule} from "ngx-order-pipe";
 import {ServicesModule} from "../../services/services.module";
 import {TokenInterceptor} from "../auth/token.interceptor";
 import {Geolocation} from "@ionic-native/geolocation";
-import {ShelfStockCheckModal} from "./shelf-stock-check/shelf-stock-check.component";
 import {PhotoModal} from "./photos/photo-modal.component";
 import {Camera} from "@ionic-native/camera";
 import {Transfer} from "@ionic-native/transfer";
@@ -38,7 +37,6 @@ import {File} from "@ionic-native/file";
     ScheduleNewModal,
     VisitActionModal,
     StockCheckModal,
-    ShelfStockCheckModal,
     VisitReportModal,
     ExpensesModal,
     EditCompleteComponent,
@@ -67,7 +65,6 @@ import {File} from "@ionic-native/file";
     ScheduleNewModal,
     VisitActionModal,
     StockCheckModal,
-    ShelfStockCheckModal,
     VisitReportModal,
     ExpensesModal,
     ActionChecklistComponent,

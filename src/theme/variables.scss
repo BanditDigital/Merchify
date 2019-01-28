@@ -1,6 +1,10 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@import "/www/assets/primeng/primeng.min.css";
+@import "/www/assets/primeicons/primeicons.css";
+@import "/www/assets/primeng/themes/nova-light/theme.css";
+
 // Font path is used to include ionicons,
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
@@ -13,9 +17,7 @@ $app-direction: ltr;
 
 
 @import "ionic.globals";
-@import "../assets/primeicons/primeicons.css";
-@import "../assets/primeng/primeng.min.css";
-@import "../assets/primeng/themes/nova-light/theme.css";
+
 
 
 

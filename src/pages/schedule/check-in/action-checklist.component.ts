@@ -2,10 +2,13 @@ import {Component} from "@angular/core";
 import {VisitActionModal} from "../visit-action/visit-action-modal.component";
 import {StockCheckModal} from "../stock-check/stock-check.component";
 import {Visit} from "../../../models/Visit";
-import {AlertController, ModalController, NavParams, ViewController} from "ionic-angular";
+import {AlertController, LoadingController, ModalController, NavParams, ViewController} from "ionic-angular";
 import * as moment from 'moment';
 import {Geolocation} from "@ionic-native/geolocation";
 import {PhotoModal} from "../photos/photo-modal.component";
+import {Stock} from "../../../models/Stock";
+import {ProductsService} from "../../../services/products/products.service";
+import {AlertService} from "../../../shared/alert/alert.service";
 
 @Component({
   selector: 'page-action-checklist',
@@ -21,9 +24,6 @@ export class ActionChecklistComponent {
               private view: ViewController,
               private geolocation: Geolocation) {
     this.activeVisit = this.navParams.get('visit');
-    if(!this.activeVisit.stock) {
-      this.activeVisit.stock = [];
-    }
   }
 
   public recordManagerName() {
@@ -74,31 +74,6 @@ export class ActionChecklistComponent {
     });
 
     stock.present();
-  }
-
-  public endOfDayComplete() {
-    let complete = false;
-    if (this.activeVisit.stock) {
-      this.activeVisit.stock.forEach(item => {
-        if (item.onHand != null || item.onHand == 0) {
-          complete = item.qtySold != null || item.onHand == 0;
-        }
-      });
-      return complete;
-    } else {
-      return false;
-    }
-  }
-
-  public stockcheckComplete() {
-    console.log(this.activeVisit);
-    if (this.activeVisit.stock) {
-      for (let item of this.activeVisit.stock) {
-        return item.onHand != null;
-      }
-    } else {
-      return false;
-    }
   }
 
   public checkOut(visit) {
