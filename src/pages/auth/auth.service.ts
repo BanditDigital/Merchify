@@ -45,7 +45,6 @@ export class AuthService {
       }, error => {
         resolve(false);
       });
-
     });
   }
 

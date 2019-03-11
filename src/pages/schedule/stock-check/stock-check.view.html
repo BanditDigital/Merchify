@@ -21,7 +21,7 @@
             <ion-col col-9>Item</ion-col>
             <ion-col col-3>{{ type === 'sales' ? 'Qty Sold' : 'Qty' }}</ion-col>
           </ion-row>
-          <ion-row class="row" *ngFor="let item of visit.stock | stockSold: type">
+          <ion-row class="row" *ngFor="let item of visit.stock">
             <ion-col col-9>
               <p><b>{{item.product.description}}</b> {{item.product.size}}<br/>
               SKU {{item.product.sku}} / {{item.product.barcode}}</p>

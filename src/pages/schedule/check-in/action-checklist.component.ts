@@ -69,7 +69,7 @@ export class ActionChecklistComponent {
 
     stock.onDidDismiss(data => {
       if (data && data.stockCheck) {
-        this.activeVisit.stock = data.stockCheck;
+        this.activeVisit = data.stockCheck;
       }
     });
 
@@ -100,10 +100,11 @@ export class ActionChecklistComponent {
               this.geolocation.getCurrentPosition().then(position => {
                 visit.actualDeparture = checkOutTime.utc();
                 visit.checkOutLocation = { long: position.coords.longitude, lat: position.coords.latitude};
+                this.saveVisit();
+              }).catch(error => {
+                visit.actualDeparture = checkOutTime.utc();
+                this.saveVisit();
               });
-
-
-              this.saveVisit();
             }
           }
         ]

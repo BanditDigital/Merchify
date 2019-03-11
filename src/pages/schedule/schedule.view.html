@@ -28,46 +28,148 @@
 </ion-header>
 
 <ion-content no-padding>
-  <ion-list>
+  <ion-list no-padding>
     <ion-item *ngIf="visits.length === 0">
       No visits found, better get cracking!
     </ion-item>
-    <ion-item-group *ngFor="let group of visits | groupBy : 'state'">
+    <ion-item-group *ngFor="let group of visits | groupBy : 'state'; let g = index" no-padding>
       <ion-item-divider color="light">
         {{ group.key }} ({{ group.list.length }})
       </ion-item-divider>
-      <ion-item *ngFor="let visit of group.list" (click)="openVisit(visit)">
-        <h3 class="highlight">{{ visit.retailer.name }} </h3>
-        <p>{{ visit.location.name }}</p>
-        <p>
-          <span class="highlight">{{ visit.brand.name }}</span> -
-          <span class="underline">{{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'DD/MM/YY' }}</span>
-        </p>
-        <p *ngIf="isAdmin()">{{ visit.user.firstName + ' ' + visit.user.lastName }}</p>
-        <ion-badge text-left color="{{ getVisitBadgeColor(visit) }}" item-end>
-          <div *ngIf="visit.state == 'Checked In' || visit.state == 'Scheduled'">{{visit.state }}</div>
-          <div>
-            {{ visit.state == 'Checked In'
-            ? ((timeCheckedIn(visit) | number: '1.2-2').toString() + ' hrs') : ''}}
 
-            {{ visit.state == 'Completed'
-            ? ( 'Time ' + (timeSpent(visit) | number: '1.2-2').toString() + ' hrs') : ''}}
-          </div>
-          <div>
-            {{ (visit.state == 'Completed') && visit.travelTime > 0
-            ? ' Travel ' + (visit.travelTime | number: '1.2-2') + ' hrs' : ''}}
-          </div>
-          <div>
-            {{ (visit.state == 'Completed')
-            ? ' Sales £' + (totalSales(visit) | number: '1.2-2') : ''}}
-          </div>
-          <div>
-            {{ (visit.state == 'Completed') && expensesTotal(visit) > 0
-            ? ' Expenses £' + (expensesTotal(visit) | number: '1.2-2') : ''}}
-          </div>
+        <ion-card ion-item no-margin no-padding (click)="openVisit(visit)" *ngFor="let visit of group.list; let i=index">
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-item no-padding>
+                  <ion-avatar item-start>
+                    <img src="https://ui-avatars.com/api/?size=128&color=ffffff&background=3d73cc&rounded=true&name={{ visit.brand.name }}"></ion-avatar>
+                  <h3>{{ visit.retailer.name }}</h3>
+                  <p>{{ visit.location.name | titlecase }}</p>
+                  <p *ngIf="isAdmin()">{{ visit.user.firstName + ' ' + visit.user.lastName | titlecase }}</p>
+                  <ion-badge  item-end [color]="getVisitBadgeColor(visit)">
+                    {{ (visit.actualArrival ? visit.actualArrival : visit.scheduledArrival) | amDateFormat:'DD/MM/YY' }}
+                  </ion-badge>
+                </ion-item>
+              </ion-col>
 
-        </ion-badge>
-      </ion-item>
+            </ion-row>
+
+          </ion-card-content>
+
+
+          <ion-card-content text-wrap>
+          <ion-grid *ngIf="isRecordExpanded(g, i, 'sales')">
+            <ion-row>
+              <ion-col col-7>
+                <b>Product</b>
+              </ion-col>
+              <ion-col col-2>
+                <b>Sold</b>
+              </ion-col>
+              <ion-col col-3>
+                <b>Value</b>
+              </ion-col>
+            </ion-row>
+
+
+            <ion-row *ngFor="let item of visit.stock | stock: 'eod'">
+              <ion-col col-7>
+                {{ item.product.description }}
+              </ion-col>
+              <ion-col col-2>
+                {{ item.qtySold }}
+              </ion-col>
+              <ion-col col-3>
+                £{{ item.qtySold * item.price | number: '1.2-2' }}
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="calculateSales(visit) === 0">
+              <ion-col col-12>
+                No sales recorded.
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+
+
+
+            <ion-row *ngIf="isRecordExpanded(g , i, 'costs')">
+              <ion-col>
+                <b>Salary</b>
+              </ion-col>
+              <ion-col>
+                <b>Travel</b>
+              </ion-col>
+              <ion-col>
+               <b>Mileage</b>
+              </ion-col>
+              <ion-col>
+                <b>Expenses</b>
+              </ion-col>
+
+            </ion-row>
+            <ion-row *ngIf="isRecordExpanded(g,i, 'costs')">
+              <ion-col>
+                £{{(calculateSalary(visit) | number: '1.2-2')}}
+              </ion-col>
+              <ion-col>
+                £{{(calculateTravelCost(visit) | number: '1.2-2')}}
+              </ion-col>
+              <ion-col>
+                £{{(calculateMileageCost(visit) | number: '1.2-2')}}
+              </ion-col>
+              <ion-col>
+                £{{(calculateExpenses(visit) | number: '1.2-2')}}
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="isRecordExpanded(g,i, 'times')">
+              <ion-col>
+                <button ion-button clear full icon-start small>
+                  <ion-icon name="stopwatch"></ion-icon>Clocked In
+                  {{ ' ' + (visit.actualArrival | amDateFormat : 'HH:mm')}}
+                </button>
+              </ion-col>
+              <ion-col>
+                <button *ngIf="visit.actualDeparture" ion-button clear full icon-start small>
+                  <ion-icon name="stopwatch"></ion-icon>Clocked Out
+               {{ ' ' + (visit.actualDeparture | amDateFormat : 'HH:mm')}}
+                </button>
+              </ion-col>
+
+            </ion-row>
+
+            <ion-row *ngIf="visit.actualArrival">
+              <ion-col align-self-center text-center>
+                <button [outline]="!isRecordExpanded(g,i, 'times')" block
+                        ion-button icon-start small
+                        (click)="toggleDetails(g,i, 'times')">
+                  <ion-icon name="time"></ion-icon>
+                  <div> {{(calculateTimeSpent(visit) | number: '1.2-2')}} hrs</div>
+                </button>
+              </ion-col>
+              <ion-col>
+                <button [outline]="!isRecordExpanded(g,i, 'sales')"
+                        block ion-button [disabled]="visit.stock.length === 0"
+                        icon-start small color="secondary"
+                        (click)="toggleDetails(g,i, 'sales')">
+                  <ion-icon name="basket"></ion-icon>
+                  <div> £{{(calculateSales(visit) | number: '1.2-2')}}</div>
+                </button>
+              </ion-col>
+              <ion-col>
+                <button [outline]="!isRecordExpanded(g,i, 'costs')" block ion-button
+                        icon-start small color="danger"
+                        (click)="toggleDetails(g,i, 'costs')">
+                  <ion-icon name="cash"></ion-icon>
+                  <div> £{{(calculateInvoiceTotal(visit) | number: '1.2-2')}}</div>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
 
     </ion-item-group>
   </ion-list>
@@ -79,7 +181,8 @@
     </button>
   </ion-fab>
 
-  <ion-infinite-scroll (ionInfinite)="getMoreVisits($event)" loadingSpinner="bubbles"loadingText="Loading More Visits...">
+  <ion-infinite-scroll (ionInfinite)="getMoreVisits($event)" loadingSpinner="bubbles"
+                       loadingText="Loading More Visits...">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

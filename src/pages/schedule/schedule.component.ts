@@ -43,6 +43,9 @@ export class SchedulePage {
   skip = 0;
   take = 2;
   recordsPerPage = 15;
+  groupShown = null;
+  recordShown = null;
+  dataShown = null;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -59,6 +62,23 @@ export class SchedulePage {
     this.getVisits();
   }
 
+  toggleDetails(group, record, data) {
+    if (this.isRecordExpanded(group, record, data)) {
+      this.recordShown = null;
+      this.dataShown = null;
+      this.groupShown = null;
+    } else {
+      this.recordShown = record;
+      this.dataShown = data;
+      this.groupShown = group
+    }
+  };
+
+  isRecordExpanded(group, record, data) {
+    return this.recordShown === record && this.groupShown === group && this.dataShown === data;
+  };
+
+
 
   showSupport() {
     this.version.getVersionNumber().then(info => {
@@ -70,6 +90,7 @@ export class SchedulePage {
     })
 
   }
+
   public newAppointment() {
     let newAppointmentModal = this.modalCtrl.create(ScheduleNewModal);
 
@@ -285,8 +306,7 @@ export class SchedulePage {
     let loading = this.loadingCtrl.create({content: 'Checking in...'});
     let checkInTime = moment().utc();
 
-    this.geolocation.getCurrentPosition().then(position => {
-      console.log(position);
+
       let confirm = this.alertCtrl.create({
         title: `Confirm Check-in`,
         message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.local().format('DD/MM/YYYY HH:mm Z')}`,
@@ -298,59 +318,93 @@ export class SchedulePage {
             text: 'Confirm',
             handler: () => {
               loading.present();
-              this.productService.getProductsByBrand(visit.brand)
-                .subscribe(products => {
-                  visit.stock = [];
-                  products.forEach(product => {
-                    let stock: Stock = {
-                      productId: product.id,
-                      visitId: visit.id,
-                      product: product,
-                      systemQty: 0,
-                      onHand: 0,
-                      qtySold: 0,
-                      price: product.retailPrice
-                    }
-                    visit.stock.push(stock);
-                  });
-                  visit.actualArrival = checkInTime.utc();
-                  console.log(visit.user);
-                  const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
-                  console.log(rate);
-
-                  visit.hourlyRate = rate.hourlyRate;
-                  visit.travelRate = rate.travelTimeRate;
-                  visit.mileageRate = rate.mileageRate;
-                  visit.travelTimeThreshold = rate.travelTimePayableThreshold;
-                  visit.mileageThreshold = rate.mileagePayableThreshold;
-                  visit.expenses = [];
-                  visit.checkInLocation = {long: position.coords.longitude, lat: position.coords.latitude};
-                  visit.checkOutLocation = {long: null, lat: null};
-                  this.scheduleService.editVisit(visit)
-                    .subscribe((updated) => {
-                      this.visitFilters();
-                      loading.dismiss();
-                    }, error => {
-                      this.errorAlert.showAlert('Could not check in', error.error.message);
-                      loading.dismiss();
+              this.geolocation.getCurrentPosition().then(position => {
+                this.productService.getProductsByBrand(visit.brand)
+                  .subscribe(products => {
+                    visit.stock = [];
+                    products.forEach(product => {
+                      let stock: Stock = {
+                        productId: product.id,
+                        visitId: visit.id,
+                        product: product,
+                        systemQty: 0,
+                        onHand: 0,
+                        qtySold: 0,
+                        price: product.retailPrice
+                      }
+                      visit.stock.push(stock);
                     });
-                }, error => {
-                  this.errorAlert.showAlert('Could not load products', error.error.message);
-                });
+                    visit.actualArrival = checkInTime.utc();
+                    console.log(visit.user);
+                    const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
+                    console.log(rate);
+
+                    visit.hourlyRate = rate.hourlyRate;
+                    visit.travelRate = rate.travelTimeRate;
+                    visit.mileageRate = rate.mileageRate;
+                    visit.travelTimeThreshold = rate.travelTimePayableThreshold;
+                    visit.mileageThreshold = rate.mileagePayableThreshold;
+                    visit.expenses = [];
+                    visit.checkInLocation = {long: position.coords.longitude, lat: position.coords.latitude};
+                    visit.checkOutLocation = {long: null, lat: null};
+                    this.scheduleService.editVisit(visit)
+                      .subscribe((updated) => {
+                        this.visitFilters();
+                        loading.dismiss();
+                      }, error => {
+                        this.errorAlert.showAlert('Could not check in', error.error.message);
+                        loading.dismiss();
+                      });
+                  }, error => {
+                    this.errorAlert.showAlert('Could not load products', error.error.message);
+                  });
+              }).catch(error => {
+                this.productService.getProductsByBrand(visit.brand)
+                  .subscribe(products => {
+                    visit.stock = [];
+                    products.forEach(product => {
+                      let stock: Stock = {
+                        productId: product.id,
+                        visitId: visit.id,
+                        product: product,
+                        systemQty: 0,
+                        onHand: 0,
+                        qtySold: 0,
+                        price: product.retailPrice
+                      }
+                      visit.stock.push(stock);
+                    });
+                    visit.actualArrival = checkInTime.utc();
+                    console.log(visit.user);
+                    const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
+                    console.log(rate);
+
+                    visit.hourlyRate = rate.hourlyRate;
+                    visit.travelRate = rate.travelTimeRate;
+                    visit.mileageRate = rate.mileageRate;
+                    visit.travelTimeThreshold = rate.travelTimePayableThreshold;
+                    visit.mileageThreshold = rate.mileagePayableThreshold;
+                    visit.expenses = [];
+                    visit.checkInLocation = {long: null, lat: null};
+                    visit.checkOutLocation = {long: null, lat: null};
+                    this.scheduleService.editVisit(visit)
+                      .subscribe((updated) => {
+                        this.visitFilters();
+                        loading.dismiss();
+                      }, error => {
+                        this.errorAlert.showAlert('Could not check in', error.error.message);
+                        loading.dismiss();
+                      });
+                  }, error => {
+                    this.errorAlert.showAlert('Could not load products', error.error.message);
+                  });
+              });
             }
+
           }
         ]
       });
       confirm.present();
-    }, err => {
-      console.log(err);
-      let error = this.alertCtrl.create({
-        title: 'Unable to check in',
-        subTitle: 'Your location could not be calculated',
-        message: 'Check that you have location services enabled. It is hard to retrieve location from inside large structures, try moving outside to complete this action.'
-      });
-      error.present();
-    });
 
   }
 
@@ -463,7 +517,7 @@ export class SchedulePage {
     return moment(visit.actualDeparture).diff(visit.actualArrival, 'hours', true).toFixed(2);
   }
 
-  public totalSales(visit) {
+  public calculateSales(visit: Visit): number {
     let total = 0;
     if (visit.stock) {
 
@@ -474,30 +528,73 @@ export class SchedulePage {
     return total;
   }
 
-  public getHourlyRate(visit: Visit) {
-    let result: Rate = _.find(visit.user.rates, {'brandId': visit.brand.id});
-    if (result) {
-      return result.hourlyRate;
+  public calculateMileageCost(visit: Visit): number {
+    if(visit.mileage > visit.mileageThreshold) {
+      return ((visit.mileage - visit.mileageThreshold) * visit.mileageRate)
     } else {
-      return 0;
+      return 0.00;
     }
   }
 
-  public getTravelRate(visit: Visit) {
-    let result: Rate = _.find(visit.user.rates, {'brandId': visit.brand.id});
-    if (result) {
-      return result.travelTimeRate;
+  public calculateTravelCost(visit: Visit): number {
+    if(visit.travelTime > visit.travelTimeThreshold) {
+      return ((visit.travelTime - visit.travelTimeThreshold) * visit.travelRate)
     } else {
-      return 0;
+      return 0.00;
     }
   }
 
-  public expensesTotal(visit) {
+  public calculateTimeSpent(visit: Visit): number {
+    let hours = 0;
+    if(visit.actualDeparture) {
+      hours = Number.parseFloat(
+        moment(visit.actualDeparture)
+          .diff(visit.actualArrival, 'hours', true)
+          .toFixed(2)
+      );
+    } else if(visit.actualArrival && !visit.actualDeparture) {
+      hours = Number.parseFloat(
+        moment(moment())
+          .diff(visit.actualArrival, 'hours', true)
+          .toFixed(2)
+      );
+    }
+    return hours;
+  }
+
+  public calculateSalary(visit: Visit): number {
+    let hours = 0;
+    if(visit.actualDeparture) {
+      hours = Number.parseFloat(
+        moment(visit.actualDeparture)
+          .diff(visit.actualArrival, 'hours', true)
+          .toFixed(2)
+      );
+    } else if(visit.actualArrival && !visit.actualDeparture) {
+      hours = Number.parseFloat(
+        moment(moment())
+          .diff(visit.actualArrival, 'hours', true)
+          .toFixed(2)
+      );
+    }
+    return visit.hourlyRate * hours;
+  }
+
+  public calculateExpenses(visit: Visit): number {
     let total = 0;
     visit.expenses.forEach(ex => {
       total = +total + +ex.amount;
     })
     return total;
+  }
+
+  public calculateInvoiceTotal(visit: Visit): number {
+    let running = 0;
+    running += this.calculateMileageCost(visit);
+    running += this.calculateTravelCost(visit);
+    running += this.calculateSalary(visit);
+    running += this.calculateExpenses(visit);
+    return running;
   }
 
   public signOut() {
