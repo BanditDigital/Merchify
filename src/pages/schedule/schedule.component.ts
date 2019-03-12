@@ -349,6 +349,9 @@ export class SchedulePage {
                     visit.checkOutLocation = {long: null, lat: null};
                     this.scheduleService.editVisit(visit)
                       .subscribe((updated) => {
+                       _.remove(this.rawData , visit);
+                        this.rawData.push(updated);
+                        console.log(this.visits);
                         this.visitFilters();
                         loading.dismiss();
                       }, error => {
@@ -389,6 +392,8 @@ export class SchedulePage {
                     visit.checkOutLocation = {long: null, lat: null};
                     this.scheduleService.editVisit(visit)
                       .subscribe((updated) => {
+                        _.remove(this.rawData , visit);
+                        this.rawData.push(updated);
                         this.visitFilters();
                         loading.dismiss();
                       }, error => {
