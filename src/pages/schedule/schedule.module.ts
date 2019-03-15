@@ -18,8 +18,6 @@ import {StockCheckPipe} from "../../shared/pipes/stock-check.pipe";
 import {EditCompleteComponent} from "./edit-complete-visit/edit-complete.component";
 import {ExpensesModal} from "./expenses/expenses-modal.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {TableModule} from "primeng/table";
-import {ButtonModule} from "primeng/button";
 import {NewExpenseModal} from "./expenses/new-expense-modal";
 import {OrderModule} from "ngx-order-pipe";
 import {ServicesModule} from "../../services/services.module";
@@ -55,8 +53,6 @@ import {File} from "@ionic-native/file";
     HttpClientModule,
     MomentModule,
     BrowserAnimationsModule,
-    ButtonModule,
-    TableModule,
     OrderModule,
     ServicesModule
   ],

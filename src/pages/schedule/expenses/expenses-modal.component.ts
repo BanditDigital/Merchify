@@ -50,9 +50,9 @@ export class ExpensesModal implements OnInit {
     modal.present();
   }
 
-  onRowSelect(event) {
+  updateExpense(x) {
     if(!this.visit.paidExpenses && !this.visit.approvedExpenses) {
-      let modal = this.modal.create(NewExpenseModal, { expense: event.data }, { enableBackdropDismiss: false });
+      let modal = this.modal.create(NewExpenseModal, { expense: x }, { enableBackdropDismiss: false });
       modal.onDidDismiss(data => {
         if(data.expense && !data.delete) {
           this.expense = data.expense;

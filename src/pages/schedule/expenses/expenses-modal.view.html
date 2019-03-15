@@ -39,7 +39,8 @@
       </ion-col>
       <ion-col col-3>
         <ion-label>£{{ ((visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) > 0 ?
-          (visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) : 0) | number: '1.2-2' }}</ion-label>
+          (visit.travelRate * (visit.travelTime - visit.travelTimeThreshold)) : 0) | number: '1.2-2' }}
+        </ion-label>
       </ion-col>
     </ion-row>
     <ion-row class="total-row">
@@ -60,57 +61,46 @@
       </ion-col>
       <ion-col col-3>
         <ion-label>£{{ ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) > 0 ?
-          ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) : 0 | number: '1.2-2' }}</ion-label>
+          ((visit.mileage - visit.mileageThreshold) * visit.mileageRate) : 0 | number: '1.2-2' }}
+        </ion-label>
       </ion-col>
     </ion-row>
-    <ion-row class="header-row">
+    <ion-row class="total-row">
       <ion-col><p>Expenses</p></ion-col>
+    </ion-row>
+    <ion-row class="header-row">
+      <ion-col col-2></ion-col>
+      <ion-col><b>Date</b></ion-col>
+      <ion-col col-5><b>Description</b></ion-col>
+      <ion-col><b>Amount</b></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let x of visit.expenses" justify-content-center align-items-center>
+      <ion-col col-2>
+        <button ion-button icon-only
+                icon-start small color="primary"
+                (click)="updateExpense(x)" *ngIf="!visit.approvedExpenses">
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>{{ x.expenseDate| amLocal | amDateFormat: 'DD/MM/YY' }}</ion-col>
+      <ion-col col-5>{{ x.description}}</ion-col>
+      <ion-col>£{{ x.amount | number: '1.2-2'}}</ion-col>
+    </ion-row>
+    <ion-row justify-content-center align-items-center>
+      <ion-col col-2>
+        <button ion-button
+                icon-start small color="secondary"
+                (click)="showDialogToAdd()" *ngIf="!visit.approvedExpenses">
+          <ion-icon name="cash"></ion-icon>
+          Add Expense
+        </button>
+      </ion-col>
+      <ion-col col-5></ion-col>
+      <ion-col></ion-col>
+      <ion-col *ngIf="expensesTotal() > 0"><b>£{{ expensesTotal() | number: '1.2-2' }}</b></ion-col>
     </ion-row>
   </ion-grid>
 
-  <p-table [columns]="cols" [value]="visit.expenses" selectionMode="single" [(selection)]="selectedExpense"
-           (onRowSelect)="onRowSelect($event)">
-    <ng-template pTemplate="caption">
-      Click row to edit or delete
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-          {{col.header}}
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr [pSelectableRow]="rowData">
-        <td>
-          {{ rowData['expenseDate'] | amLocal | amDateFormat: 'DD/MM/YY' }}
-        </td>
-        <td>
-          {{ rowData['description'] }}
-        </td>
-        <td>
-          £{{ rowData['amount'] | number: '1.2-2'}}
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <tr>
-        <td>Total</td>
-        <td></td>
-        <td>
-          £{{ expensesTotal() | number: '1.2-2' }}
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="summary" let-rowData>
-      <div style="text-align:left">
-        <button ion-button icon-end (click)="showDialogToAdd()" *ngIf="!visit.approvedExpenses">Add
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </div>
-    </ng-template>
-
-  </p-table>
 </ion-content>
 
 
