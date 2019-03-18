@@ -95,7 +95,7 @@ export class ExpensesModal implements OnInit {
       .subscribe(success => {
         if(success) {
           this.nav.popToRoot();
-          loading.dismiss();
+          loading.dismiss({ visit: this.visit });
         }
       }, error => {
         loading.dismiss();

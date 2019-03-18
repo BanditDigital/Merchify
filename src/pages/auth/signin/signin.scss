@@ -1,8 +1,21 @@
 page-signin {
+
+  ion-content {
+    background-color: #2b262b!important;
+    background-image: linear-gradient(-180deg, #070307, #2f292f) !important;
+  }
+
   .vertical-align-content > * {
     display: flex !important;
     align-content: center !important;
     align-items: center !important;
   }
+
+  .login {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+
 
 }

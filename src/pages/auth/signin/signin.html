@@ -1,7 +1,8 @@
 <ion-content no-padding class="vertical-align-content">
   <ion-grid>
     <ion-row justify-content-center>
-      <img src="../../../assets/imgs/MerchifyLogo.png" height="167" width="200"/>
+      <img src="../../../assets/imgs/logo-white.png" height="200" width="200"/>
+
     </ion-row>
     <ion-row padding-bottom="1em">
       <ion-col></ion-col>
@@ -20,7 +21,7 @@
       </span>
           <!-- PASSWORD INPUT -->
           <ion-item>
-            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+            <ion-input class="login" type="password" placeholder="Password" formControlName="password"></ion-input>
           </ion-item>
           <span class="error"
                 *ngIf="signinForm.controls.password.hasError('required') && signinForm.controls.password.touched">
@@ -29,7 +30,7 @@
         </ion-list>
       </ion-row>
       <ion-row justify-content-center>
-        <button ion-button type="submit" (click)="signIn(signinForm.value)"
+        <button ion-button type="submit" (click)="signIn(signinForm.value)" color="light"
                 [disabled]="!signinForm.valid">Sign In
         </button>
       </ion-row>
