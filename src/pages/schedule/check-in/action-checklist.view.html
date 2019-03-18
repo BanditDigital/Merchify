@@ -1,70 +1,157 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Record Visit Actions
-    </ion-title>
-    <ion-buttons end>
-      <button color="secondary" ion-button icon-only (click)="saveVisit()">
-        <ion-icon name="checkmark-circle"></ion-icon>
+    <ion-buttons start>
+      <button ion-button icon-only color="royal" (click)="saveVisit()">
+        <ion-icon name="arrow-round-back" icon-left></ion-icon>
       </button>
     </ion-buttons>
+    <ion-title>
+      {{ activeVisit.brand.name}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-
-      <ion-list>
-        <ion-list-header>
-          Visit Info
-        </ion-list-header>
-        <ion-item>
-          <ion-icon name="basket" item-start></ion-icon>{{ activeVisit?.retailer.name }}
-        </ion-item>
-        <ion-item>
-          <ion-icon name="brush" item-start></ion-icon>{{ activeVisit?.brand.name }}
-        </ion-item>
-        <ion-item>
-          <ion-icon name="navigate" item-start></ion-icon>
-          {{ activeVisit?.location.name }}
-        </ion-item>
-        <ion-item>
-          <ion-icon name="time" item-start></ion-icon>
-           Arrived {{ activeVisit?.actualArrival | amLocal | amDateFormat: 'DD/MM/YYYY HH:mm Z' }}
-        </ion-item>
-
-        <ion-list-header>
-          Visit Actions
-        </ion-list-header>
-        <!--<button ion-item (click)="recordStockCheck('system')">-->
-          <!--<ion-icon name="desktop" color="primary" item-start></ion-icon>-->
-          <!--System Inventory-->
-        <!--</button>-->
-
-        <button ion-item (click)="recordStockCheck('shelf')">
-          <ion-icon name="barcode" color="primary" item-start></ion-icon>
-          Shelf Inventory
+<ion-content no-padding no-margin>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button class="action-button" ion-button [disabled]="activeVisit.actualArrival"
+                (click)="checkIn(activeVisit)">
+          <div>
+            <ion-icon name="stopwatch"></ion-icon>
+            <label>Check In</label>
+          </div>
         </button>
-
-        <button ion-item (click)="recordStockCheck('sales')">
-          <ion-icon name="cash" color="primary" item-start></ion-icon>
-          End of Day Sales
+      </ion-col>
+      <ion-col>
+        <button class="action-button" ion-button
+                (click)="changeTime('in')" [disabled]="!activeVisit.actualArrival">
+          <div class="icon-with-badge">
+            <ion-icon name="time"></ion-icon>
+            <ion-badge class="icon-badge" color="secondary">
+              <ion-icon name="arrow-round-forward"></ion-icon>
+            </ion-badge>
+              <label *ngIf="!activeVisit.actualArrival">Scheduled</label>
+              <label *ngIf="!activeVisit.actualArrival">{{ activeVisit.scheduledArrival | amDateFormat: 'DD/MM/YY' }}</label>
+              <label *ngIf="activeVisit.actualArrival">{{ activeVisit.actualArrival | amDateFormat: 'DD/MM/YY' }}</label>
+              <label *ngIf="activeVisit.actualArrival">{{ activeVisit.actualArrival | amDateFormat: 'HH:mm' }}</label>
+          </div>
         </button>
+      </ion-col>
+    </ion-row>
 
-        <button ion-item (click)="takePhotos()">
-          <ion-icon name="camera" color="primary" item-start></ion-icon>
-          Visit Photos
+    <ion-row>
+      <ion-col>
+        <button class="action-button" ion-button
+                (click)="editVisit(activeVisit)" [disabled]="activeVisit.actualArrival">
+          <div>
+            <label class="title">{{ activeVisit.brand.name }}</label>
+            <label>{{ activeVisit.retailer.name }}</label>
+            <label>{{ activeVisit.location.name }}</label>
+            <label>{{ activeVisit.user.firstName }}</label>
+          </div>
+
         </button>
-
-        <button ion-item (click)="recordVisitNotes()">
-          <ion-icon name="create" color="primary" item-start></ion-icon>
-          Notes
+      </ion-col>
+      <ion-col>
+        <button class="action-button" ion-button (click)="takePhotos()"
+                [disabled]="(!activeVisit.actualArrival && !activeVisit.actualDeparture)">
+          <div class="icon-with-badge">
+            <ion-icon name="camera"></ion-icon>
+            <label>Photos</label>
+            <label></label>
+          </div>
         </button>
+      </ion-col>
+    </ion-row>
 
-        <button ion-item no-lines (click)="checkOut(activeVisit)">
-          <ion-icon name="log-out" color="secondary" item-start></ion-icon>
-          Checkout
+    <ion-row>
+      <ion-col>
+        <button class="action-button" ion-button (click)="recordStockCheck('shelf')"
+                [disabled]="(!activeVisit.actualArrival && !activeVisit.actualDeparture)">
+          <div class="icon-with-badge">
+            <ion-icon name="barcode"></ion-icon>
+            <ion-badge *ngIf="isInventory()" class="icon-badge" color="secondary">
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-badge>
+            <label>Stock</label>
+          </div>
         </button>
+      </ion-col>
+      <ion-col>
+        <button class="action-button" ion-button (click)="recordStockCheck('sales')"
+                [disabled]="(!activeVisit.actualArrival && !activeVisit.actualDeparture)">
+          <div class="icon-with-badge">
+            <ion-icon name="basket"></ion-icon>
+            <ion-badge *ngIf="isSales()" class="icon-badge" color="secondary">
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-badge>
+            <label>Sales</label>
+          </div>
 
-      </ion-list>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button class="action-button" ion-button (click)="openExpenses()"
+                [disabled]="(!activeVisit.actualArrival && !activeVisit.actualDeparture)">
+          <div class="icon-with-badge">
+            <ion-icon name="cash"></ion-icon>
+            <ion-badge *ngIf="isExpenses()" class="icon-badge" color="secondary">
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-badge>
+            <label>Expenses</label>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button class="action-button" ion-button (click)="recordVisitNotes()"
+                [disabled]="(!activeVisit.actualArrival && !activeVisit.actualDeparture)">
+          <div class="icon-with-badge">
+            <ion-icon name="clipboard"></ion-icon>
+            <ion-badge *ngIf="isVisitNotes()" class="icon-badge" color="secondary">
+              <ion-icon name="checkmark"></ion-icon>
+            </ion-badge>
+            <label>Notes</label>
+          </div>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button class="action-button" ion-button
+                (click)="changeTime('out')" [disabled]="!activeVisit.actualDeparture">
+          <div class="icon-with-badge">
+            <ion-icon name="time"></ion-icon>
+            <ion-badge class="icon-badge" color="danger">
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-badge>
+            <label *ngIf="!activeVisit.actualDeparture && !activeVisit.actualArrival">00:00:00</label>
+            <label *ngIf="activeVisit.actualDeparture">{{ activeVisit.actualDeparture | amDateFormat: 'DD/MM/YY' }}</label>
+            <label>{{ activeVisit.actualDeparture ?
+              (activeVisit.actualDeparture | amDateFormat: 'HH:mm') : clock }}
+            </label>
+          </div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button class="action-button" ion-button (click)="checkOut(activeVisit)"
+                [disabled]="activeVisit.actualDeparture || (!activeVisit.actualArrival && !activeVisit.actualDeparture)">
+          <div>
+            <ion-icon name="exit"></ion-icon>
+            <label>Check Out</label>
+          </div>
 
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-datetime displayFormat="DD/MM/YYYY HH:mm Z"
+                pickerFormat="DD MM YYYY HH mm Z" detail-push
+                [(ngModel)]="activeVisit.actualArrival" hidden="true" icon-end #in></ion-datetime>
+  <ion-datetime displayFormat="DD/MM/YYYY HH:mm Z"
+                pickerFormat="DD MM YYYY HH mm Z" detail-push
+                [(ngModel)]="activeVisit.actualDeparture" hidden="true" #out></ion-datetime>
 
 </ion-content>

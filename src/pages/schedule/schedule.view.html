@@ -16,12 +16,12 @@
   <div class="filters">
     <div float-start class="my-checkbox">
       <ion-label text-uppercase>Completed</ion-label>
-      <ion-checkbox [(ngModel)]="showCompleted" (ionChange)="searchVisits()">
+      <ion-checkbox [(ngModel)]="showCompleted" (ionChange)="searchVisits()" color="dark">
       </ion-checkbox>
     </div>
     <div float-start class="my-checkbox">
       <ion-label text-uppercase>Scheduled</ion-label>
-      <ion-checkbox [(ngModel)]="showScheduled" (ionChange)="searchVisits()">
+      <ion-checkbox [(ngModel)]="showScheduled" (ionChange)="searchVisits()" color="dark">
       </ion-checkbox>
     </div>
   </div>
@@ -33,17 +33,17 @@
       No visits found, better get cracking!
     </ion-item>
     <ion-item-group *ngFor="let group of visits | groupBy : 'state'; let g = index" no-padding>
-      <ion-item-divider color="light">
+      <ion-item-divider color="dark">
         {{ group.key }} ({{ group.list.length }})
       </ion-item-divider>
 
-        <ion-card ion-item no-margin no-padding (click)="openVisit(visit)" *ngFor="let visit of group.list; let i=index">
+        <ion-card ion-item no-margin no-padding (click)="updateActions(visit)" *ngFor="let visit of group.list; let i=index">
           <ion-card-content>
             <ion-row>
               <ion-col>
                 <ion-item no-padding>
                   <ion-avatar item-start>
-                    <img src="https://ui-avatars.com/api/?size=128&color=ffffff&background=3d73cc&rounded=true&name={{ visit.brand.name }}"></ion-avatar>
+                    <img src="https://ui-avatars.com/api/?size=128&color=ffffff&background=242423&rounded=true&name={{ visit.brand.name }}"></ion-avatar>
                   <h3>{{ visit.retailer.name }}</h3>
                   <p>{{ visit.location.name | titlecase }}</p>
                   <p *ngIf="isAdmin()">{{ visit.user.firstName + ' ' + visit.user.lastName | titlecase }}</p>
@@ -144,7 +144,7 @@
             <ion-row *ngIf="visit.actualArrival">
               <ion-col align-self-center text-center>
                 <button [outline]="!isRecordExpanded(g,i, 'times')" block
-                        ion-button icon-start small
+                        ion-button icon-start small color="dark"
                         (click)="toggleDetails(g,i, 'times')">
                   <ion-icon name="time"></ion-icon>
                   <div> {{(calculateTimeSpent(visit) | number: '1.2-2')}} hrs</div>
@@ -175,9 +175,9 @@
   </ion-list>
 
 
-  <ion-fab bottom right *ngIf="!activeVisit">
-    <button ion-fab color="secondary" (click)="newAppointment()">
-      <ion-icon name="add"></ion-icon>
+  <ion-fab bottom right *ngIf="!activeVisit" >
+    <button ion-fab  (click)="newAppointment()" color="dark" large>
+      <ion-icon name="add-circle-outline" color="light"></ion-icon>
     </button>
   </ion-fab>
 

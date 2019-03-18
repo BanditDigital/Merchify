@@ -4,6 +4,7 @@ import {AlertService} from "../../../shared/alert/alert.service";
 import {Stock} from "../../../models/Stock";
 import {Visit} from "../../../models/Visit";
 import {ProductsService} from "../../../services/products/products.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   templateUrl: 'stock-check.view.html',
@@ -15,12 +16,17 @@ export class StockCheckModal {
   type: string;
 
   constructor(private navParams: NavParams,
-              private view: ViewController) {
+              private view: ViewController,
+              private auth: AuthService) {
     if(this.navParams.get('visit')) {
 
       this.visit = this.navParams.get('visit');
       this.type = this.navParams.get('type');
     }
+  }
+
+  public isAdmin() {
+    return this.auth.isAdmin();
   }
 
   public saveStock() {

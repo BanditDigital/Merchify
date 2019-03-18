@@ -10,7 +10,6 @@ import {VisitActionModal} from "./visit-action/visit-action-modal.component";
 import {ScheduleNewModal} from "./add-new/schedule-new-modal.component";
 import {StockCheckModal} from "./stock-check/stock-check.component";
 import {StockSoldPipe} from "../../shared/pipes/stock-sold.pipe";
-import {VisitReportModal} from "./visit-report/visit-report-modal.component";
 import {GroupByPipe} from "../../shared/pipes/group-by.pipe";
 import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
 import {ActionChecklistComponent} from "./check-in/action-checklist.component";
@@ -35,7 +34,6 @@ import {File} from "@ionic-native/file";
     ScheduleNewModal,
     VisitActionModal,
     StockCheckModal,
-    VisitReportModal,
     ExpensesModal,
     EditCompleteComponent,
     VisitStatusPipe,
@@ -45,7 +43,7 @@ import {File} from "@ionic-native/file";
     ActionChecklistComponent,
     StockCheckPipe,
     NewExpenseModal,
-    PhotoModal
+    PhotoModal,
   ],
   imports: [
     BrowserModule,
@@ -61,12 +59,11 @@ import {File} from "@ionic-native/file";
     ScheduleNewModal,
     VisitActionModal,
     StockCheckModal,
-    VisitReportModal,
     ExpensesModal,
     ActionChecklistComponent,
     EditCompleteComponent,
     NewExpenseModal,
-    PhotoModal
+    PhotoModal,
   ],
   providers: [
     ScheduleService,

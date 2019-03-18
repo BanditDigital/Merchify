@@ -13,10 +13,8 @@ import {Component} from "@angular/core";
 import {ScheduleNewModal} from "./add-new/schedule-new-modal.component";
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {VisitReportModal} from "./visit-report/visit-report-modal.component";
 import {VisitFilterPipe} from "../../shared/pipes/visit-filter.pipe";
 import {ActionChecklistComponent} from "./check-in/action-checklist.component";
-import {ExpensesModal} from "./expenses/expenses-modal.component";
 import {AuthService} from "../auth/auth.service";
 import {SigninPage} from "../auth/signin/signin";
 import {Geolocation} from "@ionic-native/geolocation";
@@ -77,7 +75,6 @@ export class SchedulePage {
   isRecordExpanded(group, record, data) {
     return this.recordShown === record && this.groupShown === group && this.dataShown === data;
   };
-
 
 
   showSupport() {
@@ -175,243 +172,7 @@ export class SchedulePage {
 
   }
 
-  public openVisit(visit) {
-    let buttons = [];
 
-    if (!visit.actualArrival) {
-      buttons.push({
-        text: 'Check In',
-        handler: () => {
-          this.checkIn(visit);
-        }
-      });
-    }
-
-    if (!visit.actualArrival)
-      buttons.push({
-        text: 'Edit',
-        handler: () => {
-          this.editVisit(visit);
-        }
-      });
-
-    if (!visit.actualArrival) {
-      buttons.push({
-        text: 'Delete',
-        role: 'destructive',
-        handler: () => {
-          this.deleteVisit(visit);
-        }
-      });
-    }
-
-    if (visit.actualArrival && !visit.actualDeparture) {
-      buttons.push({
-          text: 'Record Activity',
-          handler: () => {
-            this.updateActions(visit);
-          }
-        });
-    }
-
-    if (visit.actualArrival && visit.actualDeparture) {
-      buttons.push(
-        {
-          text: 'Photos',
-          handler: () => {
-            this.visitPhotos(visit);
-          }
-        });
-    }
-
-    if (visit.actualArrival && visit.actualDeparture) {
-      buttons.push(
-        {
-          text: 'Notes',
-          handler: () => {
-            this.editVisitNotes(visit);
-          }
-        });
-    }
-
-    if (visit.actualArrival && visit.actualDeparture) {
-      buttons.push({
-        text: 'Expenses & Travel',
-        handler: () => {
-          this.navCtrl.push(ExpensesModal, {visit: visit});
-        }
-      });
-    }
-
-    if (visit.actualArrival && visit.actualDeparture) {
-      buttons.push({
-          text: 'Visit Report',
-          handler: () => {
-            this.navCtrl.push(VisitReportModal, {visit: visit});
-          }
-        });
-    }
-
-
-    let actions = this.actionSheetCtrl.create({
-      title: 'What next?',
-      buttons
-    });
-
-    actions.present();
-  }
-
-  public editVisit(visit) {
-    let newAppointmentModal = this.modalCtrl.create(ScheduleNewModal, {visit: visit, edit: true});
-
-    newAppointmentModal.onDidDismiss(results => {
-      if (results && results.edited) {
-        _.pull(this.rawData, visit);
-        this.rawData.push(results.visit);
-        this.visitFilters();
-      }
-    });
-
-    newAppointmentModal.present();
-  }
-
-  public editVisitNotes(visit) {
-    let loading = this.loadingCtrl.create({content: 'Updating notes...'});
-    let notes = this.modalCtrl.create(VisitActionModal, {notes: visit.visitNotes});
-    notes.onDidDismiss(data => {
-      if(data) {
-        visit.visitNotes = data.notes;
-        loading.present();
-        this.scheduleService.editVisit(visit)
-          .subscribe((updatedVisit) => {
-            _.pull(this.rawData, visit);
-            this.rawData.push(updatedVisit);
-            this.visitFilters();
-            loading.dismiss();
-          }, error => {
-            this.errorAlert.showAlert('Could not update visit notes', error.error.message);
-            loading.dismiss();
-          });
-      }
-    });
-    notes.present();
-  }
-
-  public visitPhotos(visit) {
-    let photos = this.modalCtrl.create(PhotoModal, {visit: visit});
-    photos.present();
-  }
-
-  public checkIn(visit) {
-    let loading = this.loadingCtrl.create({content: 'Checking in...'});
-    let checkInTime = moment().utc();
-
-
-      let confirm = this.alertCtrl.create({
-        title: `Confirm Check-in`,
-        message: `Are you sure you want to check-in now, the time recorded will be ${checkInTime.local().format('DD/MM/YYYY HH:mm Z')}`,
-        buttons: [
-          {
-            text: 'Cancel',
-          },
-          {
-            text: 'Confirm',
-            handler: () => {
-              loading.present();
-              this.geolocation.getCurrentPosition().then(position => {
-                this.productService.getProductsByBrand(visit.brand)
-                  .subscribe(products => {
-                    visit.stock = [];
-                    products.forEach(product => {
-                      let stock: Stock = {
-                        productId: product.id,
-                        visitId: visit.id,
-                        product: product,
-                        systemQty: 0,
-                        onHand: 0,
-                        qtySold: 0,
-                        price: product.retailPrice
-                      }
-                      visit.stock.push(stock);
-                    });
-                    visit.actualArrival = checkInTime.utc();
-                    console.log(visit.user);
-                    const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
-                    console.log(rate);
-
-                    visit.hourlyRate = rate.hourlyRate;
-                    visit.travelRate = rate.travelTimeRate;
-                    visit.mileageRate = rate.mileageRate;
-                    visit.travelTimeThreshold = rate.travelTimePayableThreshold;
-                    visit.mileageThreshold = rate.mileagePayableThreshold;
-                    visit.expenses = [];
-                    visit.checkInLocation = {long: position.coords.longitude, lat: position.coords.latitude};
-                    visit.checkOutLocation = {long: null, lat: null};
-                    this.scheduleService.editVisit(visit)
-                      .subscribe((updated) => {
-                       _.remove(this.rawData , visit);
-                        this.rawData.push(updated);
-                        console.log(this.visits);
-                        this.visitFilters();
-                        loading.dismiss();
-                      }, error => {
-                        this.errorAlert.showAlert('Could not check in', error.error.message);
-                        loading.dismiss();
-                      });
-                  }, error => {
-                    this.errorAlert.showAlert('Could not load products', error.error.message);
-                  });
-              }).catch(error => {
-                this.productService.getProductsByBrand(visit.brand)
-                  .subscribe(products => {
-                    visit.stock = [];
-                    products.forEach(product => {
-                      let stock: Stock = {
-                        productId: product.id,
-                        visitId: visit.id,
-                        product: product,
-                        systemQty: 0,
-                        onHand: 0,
-                        qtySold: 0,
-                        price: product.retailPrice
-                      }
-                      visit.stock.push(stock);
-                    });
-                    visit.actualArrival = checkInTime.utc();
-                    console.log(visit.user);
-                    const rate: Rate = _.find(visit.user.rates, {brandId: visit.brand.id});
-                    console.log(rate);
-
-                    visit.hourlyRate = rate.hourlyRate;
-                    visit.travelRate = rate.travelTimeRate;
-                    visit.mileageRate = rate.mileageRate;
-                    visit.travelTimeThreshold = rate.travelTimePayableThreshold;
-                    visit.mileageThreshold = rate.mileagePayableThreshold;
-                    visit.expenses = [];
-                    visit.checkInLocation = {long: null, lat: null};
-                    visit.checkOutLocation = {long: null, lat: null};
-                    this.scheduleService.editVisit(visit)
-                      .subscribe((updated) => {
-                        _.remove(this.rawData , visit);
-                        this.rawData.push(updated);
-                        this.visitFilters();
-                        loading.dismiss();
-                      }, error => {
-                        this.errorAlert.showAlert('Could not check in', error.error.message);
-                        loading.dismiss();
-                      });
-                  }, error => {
-                    this.errorAlert.showAlert('Could not load products', error.error.message);
-                  });
-              });
-            }
-
-          }
-        ]
-      });
-      confirm.present();
-
-  }
 
   public deleteVisit(visit) {
     let loading = this.loadingCtrl.create({content: 'Deleting visit...'});
@@ -443,7 +204,10 @@ export class SchedulePage {
   }
 
   public updateActions(visit) {
-    let modal = this.modalCtrl.create(ActionChecklistComponent, {visit: visit}, {enableBackdropDismiss: false});
+    let modal = this.modalCtrl.create(ActionChecklistComponent, {visit: visit}, {
+      enableBackdropDismiss: false,
+      showBackdrop: false
+    });
     let loading = this.loadingCtrl.create({content: 'Updating visit...'});
 
     modal.onDidDismiss(data => {
@@ -534,7 +298,7 @@ export class SchedulePage {
   }
 
   public calculateMileageCost(visit: Visit): number {
-    if(visit.mileage > visit.mileageThreshold) {
+    if (visit.mileage > visit.mileageThreshold) {
       return ((visit.mileage - visit.mileageThreshold) * visit.mileageRate)
     } else {
       return 0.00;
@@ -542,7 +306,7 @@ export class SchedulePage {
   }
 
   public calculateTravelCost(visit: Visit): number {
-    if(visit.travelTime > visit.travelTimeThreshold) {
+    if (visit.travelTime > visit.travelTimeThreshold) {
       return ((visit.travelTime - visit.travelTimeThreshold) * visit.travelRate)
     } else {
       return 0.00;
@@ -551,13 +315,13 @@ export class SchedulePage {
 
   public calculateTimeSpent(visit: Visit): number {
     let hours = 0;
-    if(visit.actualDeparture) {
+    if (visit.actualDeparture) {
       hours = Number.parseFloat(
         moment(visit.actualDeparture)
           .diff(visit.actualArrival, 'hours', true)
           .toFixed(2)
       );
-    } else if(visit.actualArrival && !visit.actualDeparture) {
+    } else if (visit.actualArrival && !visit.actualDeparture) {
       hours = Number.parseFloat(
         moment(moment())
           .diff(visit.actualArrival, 'hours', true)
@@ -569,13 +333,13 @@ export class SchedulePage {
 
   public calculateSalary(visit: Visit): number {
     let hours = 0;
-    if(visit.actualDeparture) {
+    if (visit.actualDeparture) {
       hours = Number.parseFloat(
         moment(visit.actualDeparture)
           .diff(visit.actualArrival, 'hours', true)
           .toFixed(2)
       );
-    } else if(visit.actualArrival && !visit.actualDeparture) {
+    } else if (visit.actualArrival && !visit.actualDeparture) {
       hours = Number.parseFloat(
         moment(moment())
           .diff(visit.actualArrival, 'hours', true)

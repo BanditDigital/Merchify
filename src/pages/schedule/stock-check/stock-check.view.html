@@ -24,13 +24,26 @@
           <ion-row class="row" *ngFor="let item of visit.stock | stockSold: type">
             <ion-col col-9>
               <p><b>{{item.product.description}}</b> {{item.product.size}}<br/>
-              SKU {{item.product.sku}} / {{item.product.barcode}}</p>
+              SKU {{item.product.sku}}</p>
             </ion-col>
-            <ion-col col-3 align-self-center>
-              <ion-input item-end class="stock-input" no-padding *ngIf="type === 'system'" type="number" placeholder="0" [(ngModel)]="item.systemQty"></ion-input>
-              <ion-input item-end class="stock-input" no-padding *ngIf="type === 'shelf'" type="number" placeholder="0" [(ngModel)]="item.onHand"></ion-input>
+            <ion-col col-3 align-self-center *ngIf="!visit.actualDeparture || isAdmin()">
+              <ion-input item-end class="stock-input" no-padding *ngIf="type === 'system'"
+                         type="number" [(ngModel)]="item.systemQty"
+                         (ionFocus)="item.systemQty = null"></ion-input>
 
-              <ion-input item-end class="stock-input" no-padding *ngIf="type === 'sales'" type="number" placeholder="0" [(ngModel)]="item.qtySold"></ion-input>
+              <ion-input item-end class="stock-input" no-padding *ngIf="type === 'shelf'"
+                         type="number" [(ngModel)]="item.onHand"
+                         (ionFocus)="item.onHand = null"></ion-input>
+
+              <ion-input item-end class="stock-input" no-padding *ngIf="type === 'sales'"
+                         type="number" [(ngModel)]="item.qtySold"
+                         (ionFocus)="item.qtySold = null"></ion-input>
+            </ion-col>
+
+            <ion-col col-3 align-self-center *ngIf="visit.actualDeparture && !isAdmin()">
+              <p *ngIf="type === 'system'">{{ item.systemQty }}</p>
+              <p *ngIf="type === 'shelf'">{{ item.onHand }}</p>
+              <p *ngIf="type === 'sales'">{{ item.qtySold }}</p>
             </ion-col>
           </ion-row>
         </ion-grid>
