@@ -129,7 +129,7 @@ export class PhotoModal {
     } else {
       // Create options for the Camera Dialog
       var options = {
-        quality: 50,
+        quality: 25,
         destinationType: this.camera.DestinationType.DATA_URL,
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE,

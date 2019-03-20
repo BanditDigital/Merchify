@@ -53,15 +53,23 @@
         </button>
       </ion-col>
       <ion-col>
-        <button class="action-button" ion-button (click)="takePhotos()"
-                [disabled]="(!activeVisit.actualArrival && !activeVisit.actualDeparture)">
+        <button class="action-button" ion-button
+                (click)="changeTime('out')" [disabled]="!activeVisit.actualDeparture">
           <div class="icon-with-badge">
-            <ion-icon name="camera"></ion-icon>
-            <label>Photos</label>
-            <label></label>
+            <ion-icon name="time"></ion-icon>
+            <ion-badge class="icon-badge" color="danger">
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </ion-badge>
+            <label *ngIf="!activeVisit.actualDeparture && !activeVisit.actualArrival">00:00:00</label>
+            <label *ngIf="activeVisit.actualDeparture">{{ activeVisit.actualDeparture | amDateFormat: 'DD/MM/YY' }}</label>
+            <label>{{ activeVisit.actualDeparture ?
+              (activeVisit.actualDeparture | amDateFormat: 'HH:mm') : clock }}
+            </label>
           </div>
         </button>
       </ion-col>
+
+
     </ion-row>
 
     <ion-row>
@@ -119,18 +127,12 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <button class="action-button" ion-button
-                (click)="changeTime('out')" [disabled]="!activeVisit.actualDeparture">
+        <button class="action-button" ion-button (click)="takePhotos()"
+                [disabled]="(!activeVisit.actualArrival && !activeVisit.actualDeparture)">
           <div class="icon-with-badge">
-            <ion-icon name="time"></ion-icon>
-            <ion-badge class="icon-badge" color="danger">
-              <ion-icon name="arrow-round-back"></ion-icon>
-            </ion-badge>
-            <label *ngIf="!activeVisit.actualDeparture && !activeVisit.actualArrival">00:00:00</label>
-            <label *ngIf="activeVisit.actualDeparture">{{ activeVisit.actualDeparture | amDateFormat: 'DD/MM/YY' }}</label>
-            <label>{{ activeVisit.actualDeparture ?
-              (activeVisit.actualDeparture | amDateFormat: 'HH:mm') : clock }}
-            </label>
+            <ion-icon name="camera"></ion-icon>
+            <label>Photos</label>
+            <label></label>
           </div>
         </button>
       </ion-col>
