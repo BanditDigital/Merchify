@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="uk.co.banditdigital.merchifi" version="1.3.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="uk.co.banditdigital.merchifi" version="1.3.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Merchifi</name>
     <description>A mobile app for managing merchandising activities.</description>
     <author email="danny@banditdigital.co.uk" href="mailto:danny@banditdigital.co.uk">Danny Varley</author>
@@ -98,14 +98,6 @@
     <plugin name="cordova-plugin-filepath" spec="^1.4.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.2.1">
         <variable name="ANDROID_SUPPORT_ANNOTATIONS_VERSION" value="27.+" />
-    </plugin>
-    <plugin name="cordova-plugin-ionic" spec="^5.2.7">
-        <variable name="APP_ID" value="b4f65367" />
-        <variable name="CHANNEL_NAME" value="Master" />
-        <variable name="UPDATE_METHOD" value="background" />
-        <variable name="UPDATE_API" value="https://api.ionicjs.com" />
-        <variable name="MAX_STORE" value="2" />
-        <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <plugin name="cordova-android-support-gradle-release" spec="^2.0.1">
